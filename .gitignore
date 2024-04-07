@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+
+# Environment configuration files
+.env
+
+# Build outputs
+/dist
+/build
+/out
+
+# Misc
+.DS_Store
+Thumbs.db
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+
+# Optional npm cache directory
+.npm
