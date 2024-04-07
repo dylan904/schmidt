@@ -27,8 +27,8 @@ export class MyElement extends LitElement {
     return html`
       <nav class="navbar ftco-navbar-light">
           <div class="container-xl">
-              <a class="navbar-brand align-items-center" href="index.html">
-                  <span class="">Schmt.</span>
+              <a class="navbar-brand align-items-center" href="/portfolio">
+                  <span class="">Dev By Dylan</span>
               </a>
               <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span></span> 
