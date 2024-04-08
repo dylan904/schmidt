@@ -425,8 +425,24 @@ export class MyElement extends LitElement {
 
 .btn.btn-white {
     background: #fff !important;
-    border: 1px solid #fff !important;
-    color: #000000 !important;
+    border: none!important;
+    box-shadow: inset 0 0 0 1px #3a5bc7;
+    color: #1b1b1b;
+    position: relative;
+}
+.btn.btn-white:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #002ae50d!important;
+  opacity: 0;
+  transition: opacity 50ms ease;
+}
+.btn.btn-white:hover:before {
+  opacity: 1;
 }
   `;
 
