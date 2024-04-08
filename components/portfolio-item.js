@@ -324,7 +324,7 @@ export class MyElement extends LitElement {
   static styles = css`
     .wrap {
       padding: 16px;
-      border: 3px solid #d5c455;
+      border: 3px solid #3e63dd;
       border-radius: 4px;
       margin-bottom: 32px;
       transition: background-color 0.3s ease;
@@ -337,16 +337,20 @@ export class MyElement extends LitElement {
 
     .project {
       width: 100%;
-      height: 320px;
+      height: 360px;
       position: relative;
       z-index: 0; 
       display: flex;
       justify-content:center;
       align-items: center;
       cursor: default;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: center center; 
+    }
+
+    .project[data-title="Brood"] {
+      background-size: cover;
     }
 
     .overlay {
@@ -357,7 +361,7 @@ export class MyElement extends LitElement {
       bottom: 0;
       content: '';
       opacity: 0;
-      background: #d5c455;
+      background: #0090FF;
       z-index: -1;
       transition: opacity 0.3s ease; 
     }
@@ -384,7 +388,7 @@ export class MyElement extends LitElement {
     }
 
     .wrap:hover .overlay, .project:focus .overlay {
-      opacity: .95; 
+      opacity: .98; 
     }
 
     .wrap:hover .text, .project:focus .text {
@@ -484,7 +488,7 @@ export class MyElement extends LitElement {
     console.log('renderit', this.item?.url, this.item)
     return html`
       <div class="wrap">
-        <div class="project" style="background-image: url(${ this.item?.img })">
+        <div class="project" data-title="${ this.item?.title }" style="background-image: url(${ this.item?.img })">
           <div class="overlay"></div>
           <div class="text text-center p-4">
             <h3>${ this.title }</h3>
