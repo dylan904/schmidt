@@ -41,8 +41,8 @@
 	color: var(--dark-color);
 	font-weight: bold;
   --dark-color: #1b1b1b;
-  background: #8DA4EF;
-  transition: background-color 250ms ease, box-shadow 250ms ease, color 250ms ease;
+  background: #ABBDF9;
+  transition: background-color 250ms ease, box-shadow 250ms ease;
   --light-color: #5B5BD6;
 
 }
@@ -54,12 +54,16 @@
 	text-decoration: none;
 	padding: .5rem 1rem .5rem 1rem;
     white-space: nowrap;
+    transition: color 250ms ease;
 }
 
 .tag:hover {
 	background-color: var(--light-color);
 	/* box-shadow: 0 0 0 calc(2px + .25rem) var(--light-color); */
   box-shadow: 0 0 0 calc(2px + .25rem) var(--light-color);
+}
+
+.tag:hover > a {
   color: white;
 }
     </style>
@@ -127,13 +131,13 @@
                     <a href="#">Prompt engineering</a>
                   </li>
                   <li class="tag">
-                    <a href="#">named entity recognition</a>
+                    <a href="#">Named Entity Recognition</a>
                   </li>
                   <li class="tag">
-                    <a href="#">text classification</a>
+                    <a href="#">Text classification</a>
                   </li>
                   <li class="tag">
-                    <a href="#">sentiment analysis</a>
+                    <a href="#">Sentiment analysis</a>
                   </li>
                   <li class="tag">
                     <a href="#">OpenAI</a>
@@ -183,7 +187,7 @@
                     <a href="#">SEO</a>
                   </li>
                   <li class="tag">
-                    <a href="#">Custom Integrations</a>
+                    <a href="#">Custom integrations</a>
                   </li>
                 </ul>
               </div>
