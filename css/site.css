@@ -180,6 +180,8 @@ a.proj-shot:hover{box-shadow:var(--shadow-lift); transform:translateY(-2px); bor
 }
 .badge.live{background:var(--live-wash); color:var(--live)}
 .badge.internal{background:var(--sunk); color:var(--muted)}
+/* Client work that is real but not public: neither shipped nor internal. */
+.badge.client{background:var(--accent-wash); color:var(--accent-ink)}
 .proj-role{font-family:var(--sans); font-size:13.5px; color:var(--faint); margin-bottom:var(--s3)}
 .proj p.sum{color:var(--muted); max-width:var(--measure); font-size:16.5px}
 .tech{display:flex; flex-wrap:wrap; gap:var(--s2); margin-top:var(--s4); list-style:none; padding:0}

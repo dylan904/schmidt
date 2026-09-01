@@ -13,33 +13,38 @@ export class WorkList extends LitElement {
       role: 'Solo — design, engineering, business',
       summary: 'A build optimizer for NBA 2K. Name the ratings you care about and it searches the legal build space for the cheapest configuration that hits all of them. The cost of a correct answer was rebuilding the game’s own rating engine from its binary tuning file: cap-breaker price depends on the entire attribute vector through a 15-row archetype classifier, so there is no price list to look up and no shortcut around searching. What it still gets wrong — an early readiness heuristic hard-blocked configurations that were genuinely buildable, and that class of over-blocking is documented in the codebase rather than closed. Runs as a business with paying customers.',
     },
+    'Destination Home': {
+      no: '02', status: 'client', statusLabel: 'Client MVP',
+      role: 'Solo — product, engineering, consulting',
+      summary: 'A chat-first relocation assistant for corporate transferees, built for Sterling Lexicon. Intake happens as a conversation, program questions get answered only where a cited passage supports them, and neighborhoods are ranked by deterministic code over sourced measurements rather than by the model, which is what makes the ranking auditable under fair-housing scrutiny. The hard part was not the chat. It was deciding what the system is allowed to claim: absent data stays null with a coverage figure instead of becoming a neutral score, and a factor that cannot be measured well enough simply does not publish. Where it stands: a pre-production MVP. It works end to end, but hosting, identity and the profile integration were blocked on client dependencies, and the program corpus it answers from is placeholder content.',
+    },
     'beeline.com': {
-      no: '02', status: 'live', statusLabel: 'Shipped',
+      no: '03', status: 'live', statusLabel: 'Shipped',
       role: 'Lead Vue.js developer',
       summary: 'Rebuilt Beeline’s corporate site from WordPress into a Vue application — my first large Vue project — converting the existing templates and writing new ones against Salesforce and Pardot. Delivered in about a year against a projected year and a half to two. The cost sat in integration and coordination rather than in the frontend: two marketing systems, a design lead, and a stakeholder list that all had to agree. Worth being straight about it — nothing here is algorithmically hard. The result is the schedule and the integrations, not the engineering.',
     },
     'Beeline - Business Case Tool': {
-      no: '03', status: 'internal', statusLabel: 'Internal',
+      no: '04', status: 'internal', statusLabel: 'Internal',
       role: 'Lead Nuxt.js developer',
       summary: 'A client acquisition tool migrated off a legacy PHP site onto Nuxt and Cosmos DB, my first Nuxt project. Prospects configure who owns each step of their process, and the tool models the time and cost that moves. What it produces is a model, not a measurement: the output is only ever as good as the ownership and the rates a prospect types in, and it was never instrumented against what those clients went on to actually spend. Internal, so there is nothing public to open.',
     },
     'Chatbot Decision Tree': {
-      no: '04', status: 'internal', statusLabel: 'Internal',
+      no: '05', status: 'internal', statusLabel: 'Internal',
       role: 'Lead developer',
       summary: 'An assistant whose conversation paths are authored as an explicit decision tree rather than left to the model, with Application Insights wired in so the paths people actually take are measurable. The cost is the authoring: every branch started as a row in a spreadsheet of if-then conditions and had to be drawn, first in Figma and then in a journey editor, before it could answer anything. That is also the limit — it is reliable exactly as far as somebody authored it, and a question the tree does not cover gets routed to the closest branch that exists.',
     },
     'OpenAI Feedback Classifier': {
-      no: '05', status: 'internal', statusLabel: 'Internal',
+      no: '06', status: 'internal', statusLabel: 'Internal',
       role: 'Solo',
       summary: 'Triages incoming product feedback so nobody has to read all of it — built to find out why users of one product kept reverting to its legacy version, across more than 50,000 entries. Scores an F1 of 0.98. The cost was in the labelled data and the prompt, iterated with a data analyst, not in the model. The number needs its caveat: it is one labelled set for one product’s feedback, and the per-class counts behind it are thin — some classes are scored on around a dozen test labels, which is not enough to trust a per-class figure.',
     },
     'Vue Devtools Auditor': {
-      no: '06', status: 'internal', statusLabel: 'Internal',
+      no: '07', status: 'internal', statusLabel: 'Internal',
       role: 'Solo',
       summary: 'An accessibility auditor that reports violations at the component level instead of the page, so a finding names the component that owns it rather than a line of rendered output. It also audits colour against the design system, suggesting the nearest token by smallest delta, and keeps results in Cosmos DB so compliance can be tracked over time. Component-level attribution cost a walk of Vue’s component tree rather than the rendered DOM. Its ceiling is every automated auditor’s ceiling: it catches what is mechanically decidable and cannot make the judgement calls — whether alt text is actually useful, whether an order is actually logical.',
     },
     'Brood': {
-      no: '07', status: 'internal', statusLabel: 'Internal',
+      no: '08', status: 'internal', statusLabel: 'Internal',
       role: 'Project lead and developer',
       summary: 'An internal platform for sourcing and voting on hackathon ideas ahead of the event, built in free time, with single sign-on through Azure AD so participation cost nobody an account and posting could stay anonymous. The cost was scope discipline: it is a submit-and-upvote list on purpose, and it does nothing to help run the event once it starts. The lift in ideas is what organisers observed rather than something the platform measured — no instrumentation was ever added to prove it.',
     },
@@ -122,6 +127,64 @@ export class WorkList extends LitElement {
           src: "/images/2kbuildlab/mobile.png",
           thumb: "/images/2kbuildlab/mobile.png",
           description: `<b>Mobile</b>: The desktop rail becomes a bottom sheet. The saved-result PNG export forces desktop width while it captures, a detail with its own regression test, because media queries key off the viewport and not the element.`
+        }
+      ]
+    },
+    {
+      title: 'Destination Home',
+      caseStudy: '/portfolio/destination-home',
+      categories: ['Angular 22', '.NET 8', 'C#', 'EF Core', 'SQL Server', 'OpenAI Responses', 'Python', 'DuckDB Spatial', 'Geospatial', 'Responsible AI'],
+      img: '/images/destination-home.png',
+      slides: [
+        {
+          src: "/images/destination-home/neighborhoods.png",
+          thumb: "/images/destination-home/neighborhoods.png",
+          description: `<b>The whole product in one frame</b>: A conversation on the left, a plan that fills in as you talk on the right. The ranked areas were ordered by deterministic C# over sourced measurements, never by the model, and the note above them names which factors were actually counted on the ground.`
+        },
+        {
+          src: "/images/destination-home/welcome.png",
+          thumb: "/images/destination-home/welcome.png",
+          description: `<b>The screen before the conversation</b>: Every item is a fact from the transferee's file rather than a claim about the product. The prototype version counted its own features and promised "AI support" here, which is the wrong thing to say to someone deciding whether the tool knows who they are.`
+        },
+        {
+          src: "/images/destination-home/on-file.png",
+          thumb: "/images/destination-home/on-file.png",
+          description: `<b>Employer-owned facts</b>: The client, program and allowance come from the employer, so a transferee can query them but not overwrite them. A query routes to the named consultant, is retractable, and the suggested prompts stop quoting the disputed figure while it is open.`
+        },
+        {
+          src: "/images/destination-home/grounded-answer.png",
+          thumb: "/images/destination-home/grounded-answer.png",
+          description: `<b>Answered from the file, and only from the file</b>: Citation is an act rather than an inference. The source line appears only when the model calls the citation tool with a valid passage id. Read the last clause: temporary housing may be payable but the terms do not list it, so the answer says so instead of smoothing it over.`
+        },
+        {
+          src: "/images/destination-home/free-text.png",
+          thumb: "/images/destination-home/free-text.png",
+          description: `<b>One message, several cards</b>: Free text answers whole cards ahead of their turn and the flow catches up rather than re-asking. Note the last row of the plan: "close to a decent taco truck" is not a factor the scorer can rank, so it stays in the transferee's own words instead of being quietly dropped.`
+        },
+        {
+          src: "/images/destination-home/provenance.png",
+          thumb: "/images/destination-home/provenance.png",
+          description: `<b>Every score carries its measurement</b>: Not "highly walkable" but 625 street junctions within a mile, with the dataset and release date behind it. A factor with no measurement for that area says so rather than showing a bar, because a fabricated neutral score would rank a thin-data city below a well-known one.`
+        },
+        {
+          src: "/images/destination-home/escalation.png",
+          thumb: "/images/destination-home/escalation.png",
+          description: `<b>Where the machine stops</b>: Schools, healthcare and community groups go to a person who arranges them directly. Schools are refused as a ranking input by design, and a test keeps the scripted offline fallback from offering them either.`
+        },
+        {
+          src: "/images/destination-home/account.png",
+          thumb: "/images/destination-home/account.png",
+          description: `<b>Erasure is a route, not a promise</b>: Erasure removes what is keyed to a person, retention sweeps what is stale, and the anonymous analytics rows sit outside both because they describe nobody. The client reports failure, because the delete route was once missing and the swallowed 405 cleared the local view while the server row survived.`
+        },
+        {
+          src: "/images/destination-home/confirm-dialog.png",
+          thumb: "/images/destination-home/confirm-dialog.png",
+          description: `<b>Accessibility on the platform's terms</b>: A native dialog, so the focus trap, the escape key and the inert background come from the browser rather than from hand-written code. The safe action is primary and focused, and the copy says what goes with it and that there is no undo.`
+        },
+        {
+          src: "/images/destination-home/mobile.png",
+          thumb: "/images/destination-home/mobile.png",
+          description: `<b>Phone</b>: The plan moves behind a sheet and the copy follows the input method, so this reads "tap" where the desktop build says "click". Streaming text renders at the same cadence as scripted text through a rAF pump that carries fractional character credit between frames.`
         }
       ]
     },

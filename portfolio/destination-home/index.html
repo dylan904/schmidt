@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dev By Dylan - Destination Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Case study: a chat-first relocation assistant for corporate transferees, where language models explain and deterministic code decides, built for Sterling Lexicon.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
+
+    <link rel="canonical" href="https://devbydylan.com/portfolio/destination-home/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/portfolio/destination-home/">
+    <meta property="og:title" content="Destination Home &mdash; Dylan Maxey">
+    <meta property="og:description" content="An AI relocation assistant where the model talks and the scorer decides. Fair-housing constraints enforced by the type system, not by policy documents.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/destination-home.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Destination Home &mdash; Dylan Maxey">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Destination Home &mdash; Dylan Maxey">
+    <meta name="twitter:description" content="An AI relocation assistant where the model talks and the scorer decides. Fair-housing constraints enforced by the type system, not by policy documents.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/destination-home.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
+
+    <style>
+      /* Same case-study layout as the other write-ups, on the site's own tokens. */
+      .cs-body { color: var(--ink); }
+      .cs-body p { font-size: 17px; line-height: 1.75; font-family: var(--serif); }
+      .cs-narrow { max-width: 72ch; }
+
+      .cs-lead { font-size: 21px; line-height: 1.65; color: var(--muted); }
+
+      .cs-stats {
+        display: grid; grid-template-columns: max-content 1fr;
+        gap: 0 32px; margin: var(--s7) 0 var(--s6);
+        border-top: 1px solid var(--line);
+      }
+      .cs-stats dt {
+        font-family: var(--sans); font-size: 14px; color: var(--muted);
+        padding: 14px 0 4px; border-top: 1px solid var(--line);
+      }
+      .cs-stats dt:first-of-type, .cs-stats dt:first-of-type + dd { border-top: 0; }
+      .cs-stats dd {
+        margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted);
+        padding: 14px 0 16px; border-top: 1px solid var(--line);
+      }
+      .cs-stats dd b { font-weight: 600; color: var(--ink); }
+      @media (max-width: 640px) {
+        .cs-stats { grid-template-columns: 1fr; gap: 0; }
+        .cs-stats dt { padding-bottom: 0; }
+        .cs-stats dd { padding-top: 4px; border-top: 0; }
+      }
+
+      .cs-fig { margin: 2.5rem 0 3rem; }
+      .cs-fig img {
+        width: 100%; height: auto; display: block;
+        border: 1px solid var(--line); border-bottom: 0; background: var(--sunk);
+      }
+
+      /* The opening figure carries the argument, so it sits above the first
+         paragraph, cropped to its head. Declared after `.cs-fig img`: equal
+         specificity, so source order decides. */
+      .cs-hero-fig { margin: 0 0 3.5rem; }
+      .cs-hero-fig img { height: 420px; object-fit: cover; object-position: top center; }
+      .cs-fig figcaption {
+        border: 1px solid var(--line); border-top: 0; background: var(--surface);
+        padding: 14px 18px 16px; font-size: 15px; line-height: 1.6; color: var(--muted);
+      }
+      .cs-fig figcaption b { font-weight: 600; color: var(--ink); }
+      .cs-fig figcaption b::after { content: '. '; }
+      .cs-fig.cs-narrow-fig { max-width: 620px; }
+
+      .cs-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .cs-pair .cs-fig { margin: 0 0 1rem; }
+      @media (max-width: 767.98px) { .cs-pair { grid-template-columns: 1fr; } }
+
+      .cs-quote {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 26px 0;
+        margin: 2.75rem 0;
+        font-size: 21px;
+        line-height: 1.55;
+        color: var(--ink);
+      }
+      .cs-quote p { font-size: 19px; line-height: 1.6; margin-bottom: 0; color: var(--ink); }
+      .cs-quote span {
+        display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--faint); margin-top: 12px;
+      }
+
+      /* One silent failure per row: what looked fine, and what now catches it. */
+      .cs-kill { border-bottom: 1px solid var(--line); padding: 1.15rem 0; }
+      .cs-kill:first-of-type { border-top: 1px solid var(--line); }
+      .cs-kill h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+      .cs-kill h4 em {
+        font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+        text-transform: uppercase; color: var(--accent-ink); margin-left: 10px; white-space: nowrap;
+      }
+      .cs-kill p { font-size: 15px; line-height: 1.65; color: var(--muted); margin-bottom: 0; }
+
+      .cs-tags { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+      .cs-tags li {
+        font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        color: var(--accent); border: 1px solid var(--line-strong); border-radius: 3px; padding: 6px 11px;
+      }
+
+      .cs-body h3 { margin-top: 2.5rem; font-size: 22px; font-weight: 600; }
+      .cs-body ul.cs-list { padding-left: 0; list-style: none; }
+      .cs-body ul.cs-list li { position: relative; padding-left: 22px; margin-bottom: 14px; font-size: 17px; line-height: 1.75; }
+      .cs-body ul.cs-list li:before {
+        content: ""; position: absolute; left: 0; top: 14px; width: 9px; height: 2px; background: var(--accent);
+      }
+      .cs-body code {
+        font-size: 14px; background: var(--accent-wash); color: var(--ink);
+        padding: 2px 6px; border-radius: 3px;
+      }
+
+      .cs-back { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 12px; }
+      .cs-disclaimer { margin-top: 2rem; font-size: 13px; color: var(--faint); }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#cs-start">Skip to the case study</a>
+    <nav-pane></nav-pane>
+
+    <header class="cs-hero">
+      <div class="wrap">
+        <nav class="cs-crumbs" aria-label="Breadcrumb">
+          <a href="/">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">Destination Home</span>
+        </nav>
+        <h1>Destination Home</h1>
+        <p class="cs-kicker">An AI relocation assistant where the model talks and the scorer decides.</p>
+      </div>
+    </header>
+
+    <section class="cs-body" id="cs-start">
+      <div class="wrap">
+        <figure class="cs-fig cs-hero-fig">
+          <img src="/images/full/destination-home/neighborhoods.webp" width="1440" height="900" fetchpriority="high" decoding="async"
+            alt="The assistant thread on the left and the live plan on the right, showing ranked Austin neighborhoods with a score bar for each factor.">
+          <figcaption><b>The whole product in one frame</b> A conversation on the left, a plan that fills in as you talk on the right. The ranked areas underneath it were ordered by deterministic code, not by the model. The note above them names which factors were counted on the ground, because the ones that were not are worth knowing about.</figcaption>
+        </figure>
+
+        <div class="cs-narrow"><p class="cs-lead">A chat-first relocation assistant for corporate transferees, built for Sterling Lexicon. It turns a conversation into sourced program answers, an explainable neighborhood ranking, and a working plan, and it withholds whatever the evidence cannot support.</p>
+
+            <p>I built it solo over about three and a half months: the Angular front end, the .NET API, the AI pipeline, the scorer, the geospatial measurement tooling, and the consulting artifacts that went with it. The whole thing rests on one rule, and most of what is interesting here follows from it. Language models interpret and explain. Named sources establish facts. Deterministic code ranks. Humans take the rest.</p>
+
+            <dl class="cs-stats">
+              <dt>Scope</dt>
+              <dd><b>Angular 22 SPA and a .NET 8 API</b>, 16 endpoints, plus about 30 Python tools for measuring and costing</dd>
+              <dt>Verification</dt>
+              <dd><b>321 automated checks</b>, and the fair-housing rules are among them rather than in a policy document</dd>
+              <dt>Model choice</dt>
+              <dd><b>92% against 79%</b>, means of 12 runs of a 57-probe grounding suite, which is why that model ships</dd>
+              <dt>Cost work</dt>
+              <dd><b>93% off the Google bill</b> at the 20-city scenario, once I traced what the code actually called</dd>
+              <dt>Status</dt>
+              <dd><b>Pre-production MVP.</b> Working end to end, with hosting and identity blocked on client dependencies</dd>
+            </dl>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>A transferee knows two things and needs twenty</h2>
+
+            <p>Sterling Lexicon relocates employees for corporate clients. Somebody accepting a move usually knows their destination city and their allowance. They do not know where to live, what their program actually covers, what the move will cost them, or what has to happen before the truck arrives.</p>
+
+            <p>That knowledge sits with human relocation consultants, who spend a large share of their time answering the same twenty questions. The product handles the repeatable part and hands everything else to a person with the context already attached.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/full/destination-home/welcome.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="The welcome screen, naming the employer, the program type and the assigned consultant.">
+              <figcaption><b>The screen before the conversation</b> Every item here is a fact from the transferee's file rather than a claim about the product. The prototype version counted its own features and promised "AI support" in this spot, which is the wrong thing to say to somebody deciding whether the tool knows who they are.</figcaption>
+            </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>What the product does</h2>
+
+            <p>Intake is six sections asked as a conversation, with structured inputs sitting inside the chat bubbles so answers arrive typed rather than parsed. Free text is welcome at any point. It answers whole cards ahead of their turn and the flow catches up instead of asking again.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/full/destination-home/on-file.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="The what-we-have-on-file card listing client, program, allowance, origin, destination and workplace.">
+              <figcaption><b>Employer-owned facts</b> The client, program and allowance come from the employer, so the transferee can query them but not overwrite them. A query routes to the named consultant, is retractable, and the suggested prompts stop quoting the disputed figure while it is open.</figcaption>
+            </figure>
+
+            <p>Program questions get answered only when a passage in the corpus supports the answer, and the source is named underneath. Citing is an explicit act rather than an inference: the source line appears only when the model calls the citation tool with a valid passage id, and an unknown id gets back "No passage with that id. Do not cite it."</p>
+
+            <figure class="cs-fig">
+              <img src="/images/full/destination-home/grounded-answer.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="An answer about allowance coverage with the source document named beneath it.">
+              <figcaption><b>Answered from the file, and only from the file</b> Read the last clause: temporary housing may also be payable, but the terms do not list it among the allocation categories, so the answer says that rather than smoothing it over. Partial answers are scripted into the prompt. Cite what the passage does say, name the part that is open, flag it.</figcaption>
+            </figure>
+
+            <p>Everything confirmed lands in a live plan: facts, preferences, open items, matched services, and a setup checklist chosen from a 23-task catalogue and ordered by lead time. Visa before lease. Pet import earliest, because it takes months.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/full/destination-home/free-text.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="Structured option cards inside chat bubbles, with the plan drawer showing captured details and the setup checklist.">
+              <figcaption><b>One message, several cards</b> This plan was filled from a single sentence about dates, budget, household and priorities. Look at the last row on the right: "close to a decent taco truck" is not a factor the scorer can rank, so it is kept in the transferee's own words rather than quietly dropped.</figcaption>
+            </figure>
+
+            <figure class="cs-fig">
+              <img src="/images/full/destination-home/escalation.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="The anything-else card offering schools, healthcare, community groups and support services, all routed to a consultant.">
+              <figcaption><b>Where the machine stops</b> Schools, healthcare and community groups go to a person who arranges them directly. Schools in particular are refused as a ranking input by design, and there is a test that keeps the scripted fallback from offering them either.</figcaption>
+            </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>The model talks, the scorer decides</h2>
+
+            <p>Neighborhood recommendations are the product's core promise and its largest liability. Ask a language model to rank neighborhoods and it will do it fluently, differently each time, and with no answer to the question "why did families with children see different areas?" Fair-housing law does not care that the steering was statistical.</p>
+
+            <p>So I wrote a one-directional contract into a binding design doc. The scorer decides the order. The model describes the order it was given. It cannot reorder, add, drop or introduce a factor, and anything outside the scorer's payload is discarded.</p>
+
+            <p>The exclusion is structural rather than promised. The scoring request type cannot carry a protected characteristic, so protected-proxy data is not an input that has been filtered out, it is an input that has nowhere to go. Absent data stays null with a coverage figure attached instead of becoming a fabricated neutral score, because zeroing it would rank a thin-data city below a well-known one for reasons that have nothing to do with the city.</p>
+
+            <figure class="cs-fig cs-narrow-fig">
+              <img src="/images/full/destination-home/provenance.webp" width="786" height="1440" loading="lazy" decoding="async"
+                alt="An expanded area showing each factor with the measurement behind it, then written sections on day-to-day amenities and the place itself.">
+              <figcaption><b>Every score carries its measurement</b> Not "highly walkable" but 625 street junctions within a mile, with the dataset and release date behind it. A factor with no measurement for that area says so instead of showing a bar.</figcaption>
+            </figure>
+
+            <p>The constraints are tests rather than prose. No factor may score something intake does not ask everybody about. No interest may be named after the people who might live there. Crime is displayable on request and can never become a scored factor, and the test that says so is named <code>Crime_is_shown_on_request_and_can_never_become_a_scored_factor</code>.</p>
+
+            <p>A pair of drift tests parse the Angular source from C# and assert that the UI's option lists and the tool schemas match in both directions, across nine properties. Two languages, one vocabulary, and it cannot fork quietly.</p>
+
+            <div class="cs-quote">
+              <p>What the transferee sees is exactly what the contract promised, "AI-generated neighborhood recommendations". What changed is internal: an auditable ranking with inputs and weights, where a complaint would otherwise be answered with "the model thought it seemed relevant". That is not a defence.</p>
+              <span>Why the boundary is where it is</span>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Evidence or silence</h2>
+
+            <p>If a factor cannot be measured well enough to publish, it does not publish. There is no review queue anywhere in the system, by design, because a review queue is how unresolved work reaches a client anyway.</p>
+
+            <p>"Distance to the nearest beach" sounds like one query. It is three unsolved problems. Polygons tagged as beach include river sand and geometry nobody can reach, the nearest point on a polygon is often somewhere you cannot route to, and establishing whether sand faces open water is genuinely hard. The rebuilt pipeline splits what a destination <em>is</em> from where you route to it: a validated beach anchor, and an access point that is legitimately inland, like a car park or a boardwalk.</p>
+
+            <p>That grew into a city compiler. Expensive geography runs per physical beach rather than per entrance, which in Chicago collapses 135 access points into 44 entities. Twelve benchmark cities include deliberate hard cases, and Austin is in there because Austin should produce nothing at all.</p>
+
+            <p>Each dataset had to earn its place. Waterbody classification was benchmarked against three sources with a baseline run before each addition, and two were demoted when they did not resolve anything the others had not. One claim about Lisbon was withdrawn in writing. Registry parity against an independently written verifier is 11 of 11, and the code labels it "parity, not truth", because both sides read the same approved list.</p>
+
+            <h3>The bug that reset the numbers</h3>
+
+            <p>An A/B test comparing the pipeline against model estimates flagged disagreements too large to explain. Every distance in the system had been measured on swapped coordinate axes. The database was already configured to read longitude and latitude in the right order, and an extra flip put it back. The numbers had looked believable for weeks.</p>
+
+            <p>The fix was one shared spatial kernel that owns axis order and the distance macros, self-verifying with known-distance assertions before it hands back a connection. One of those assertions sits at 60 degrees north on purpose, where the latitude to longitude ratio is two to one, so rounding cannot hide a flip. The regression test reinstalls the buggy macro and proves the guard rejects it. Then I re-ran every fixture and threw away every conclusion that predated the fix. One published distance had been 11.32 km against an actual 34.06 km.</p>
+
+            <p>The bug had travelled by copy and paste through six files, which is the reason no tool defines its own distance macro any more.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>The expensive thing was the boring thing</h2>
+
+            <p>The Google integration looked costly at scale and the obvious suspects were the exotic APIs. Nobody had traced what the code actually called, so I modelled monthly cost from call sites rather than from the price sheet, per scenario and per lifecycle stage.</p>
+
+            <p>The dominant cost was geocoding. The same workplaces and areas were geocoded again and again across reranks and services, sometimes through a text search whose location lookup bills at $32 per thousand where plain geocoding costs $5. The fixes were unglamorous: geocode first with text search as the fallback for business names, one shared cache keyed on normalised text, coordinates reused across the amenity and commute paths, and a singleton client, because the framework's default registration would have given every consumer its own private cache.</p>
+
+            <p>At the 20-city scenario the model went from $545.60 to $40 a month. At 50 cities, from $4,244 to $500. A warm repeat ranking makes no Google calls at all. Two details I would defend in review: the report separates per-user, per-city, per-office and per-restart costs instead of blending them into one number, and when Google changed prices the analysis was redone and the old headline was demoted to a dated historical figure rather than quietly kept.</p>
+
+            <h3>When the client proposed replacing the data layer</h3>
+
+            <p>Mid-project the client suggested dropping the structured data sources for general web search, on cost and schedule grounds. It was a reasonable-sounding idea, and the kind of argument that can be lost by winning it rudely.</p>
+
+            <p>I measured instead. Asked to reproduce the system's own numbers, web search returned 0 of 171 amenity counts, 9 of 19 commute times, and rents a median 20.9% off the official figures, citing a listings site nine times and a government source once across 27 citations. The cost model was built honestly enough to concede the other side's point: cached web search also reaches zero marginal cost per transferee, and is actually cheaper on the area sweep. Cost was never the argument. Coverage, provenance and testability were.</p>
+
+            <p>It went into a plain-language brief with the jargon removed, three scenarios, and a recommendation that avoided dogma. Keep the split for the first release, review one provider at a time after the pilot, and no provider gets a lifetime exemption. A supporting audit quantified what keeping the APIs actually costs to maintain: 506 provider-specific lines out of 2,678 measured, 10 wire-contract tests, and zero observed breaking changes, with the caveat written into the file that zero is not a rate on a three-week-old integration.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Analytics that cannot identify anyone</h2>
+
+            <p>Sterling needs to know what transferees ask for and where in the journey the questions arrive. The obvious implementation is an events table keyed to users, which in a small relocation cohort is a re-identification kit. Destination plus household size plus a date is close enough to a name.</p>
+
+            <p>So anonymity is structural. A signal row is one fact, and there is no key column to join on. Time coarsens to the month on the server, because "Austin, band 2, July" is an aggregate and "Austin, band 2, the 31st" is close to a fingerprint. Budget becomes a position on one of eight currency-specific ladders, derived server-side, because client labels cannot be trusted and kronor cannot be added to dollars.</p>
+
+            <p>Free-text questions are classified into 14 topics by a separate model call. The question text never leaves the process and is never stored, and a classification outside the closed list becomes null rather than "other", so an unusable question is counted without being recorded.</p>
+
+            <p>Two guards are aimed at future developers rather than at attackers. Required-yet-nullable columns force every construction site to decide the value, which exists because a bug once bucketed everything as "other". Column widths are capped so free text does not fit. Analytics runs fire-and-forget on its own scope and always answers 202, because measurement must never break the thing it measures.</p>
+
+            <figure class="cs-fig cs-narrow-fig">
+              <img src="/images/full/destination-home/account.webp" width="1440" height="900" loading="lazy" decoding="async"
+                alt="The account panel showing name, client and consultant, with an entry for reviewing and removing stored data.">
+              <figcaption><b>Erasure is a route, not a promise</b> Erasure removes what is keyed to a person and retention sweeps what is stale. Signals sit outside both, because they describe nobody. The erasure endpoint is idempotent and the client reports failure, which it does because the delete route was once missing and the client swallowed the 405, clearing the local view while the server row survived.</figcaption>
+            </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>The interface stopped overstating its AI</h2>
+
+            <p>The UI drew a connector rail from assistant replies down to the plan cards they had populated. Some of those cards the transferee had filled in themselves. Separately, free-text preferences looked acknowledged but never reached the ranking. Both are the same defect: an interface claiming more intelligence than exists.</p>
+
+            <p>Attribution became explicit state. A set of derived cards is written only when the model writes answers, persists across reload, and is what the rail consults. There is a regression test named "draws no rail to a card the transferee answered themselves".</p>
+
+            <p>The free-text path was rebuilt end to end. A server-side reader maps prose onto the scorer's own vocabulary, and its prompt is generated from the scorer's factor list so the two cannot diverge. It splits compounds like "coffee shops and beach" into recognised factors and returns the remainder as unmatched, and the UI renders unmatched phrases as visibly unranked. Typed and ticked preferences merge into one set and weigh the same, because somebody who wrote "near the art scene" asked for it exactly as much as somebody who ticked a box.</p>
+
+            <p>The same standard forced smaller corrections everywhere. Placeholder commute and cycling numbers were deleted rather than left looking plausible. The amenity radius was widened to match its label instead of the label being softened to match the radius, because the label would have overstated the catchment by 1.8 times. Offline mode announces itself as "answering from a limited script, so it will miss things" instead of impersonating the assistant.</p>
+
+            <div class="cs-pair">
+              <figure class="cs-fig">
+                <img src="/images/full/destination-home/confirm-dialog.webp" width="1440" height="900" loading="lazy" decoding="async"
+                  alt="A confirmation dialog asking whether to start over, with the safe option focused and primary.">
+                <figcaption><b>Accessibility on the platform's terms</b> A native dialog, so the focus trap, the escape key and the inert background come from the browser. The safe action is primary and focused, and the copy says what goes and that there is no undo.</figcaption>
+              </figure>
+              <figure class="cs-fig">
+                <img src="/images/full/destination-home/mobile.webp" width="390" height="844" loading="lazy" decoding="async"
+                  alt="The same conversation on a phone viewport, with the plan behind a bottom sheet.">
+                <figcaption><b>Phone</b> The plan moves behind a sheet and the copy follows the input method, so the hint reads "tap" here where the desktop build says "click". Streaming text renders at the same cadence as scripted text, carrying fractional character credit between frames.</figcaption>
+              </figure>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Silent failure was the main enemy</h2>
+
+            <p>Almost none of the hardest bugs here announced themselves. They returned plausible numbers or exited zero. That shaped how the whole system is built, so this is the list I would actually want to be asked about.</p>
+
+            <div class="cs-kill">
+              <h4>Every distance measured on swapped axes <em>Caught by an A/B</em></h4>
+              <p>Believable for weeks. Now one shared kernel self-verifies with known-distance assertions before returning a connection, including one at 60 degrees north where rounding cannot hide a flip.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>A dataset branch that had never once fired <em>Caught by city twelve</em></h4>
+              <p>A silently missing dataset rejected all 20 Chicago beaches. Branch canaries now prove each dataset is live against a fact that cannot be true by accident.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>An evaluation that dropped 11 of its fixtures <em>Caught by a shape assertion</em></h4>
+              <p>A source-text parse quietly lost every Jacksonville case and produced a believable 17-case run. The harness now refuses to run unless it sees exactly the expected count and ids.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>A health check reporting ready through 15 model failures <em>Caught by reading the logs</em></h4>
+              <p>Health is now split from the model. The configuration check never calls the model, and a separate canary makes one real call behind a semaphore and a 10-minute verdict cache.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>A cost tool printing its report, then exiting non-zero <em>Caught by CI</em></h4>
+              <p>A stale assertion outlived the numbers it guarded. The tool now asserts its own headline figures after printing them, so a drifted line range fails loudly.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>A centre point that measured the wrong neighborhood <em>Caught by a runtime canary</em></h4>
+              <p>One representative point can sit in a dead zone or reach across a boundary. A canary compares the count around the point against the count inside the area's own boundary and classifies the pair, so starved areas are withheld and dropped before ranking rather than distorting everyone else's percentile.</p>
+            </div>
+
+            <p>The general answer was to make wrongness expensive to hide: typed status enums, execution status separated from validation status, atomic artifacts written to a partial name and then renamed, strict expected failures that must keep failing, independent re-implementations sharing no code, and self-tests that reinstall a known-bad configuration to prove the guard still rejects it.</p>
+
+            <p>One of those strict expected failures is a known defect I chose not to fix. The conservative version halved coverage in two cities, so it was reverted with the measurements left in the file, and the reverted constants are still there so the next attempt starts from the measured collapse rather than from scratch.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Where it actually stands</h2>
+
+            <p>This is a substantial pre-production MVP, not a launched product, and the delivery tracker only ticks a box when something works end to end.</p>
+
+            <p>Working: the Angular SPA, the .NET API, the AI pipeline, the deterministic scorer, the session store, the analytics, and the measurement tooling. Blocked, mostly on client dependencies: Azure hosting, Auth0, the profile integration, server-side PDF export and email, and security sign-off. PDF today is the browser's own print, and mail never leaves the app.</p>
+
+            <p>Two caveats belong on any honest description of it. The program corpus is placeholder content, so the architecture around it is real and the corpus is not. The seeded neighborhood lists were hand-typed from memory, which the data file itself discloses, and a later probe against a real neighborhood dataset agreed with six of the eight Austin entries. The two that disagreed are the instructive ones: a commercial district and a park were being used where a residential neighborhood name belongs.</p>
+
+            <p>Two more gaps surfaced while I was reviewing the repo to write this up. The retention sweeper is implemented and tested but never registered as a hosted service, so it does not run. The analytics endpoint mishandles the no-database mode. Both are recorded rather than quietly fixed in the write-up.</p>
+
+            <h3>Consulting, not just code</h3>
+            <ul class="cs-list">
+              <li><strong>An executive brief holding five decisions only the client can make</strong>, including an acceptance criterion that described a wizard when they had asked for a conversation, and a named model in the contract that measurement did not favour.</li>
+              <li><strong>A questions register where every entry records what happens if it stays unanswered.</strong> Silence is a decision too, and that is where it gets recorded as one.</li>
+              <li><strong>A conflict log with 21 entries</strong>, resolved ones amended in place with dates rather than deleted.</li>
+              <li><strong>Work beyond scope scored on five axes</strong> rather than listed as a changelog, including one opportunity flagged and explicitly not recommended, because it would have triggered broker authority and a $75,000 surety bond.</li>
+            </ul>
+
+            <h3>Stack</h3>
+
+            <p>Angular 22 on the front end, zoneless, standalone components, signals for state and OnPush everywhere, with no component library, no state-management library and no CSS framework. Design tokens across nine CSS files and a hand-rolled UI kit of 18 components. Server-sent events are consumed with raw fetch rather than the HTTP client, because the client buffers the whole body, which is the one thing streaming must not do.</p>
+
+            <p>The API is .NET 8 minimal APIs with no controllers, EF Core on SQL Server, and three NuGet packages in total. The assistant runs on the OpenAI Responses API with a closed set of four function tools and no web search, streamed over hand-rolled SSE with an explicit flush per frame. Token use is metered on every call. The measurement platform is Python over DuckDB Spatial and GeoParquet, reading Overture Maps, shoreline and hydrology datasets, a population raster, HUD fair-market rents, the Census geocoder and city open data, with four Google APIs for amenities and commute times.</p>
+
+            <ul class="cs-tags">
+              <li>Angular 22</li><li>TypeScript</li><li>Vitest</li><li>.NET 8</li><li>C#</li>
+              <li>EF Core</li><li>SQL Server</li><li>xUnit</li><li>OpenAI Responses</li>
+              <li>Python</li><li>DuckDB Spatial</li><li>GeoParquet</li><li>Overture Maps</li>
+              <li>Google Maps Platform</li><li>Docker</li>
+            </ul>
+
+            <div class="cs-back">
+              <a href="/" class="btn">&larr; All work</a>
+            </div>
+
+            <p class="cs-disclaimer">Built for Sterling Lexicon. Screenshots show the development build with placeholder program content and seeded measurement data.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <footer-pane></footer-pane>
+  </body>
+</html>
