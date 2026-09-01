@@ -1,0 +1,386 @@
+/* Dev By Dylan — design system.
+   Category standard executed at full craft. Craft bar: joshwcomeau.com,
+   brittanychiang.com. Palette and structure from the accepted direction card. */
+
+:root {
+  --ground:#F7F7F5;
+  --surface:#FFFFFF;
+  --sunk:#EFEFEC;
+  --ink:#151515;
+  --muted:#54595F;
+  --faint:#656A72;
+  --on-ink:#E8E8E4; --on-ink-muted:#B9BDC4; --on-ink-accent:#8AA6FF;
+  --line:#E2E2DD;
+  --line-strong:#CFCFC8;
+  --accent:#315EFB;
+  --accent-ink:#2447C9;
+  --accent-wash:#EEF2FE;
+  --live:#0F7B3D;
+  --live-wash:#E7F5EC;
+
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --serif:Literata,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+
+  --radius:10px;
+  --shadow:0 1px 2px rgba(21,21,21,.05), 0 8px 24px -12px rgba(21,21,21,.18);
+  --shadow-lift:0 2px 4px rgba(21,21,21,.06), 0 18px 40px -16px rgba(21,21,21,.26);
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --measure:68ch;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.7;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{max-width:100%; height:auto; display:block}
+
+/* Browser surfaces theming — these ship with defaults belonging to no system. */
+::selection{background:var(--accent); color:#fff}
+:focus-visible{outline:2.5px solid var(--accent); outline-offset:3px; border-radius:3px}
+:focus:not(:focus-visible){outline:none}
+html{scroll-behavior:smooth; scrollbar-color:var(--line-strong) var(--ground)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--ground)}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:8px;border:3px solid var(--ground)}
+::-webkit-scrollbar-thumb:hover{background:var(--faint)}
+
+h1,h2,h3,h4{font-family:var(--sans); font-weight:700; letter-spacing:-.021em; margin:0; text-wrap:balance; line-height:1.12}
+p{margin:0}
+a{color:var(--accent-ink); text-underline-offset:3px; text-decoration-thickness:1.5px}
+a:hover{color:var(--accent)}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:100;
+  background:var(--ink); color:#fff; padding:var(--s3) var(--s5);
+  font-family:var(--sans); font-weight:600; border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.wrap{width:100%; max-width:1120px; margin-inline:auto; padding-inline:var(--s5)}
+.prose{max-width:var(--measure)}
+.prose p + p{margin-top:var(--s5)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:40;
+  background:rgba(247,247,245,.86); backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex; align-items:center; gap:var(--s5); min-height:62px}
+.brand{
+  font-family:var(--sans); font-weight:700; font-size:16px; letter-spacing:-.015em;
+  color:var(--ink); text-decoration:none; margin-right:auto;
+}
+.brand:hover{color:var(--accent)}
+.nav ul{display:flex; align-items:center; gap:var(--s2); list-style:none; margin:0; padding:0}
+.nav a.link{
+  font-family:var(--sans); font-size:14.5px; font-weight:500; color:var(--muted);
+  text-decoration:none; padding:var(--s2) var(--s3); border-radius:7px;
+  transition:color .16s, background-color .16s;
+}
+.nav a.link:hover{color:var(--ink); background:var(--sunk)}
+.nav a.link[aria-current="page"]{color:var(--ink); font-weight:600}
+.nav a.cta{
+  font-family:var(--sans); font-size:14.5px; font-weight:600; color:#fff;
+  background:var(--accent); text-decoration:none; padding:9px var(--s4);
+  border-radius:8px; transition:background-color .16s, transform .16s;
+}
+.nav a.cta:hover{background:var(--accent-ink); color:#fff; transform:translateY(-1px)}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--line); margin-top:var(--s10); padding:var(--s8) 0 var(--s7); background:var(--sunk)}
+.foot-grid{display:flex; flex-wrap:wrap; gap:var(--s6); align-items:flex-start; justify-content:space-between}
+.foot h2{font-size:clamp(24px,3.4vw,32px); margin-bottom:var(--s3)}
+.foot p{color:var(--muted); max-width:46ch; font-size:16px}
+.foot-mail{
+  display:inline-flex; align-items:center; gap:var(--s2); margin-top:var(--s5);
+  font-family:var(--sans); font-weight:600; font-size:17px; color:#fff;
+  background:var(--accent); padding:12px var(--s5); border-radius:9px; text-decoration:none;
+  transition:background-color .16s, transform .16s;
+}
+.foot-mail:hover{background:var(--accent-ink); color:#fff; transform:translateY(-1px)}
+.foot-meta{font-family:var(--sans); font-size:13.5px; color:var(--faint); margin-top:var(--s7)}
+
+/* ---------- intro ---------- */
+.intro{padding:var(--s9) 0 var(--s8)}
+/* The text column was running at its measure with the whole right half of the
+   page empty. The portrait fills it, greyed at rest so it stays a supporting
+   element and never competes with the headline for the first look. */
+.intro-grid{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--s8); align-items:start}
+.intro-portrait{
+  width:186px; height:186px; border-radius:50%; justify-self:end; order:2;
+  object-fit:cover; object-position:center top;
+  background:var(--sunk); border:1px solid var(--line);
+  filter:grayscale(1) contrast(1.04);
+  transition:filter .4s var(--ease);
+}
+.intro-portrait:hover{filter:grayscale(.1) contrast(1)}
+.intro-text{order:1; min-width:0}
+.intro h1{font-size:clamp(38px,6vw,62px); line-height:1.04; max-width:17ch; margin-bottom:var(--s5)}
+.intro .lede{font-size:clamp(18px,2.1vw,21px); line-height:1.65; color:var(--muted); max-width:60ch}
+.intro .lede strong{color:var(--ink); font-weight:600}
+.intro-meta{
+  display:flex; flex-wrap:wrap; gap:var(--s2) var(--s5); margin-top:var(--s6);
+  font-family:var(--sans); font-size:14px; color:var(--faint);
+}
+.intro-meta span{display:inline-flex; align-items:center; gap:var(--s2)}
+.dot{width:7px; height:7px; border-radius:50%; background:var(--live); flex:none}
+
+/* ---------- work list ---------- */
+.work{display:grid; grid-template-columns:190px minmax(0,1fr); gap:var(--s8); align-items:start}
+.rail{position:sticky; top:86px}
+.rail h2{
+  font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--faint); margin-bottom:var(--s4);
+}
+.rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.rail a{
+  display:grid; grid-template-columns:22px 1fr; align-items:baseline; gap:var(--s2);
+  font-family:var(--sans); font-size:13.5px; line-height:1.35; color:var(--muted);
+  text-decoration:none; padding:7px var(--s2) 7px 0; border-radius:6px;
+  transition:color .16s;
+}
+.rail a b{font-variant-numeric:tabular-nums; font-weight:600; font-size:11.5px; color:var(--faint)}
+.rail a:hover{color:var(--ink)}
+.rail a[aria-current="true"]{color:var(--accent-ink); font-weight:600}
+.rail a[aria-current="true"] b{color:var(--accent)}
+
+/* `work-list` is the only child of `.stack`, so the gap has to live on the
+   custom element itself -- putting it on `.stack` separated nothing. */
+.stack{min-width:0}
+work-list{display:flex; flex-direction:column; gap:var(--s8); min-width:0}
+
+/* ---------- project ---------- */
+.proj{scroll-margin-top:96px}
+.proj-shot{
+  position:relative; display:block; background:var(--sunk); border:1px solid var(--line);
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+  transition:box-shadow .22s var(--ease), transform .22s var(--ease), border-color .22s;
+}
+a.proj-shot:hover{box-shadow:var(--shadow-lift); transform:translateY(-2px); border-color:var(--line-strong)}
+.proj-shot img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top center}
+.proj-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s3); margin:var(--s5) 0 var(--s3)}
+.proj-head h3{font-size:clamp(22px,2.6vw,27px)}
+.proj-head h3 a{color:inherit; text-decoration:none}
+.proj-head h3 a:hover{color:var(--accent-ink)}
+.badge{
+  font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; padding:4px 9px; border-radius:99px; white-space:nowrap;
+}
+.badge.live{background:var(--live-wash); color:var(--live)}
+.badge.internal{background:var(--sunk); color:var(--muted)}
+.proj-role{font-family:var(--sans); font-size:13.5px; color:var(--faint); margin-bottom:var(--s3)}
+.proj p.sum{color:var(--muted); max-width:var(--measure); font-size:16.5px}
+.tech{display:flex; flex-wrap:wrap; gap:var(--s2); margin-top:var(--s4); list-style:none; padding:0}
+.tech li{
+  font-family:var(--sans); font-size:12.5px; color:var(--muted);
+  background:var(--surface); border:1px solid var(--line); padding:3px 9px; border-radius:6px;
+}
+.actions{display:flex; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s5)}
+.btn{
+  display:inline-flex; align-items:center; gap:7px; font-family:var(--sans);
+  font-size:14.5px; font-weight:600; padding:9px var(--s4); border-radius:8px;
+  text-decoration:none; border:1px solid var(--line-strong); background:var(--surface);
+  color:var(--ink); cursor:pointer; transition:border-color .16s, background-color .16s, transform .16s;
+}
+.btn:hover{border-color:var(--ink); color:var(--ink); transform:translateY(-1px)}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+.btn.primary:hover{background:var(--accent-ink); border-color:var(--accent-ink); color:#fff}
+.btn svg{width:15px; height:15px; flex:none}
+
+/* ---------- the flagship ----------------------------------------------
+   Item 01 is the only shipped, paying, case-studied project, and STORY turns
+   on a recruiter opening it. Seven identical rows gave them no reason to.
+   The inverted band is doing two jobs at once: it marks primacy, and it is
+   the one value break in ~13,000px that would otherwise run as a single field. */
+.proj.featured{
+  background:var(--ink); border-radius:14px; padding:var(--s6) var(--s6) var(--s7);
+  margin-bottom:var(--s3); scroll-margin-top:96px;
+}
+.proj.featured .proj-shot{background:#0C0C0C; border-color:rgba(255,255,255,.22); box-shadow:0 18px 48px -20px rgba(0,0,0,.8)}
+.proj.featured a.proj-shot:hover{border-color:rgba(255,255,255,.42); box-shadow:0 26px 60px -20px rgba(0,0,0,.9)}
+.proj.featured .proj-shot img{aspect-ratio:16/8.4}
+.proj.featured .proj-head h3{font-size:clamp(27px,3.4vw,36px); letter-spacing:-.02em}
+.proj.featured .proj-head h3 a{color:var(--on-ink)}
+.proj.featured .proj-head h3 a:hover{color:var(--on-ink-accent)}
+.proj.featured .proj-role{color:var(--on-ink-muted)}
+.proj.featured p.sum{color:var(--on-ink-muted); font-size:17.5px}
+.proj.featured .badge.live{background:rgba(138,166,255,.16); color:var(--on-ink-accent)}
+.proj.featured .tech li{background:transparent; border-color:#3A3A3A; color:var(--on-ink-muted)}
+.proj.featured .btn{background:transparent; border-color:#4A4A4A; color:var(--on-ink)}
+.proj.featured .btn:hover{border-color:var(--on-ink); background:rgba(255,255,255,.06)}
+.proj.featured .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+.proj.featured .btn.primary:hover{background:#4C74FF; border-color:#4C74FF}
+
+/* ---------- the one authored moment ----------------------------------
+   Scroll-driven, so there is no observer and no JS. The default state is the
+   finished state: browsers without `animation-timeline` and anyone on reduced
+   motion get the figure outright. It never animates from zero opacity -- that
+   was the focus trap the critique opened on. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .proj-shot{
+      animation:proj-rise both cubic-bezier(.16,1,.3,1);
+      animation-timeline:view();
+      animation-range:entry 4% entry 58%;
+    }
+    /* Transform only, never opacity. A figure part-way through this animation is
+       still fully legible, which is what makes it safe to run on the evidence
+       itself rather than on decoration. */
+    @keyframes proj-rise{
+      from{transform:translateY(26px) scale(.982)}
+      to{transform:none}
+    }
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .work{grid-template-columns:1fr; gap:var(--s6)}
+  .rail{position:static; border-bottom:1px solid var(--line); padding-bottom:var(--s4)}
+  .rail ol{flex-direction:row; flex-wrap:wrap; gap:var(--s2)}
+  .rail a{padding:6px var(--s3); background:var(--surface); border:1px solid var(--line)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .intro{padding:var(--s7) 0 var(--s6)}
+  work-list{gap:var(--s7)}
+  .nav a.link{padding:var(--s2)}
+  .proj.featured{padding:var(--s5) var(--s4) var(--s6); border-radius:12px; margin-inline:calc(-1 * var(--s3))}
+  .actions .btn{flex:1 1 auto; justify-content:center}
+}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* lightGallery caption, themed from the palette rather than its defaults. */
+/* ---- gallery captions --------------------------------------------------
+   lightGallery ships `.lg-sub-html` transparent and floating over the bottom of
+   the slide, which put multi-sentence captions straight on top of screenshots
+   that are themselves mostly text. It is a solid docked panel instead, and the
+   image well reserves its height so the two can never occupy the same pixels. */
+.lg-outer .lg-sub-html{
+  position:absolute; left:0; right:0; bottom:0; z-index:1080;
+  background:#0E0E0E; border-top:1px solid #2A2A2A;
+  padding:var(--s4) var(--s6); text-align:left;
+  max-height:var(--lg-cap-h); overflow-y:auto; box-sizing:border-box;
+}
+.lg-outer .lg-img-wrap{padding-bottom:var(--lg-cap-h)}
+:root{--lg-cap-h:152px}
+
+.lg-cap{max-width:var(--measure); margin:0 auto}
+.lg-cap h4{font-family:var(--sans); font-size:12.5px; font-weight:600; margin:0 0 var(--s2)}
+.lg-cap h4 a{color:#8FB0FF; text-decoration:none; border-bottom:1px solid transparent}
+.lg-cap h4 a:hover{border-bottom-color:#8FB0FF}
+.lg-cap p{font-family:var(--serif); font-size:15.5px; line-height:1.65; margin:0; color:#C9CDD3}
+.lg-cap b{color:#fff; font-weight:600}
+
+@media (max-width:640px){
+  :root{--lg-cap-h:186px}
+  .lg-outer .lg-sub-html{padding:var(--s4)}
+  .lg-cap p{font-size:14.5px}
+}
+
+/* ---------- mobile: the work has to be reachable, and targets tappable ---------- */
+@media (max-width:900px){
+  .intro{padding:var(--s7) 0 var(--s5)}
+  .intro h1{font-size:clamp(32px,8.2vw,42px); margin-bottom:var(--s4)}
+  /* Stacked, and small enough that it does not push the first project figure
+     out of the opening viewport -- which is the whole reason the rail is hidden
+     at this width too. */
+  .intro-grid{grid-template-columns:1fr; gap:var(--s3)}
+  .intro-portrait{width:76px; height:76px; order:0; justify-self:start}
+  .intro .lede{font-size:17px; line-height:1.6}
+  .intro-meta{margin-top:var(--s5); gap:var(--s2) var(--s4); font-size:13.5px}
+  .rail h2{margin-bottom:var(--s3)}
+  /* 44px minimum on everything tappable */
+  .nav a.link{padding:12px var(--s3); min-height:44px; display:inline-flex; align-items:center}
+  .nav a.cta{padding:12px var(--s4); min-height:44px; display:inline-flex; align-items:center}
+  .brand{min-height:44px; display:inline-flex; align-items:center}
+  .rail a{min-height:44px; align-items:center; padding:10px var(--s3)}
+  .intro-meta a{min-height:44px; display:inline-flex; align-items:center}
+  .btn{min-height:44px}
+  .foot-mail{min-height:48px}
+}
+@media (max-width:640px){
+  .nav-in{gap:var(--s3)}
+  .nav ul{gap:2px}
+  .nav a.link{padding:12px var(--s2); font-size:14px}
+}
+
+/* The rail is a desktop scroll-linked affordance. On phones it duplicates the
+   list directly beneath it and pushes the first project past the fold. */
+@media (max-width:900px){
+  .rail{display:none}
+  .work{gap:0}
+  .proj-head h3 a{display:inline-block; padding-block:6px}
+}
+
+/* The bar must stay one line at phone widths; wrapping made it 170px tall and
+   put the sticky nav on top of the headline. */
+@media (max-width:640px){
+  .nav-in{flex-wrap:nowrap; min-height:56px; gap:var(--s2)}
+  .brand{font-size:15px; white-space:nowrap; min-height:0}
+  .nav ul{flex-wrap:nowrap}
+  .nav a.link{white-space:nowrap; font-size:13.5px; padding:10px 6px; min-height:40px}
+  .nav a.cta{white-space:nowrap; font-size:13.5px; padding:10px 12px; min-height:40px}
+}
+/* The bar's intrinsic width is 363px. Above that both links fit, so 375 and 390
+   -- the two commonest phone widths -- keep them. Only below it does the
+   current-page link drop, and only because you are already on that page. */
+@media (max-width:360px){
+  .nav a.link[aria-current="page"]{display:none}
+}
+
+/* ---------- case study ---------- */
+.cs-hero{padding:var(--s8) 0 var(--s6); border-bottom:1px solid var(--line); margin-bottom:var(--s8)}
+.cs-crumbs{font-family:var(--sans); font-size:13.5px; color:var(--faint); margin-bottom:var(--s5)}
+.cs-crumbs a{color:var(--muted); text-decoration:none}
+.cs-crumbs a:hover{color:var(--accent-ink); text-decoration:underline}
+.cs-crumbs span[aria-current]{color:var(--ink); font-weight:600}
+.cs-hero h1{font-size:clamp(38px,6vw,60px); line-height:1.03; margin-bottom:var(--s4)}
+.cs-kicker{font-size:clamp(18px,2.1vw,21px); line-height:1.6; color:var(--muted); max-width:56ch}
+.cs-body{padding-block:0}
+/* Body copy sits on the same axis as the hero, never re-centred. */
+.cs-body > .wrap > .cs-narrow{margin-inline:0}
+.cs-body h2{font-size:clamp(26px,3.4vw,34px); margin:var(--s9) 0 var(--s5)}
+.cs-body h3{font-size:clamp(19px,2.3vw,22px); margin:var(--s7) 0 var(--s3)}
+.cs-body p + p{margin-top:var(--s5)}
+.cs-body ul,.cs-body ol{margin:var(--s4) 0 0; padding-left:1.15em}
+.cs-body li{margin-bottom:var(--s3)}
+.cs-lead{font-size:clamp(19px,2.2vw,22px); line-height:1.6; color:var(--muted)}
+.cs-fig figcaption b{font-family:var(--sans)}
+.cs-stats dt{font-family:var(--sans)}
+.cs-stats dd{font-family:var(--sans)}
+
+/* ---- Capability page (/services) ------------------------------------- */
+/* Each section is one claim plus the work that backs it; the rule between
+   them is the only separator, so nothing here reads as a pricing card. */
+.cap{padding:var(--s8) 0;border-top:1px solid var(--line);max-width:var(--measure)}
+.cap:first-child{border-top:0;padding-top:var(--s6)}
+.cap h2{font-family:var(--sans);font-size:26px;font-weight:600;letter-spacing:-.01em;margin:0 0 var(--s4)}
+.cap p{font-family:var(--serif);font-size:17px;line-height:1.7;color:var(--muted);margin:0}
+.cap-see{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);margin-top:var(--s5)!important;
+  font-family:var(--sans)!important;font-size:14px!important;font-weight:500}
+.cap-see a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;
+  padding-bottom:1px;transition:border-color .18s var(--ease)}
+.cap-see a:hover{border-bottom-color:var(--accent)}
+
+@media (max-width:640px){
+  .cap{padding:var(--s6) 0}
+  .cap h2{font-size:22px}
+  .cap p{font-size:16px}
+}

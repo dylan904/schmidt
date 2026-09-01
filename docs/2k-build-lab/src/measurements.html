@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #05080c;
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px;
+  }
+  .card {
+    width: 1120px;
+    background: linear-gradient(180deg, #10161f 0%, #0c1118 100%);
+    border: 1px solid #1e2836;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  header {
+    padding: 26px 32px 22px;
+    border-bottom: 1px solid #1a2431;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: #4C7DFF; margin-bottom: 9px;
+  }
+  h1 { font-size: 27px; font-weight: 700; color: #eaf0f8; letter-spacing: -.02em; }
+  .sub { font-size: 14px; color: #7d8fa6; margin-top: 8px; max-width: 52ch; line-height: 1.5; }
+  .badge {
+    flex: none; text-align: right; border: 1px solid #234; border-radius: 10px;
+    padding: 12px 16px; background: #0e141d;
+  }
+  .badge b { display: block; font-size: 26px; font-weight: 700; color: #3FD1A8; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .badge span { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #6d7f95; margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; font-size: 10px; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase; color: #5f7189; padding: 14px 32px 10px;
+    border-bottom: 1px solid #1a2431;
+  }
+  th.n, td.n { text-align: right; }
+  td { padding: 11px 32px; font-size: 15px; color: #c3cede; border-bottom: 1px solid #141c27; }
+  tr:last-child td { border-bottom: 0; }
+  td.n {
+    font-weight: 700; color: #3FD1A8; white-space: nowrap;
+    font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+  }
+  td.note { color: #6d7f95; font-size: 13.5px; }
+  .grp td {
+    background: #0a0f16; color: #4C7DFF; font-size: 10px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; padding: 9px 32px;
+    border-bottom: 1px solid #141c27;
+  }
+  footer {
+    padding: 16px 32px 20px; border-top: 1px solid #1a2431;
+    font-size: 13px; color: #6d7f95; display: flex; gap: 8px; align-items: center;
+  }
+  footer b { color: #9fb0c6; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div>
+        <div class="eyebrow">Performance work</div>
+        <h1>Every change reproduced the winning build exactly</h1>
+        <p class="sub">Nothing below shipped on a stopwatch alone. Each one had to return the identical build, byte for byte, before it counted.</p>
+      </div>
+      <div class="badge"><b>~70%</b><span>solve latency cut</span></div>
+    </header>
+
+    <table>
+      <thead>
+        <tr><th>Change</th><th class="n">Win</th><th>What it was</th></tr>
+      </thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">Engine</td></tr>
+        <tr><td>Rust engine vs. JS analytic</td><td class="n">15x / 11.5x</td><td class="note">native / wasm; rayon adds 4.45x</td></tr>
+        <tr><td>Analytic engine vs. beam search</td><td class="n">25&ndash;40x</td><td class="note">and equal-or-better winners</td></tr>
+        <tr><td>Cap-breaker replica in the hot loop</td><td class="n">&minus;38%</td><td class="note">byte-identical JS replica of the game's WASM</td></tr>
+        <tr><td>Dominated-sweep pre-check</td><td class="n">&minus;33%</td><td class="note">had been silently dead in production</td></tr>
+        <tr><td>Worker closure-floor break</td><td class="n">&minus;33%</td><td class="note">predictive mid-sweep prune, proven sound</td></tr>
+        <tr><td>Typed-array closure rewrite</td><td class="n">&minus;25%</td><td class="note">contained; interface unchanged</td></tr>
+
+        <tr class="grp"><td colspan="3">Infrastructure</td></tr>
+        <tr><td>Cloud Run 4 &rarr; 6 vCPU</td><td class="n">&minus;40%</td><td class="note">latency, cost-neutral; overturned a laptop artifact</td></tr>
+        <tr><td>Result payload on the wire</td><td class="n">923 &rarr; 134 KB</td><td class="note">stored result 68 KB &rarr; 4.5 KB</td></tr>
+        <tr><td>Saved-builds list egress</td><td class="n">9 MB &rarr; KBs</td><td class="note">full results were embedded in list rows</td></tr>
+        <tr><td>Warm page loads</td><td class="n">~300 bytes</td><td class="note">watermark probe replaces the re-fetch</td></tr>
+
+        <tr class="grp"><td colspan="3">Search</td></tr>
+        <tr><td>Feasibility preflight</td><td class="n">p50 0.29s</td><td class="note">3.7x, via ordering and early exit</td></tr>
+        <tr><td>Rescue corner-only body scan</td><td class="n">42s &rarr; 1.6s</td><td class="note">previously returned no build at all</td></tr>
+        <tr><td>Provably infeasible requests</td><td class="n">47s &rarr; 0s</td><td class="note">answered without searching</td></tr>
+      </tbody>
+    </table>
+
+    <footer><b>Kill switch on all of it.</b> Around fifteen env flags gate individual optimizations, so any of these reverts without a redeploy.</footer>
+  </div>
+</body>
+</html>

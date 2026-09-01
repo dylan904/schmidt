@@ -1,67 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Schmidt - Free Bootstrap 5 Template by Colorlib</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dylan Maxey &mdash; Software engineer</title>
+    <meta name="description" content="Engineer who reverse-engineered a shipped game's rating engine into a paying business. Seven projects, with the correctness and performance work written up.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
 
-    <script>window.location.href = "./portfolio";</script>
+    <link rel="canonical" href="https://devbydylan.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/">
+    <meta property="og:title" content="Dylan Maxey — Software engineer">
+    <meta property="og:description" content="Engineer who reverse-engineered a shipped game's rating engine into a paying business. Seven projects, with the correctness and performance work written up.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Dylan Maxey — Software engineer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dylan Maxey — Software engineer">
+    <meta name="twitter:description" content="Engineer who reverse-engineered a shipped game's rating engine into a paying business. Seven projects, with the correctness and performance work written up.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/default.jpg">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/tiny-slider.css">
-    <link rel="stylesheet" href="css/glightbox.min.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <script type="module" src="components/nav-pane.js"></script>
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/work-list.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
   </head>
   <body>
+<!--
+THESIS: Proof is the product. Every project states what it does, what it cost and
+what it still gets wrong, legible without a single hover. Refuses the grid of equal
+unlabeled tiles that only speak on mouseover.
+OWN-WORLD: Warm off-white #F7F7F5, ink #151515, one blue #315EFB. Archivo for
+structure, Literata for reading. Restrained cards, hairline rules, real screenshots,
+no ornament that carries no information.
+STORY: A hiring manager sees an engineer who rebuilt a game's rating engine to prove
+an answer was right, reads one case study, and emails.
+FIRST VIEWPORT: Sticky nav with a visible contact action; headline at 62px over a
+lede naming the mechanism; status line; then the work list with a sticky numbered rail.
+FORM: The category standard, taken as the standing exit over three dealt rounds
+(seed 7756e381; decision 6f685cf5). Craft bar joshwcomeau.com, brittanychiang.com.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+    <a class="skip" href="#work">Skip to the work</a>
     <nav-pane></nav-pane>
 
-		<section class="hero-wrap">
-      <div class="overlay"></div>
-      <div class="container-xl">
-        <div class="row slider-text align-items-center align-items-stretch justify-content-between">
-        	<div class="col-lg-6 text d-flex align-items-start align-items-sm-center">
-            <div class="desc mt-4 mt-md-0">
-          		<span class="subheading">UI/UX Designer &amp; Developer</span>
-          		<h1 class="mb-4">I'm John Schmidt</h1>
-          		<p><a href="#" class="btn btn-primary p-4 py-3">More About Me <span class="ion-ios-arrow-round-forward"></span></a> <a href="#" class="btn btn-white p-4 py-3">Hire Me <span class="ion-ios-arrow-round-forward"></span></a></p>
-
-              <p class="mb-0 copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script></p>
-            </div>
-        	</div>
-          <div class="col-lg-6 d-flex align-items-end justify-content-end">
-            <div class="carousel-about">
-              <div class="item">
-                <img src="images/jschmidt.png" class="img-fluid" alt="Colorlib">
-              </div>
-              <div class="item">
-                <img src="images/jschmidt-2.png" class="img-fluid" alt="Colorlib">
-              </div>
-            </span>
-            <!-- <img src="images/jschmidt-2.png" class="img-fluid" alt="Colorlib"> -->
-          </div>
+    <header class="intro">
+      <div class="wrap intro-grid">
+        <img class="intro-portrait" src="/images/dylan.webp" width="800" height="700"
+          fetchpriority="high" decoding="async" alt="Dylan Maxey">
+        <div class="intro-text">
+        <h1>I build things that have to be right, then prove they are.</h1>
+        <p class="lede">
+          Most of what I build starts with a problem I hit myself. What I care about most is the
+          part after it works: <strong>proving it stays correct</strong>, making it fast enough that
+          people actually use it, and being straight with whoever is on the other side of the screen.
+          That is what the write-ups below get into.
+        </p>
+        <p class="intro-meta">
+          <span><span class="dot"></span> Open to engineering roles</span>
+          <span>Seven projects, two of them public</span>
+          <span><a href="mailto:devbydylan@gmail.com">devbydylan@gmail.com</a></span>
+        </p>
         </div>
       </div>
-    </section>
+    </header>
 
+    <main id="work" class="wrap">
+      <h2 class="sr-only">Selected work</h2>
+      <div class="work">
+        <nav class="rail" aria-label="Projects">
+          <h2>The work</h2>
+          <ol id="rail-list"></ol>
+        </nav>
+        <div class="stack"><work-list></work-list></div>
+      </div>
+    </main>
 
-    
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/tiny-slider.js"></script>
-  <script src="js/glightbox.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-    
+    <footer-pane></footer-pane>
+
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/lightgallery.umd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/thumbnail/lg-thumbnail.umd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/zoom/lg-zoom.umd.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/plugins/video/lg-video.umd.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery-bundle.css">
+
+    <script type="module">
+      // The rail is built from what actually rendered, so it can never disagree
+      // with the list. Marking follows the topmost project currently in view.
+      const buildRail = () => {
+        const list = document.getElementById('rail-list');
+        const projects = [...document.querySelectorAll('.proj')];
+        if (!projects.length) return false;
+        list.innerHTML = projects.map((p, i) => {
+          const name = p.querySelector('h3').textContent.trim();
+          return `<li><a href="#${p.id}"><b>${String(i + 1).padStart(2, '0')}</b><span>${name}</span></a></li>`;
+        }).join('');
+        const links = new Map(projects.map((p) => [p.id, list.querySelector(`a[href="#${p.id}"]`)]));
+        const visible = new Set();
+        const observer = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id);
+          }
+          const current = projects.find((p) => visible.has(p.id))?.id;
+          links.forEach((a, key) => a.setAttribute('aria-current', String(key === current)));
+        }, { rootMargin: '-84px 0px -55% 0px' });
+        projects.forEach((p) => observer.observe(p));
+        return true;
+      };
+      customElements.whenDefined('work-list').then(() => {
+        const el = document.querySelector('work-list');
+        (el.updateComplete ?? Promise.resolve()).then(() => {
+          if (!buildRail()) requestAnimationFrame(buildRail);
+        });
+      });
+    </script>
   </body>
 </html>

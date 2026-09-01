@@ -1,14 +1,15 @@
 {
-  "name": "portfolio",
+  "name": "schmidt",
   "version": "1.0.0",
-  "description": "Thank you for using our template!",
-  "main": "index.js",
+  "private": true,
+  "description": "Personal portfolio for Dylan Maxey. Static HTML and Lit with no build step; Express serves it for local development only.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dylan Maxey",
+  "license": "UNLICENSED",
   "dependencies": {
     "express": "^4.17.1"
   }

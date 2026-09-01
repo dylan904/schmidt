@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# The gallery's derived rasters carry no standalone meaning and only dilute
+# image search; the originals they came from are not served at all.
+Disallow: /images/thumbs/
+Disallow: /images/cards/
+
+Sitemap: https://devbydylan.com/sitemap.xml

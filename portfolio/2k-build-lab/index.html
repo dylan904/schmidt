@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dev By Dylan - 2K Build Lab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Case study: a combinatorial build optimizer for NBA 2K, reverse-engineered from the game's own WebAssembly rating engine and shipped as a paying product.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
+
+    <link rel="canonical" href="https://devbydylan.com/portfolio/2k-build-lab/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/portfolio/2k-build-lab/">
+    <meta property="og:title" content="2K Build Lab — Dylan Maxey">
+    <meta property="og:description" content="Reverse-engineering a shipped game's rating engine into a product people pay for. Byte-identical parity across 930,405 validated cells.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/2k-build-lab.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="2K Build Lab — Dylan Maxey">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2K Build Lab — Dylan Maxey">
+    <meta name="twitter:description" content="Reverse-engineering a shipped game's rating engine into a product people pay for. Byte-identical parity across 930,405 validated cells.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/2k-build-lab.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
+
+    <style>
+      /* Case-study layout, built on the site's own tokens: var(--accent) accent, Poppins. */
+      .cs-body { color: var(--ink); }
+      .cs-body p { font-size: 17px; line-height: 1.75; font-family: var(--serif); }
+      .cs-narrow { max-width: 72ch; }
+
+      .cs-lead { font-size: 21px; line-height: 1.65; color: var(--muted); }
+
+      /* A spec table, read as one: label left, value right, hairline between rows.
+         No tracked eyebrow, no oversized accent numeral. */
+      .cs-stats {
+        display: grid; grid-template-columns: max-content 1fr;
+        gap: 0 32px; margin: var(--s7) 0 var(--s6);
+        border-top: 1px solid var(--line);
+      }
+      .cs-stats dt {
+        font-family: var(--sans); font-size: 14px; color: var(--muted);
+        padding: 14px 0 4px; border-top: 1px solid var(--line);
+      }
+      .cs-stats dt:first-of-type, .cs-stats dt:first-of-type + dd { border-top: 0; }
+      .cs-stats dd {
+        margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted);
+        padding: 14px 0 16px; border-top: 1px solid var(--line);
+      }
+      .cs-stats dd b { font-weight: 600; color: var(--ink); }
+      @media (max-width: 640px) {
+        .cs-stats { grid-template-columns: 1fr; gap: 0; }
+        .cs-stats dt { padding-bottom: 0; }
+        .cs-stats dd { padding-top: 4px; border-top: 0; }
+      }
+
+      .cs-fig { margin: 2.5rem 0 3rem; }
+      .cs-fig img {
+        width: 100%; height: auto; display: block;
+        border: 1px solid var(--line); border-bottom: 0; background: var(--sunk);
+      }
+
+      /* The opening figure is the evidence the page exists to present, so it goes
+         above the first paragraph. The source is a tall screenshot, cropped to its
+         head: the overall rating and the first cap-breaker markers are the claim,
+         and the whole frame is one click away in the gallery. Declared after
+         `.cs-fig img` on purpose -- equal specificity, so order decides. */
+      .cs-hero-fig { margin: 0 0 3.5rem; max-width: 760px; }
+      .cs-hero-fig img { height: 400px; object-fit: cover; object-position: top center; }
+      .cs-fig figcaption {
+        border: 1px solid var(--line); border-top: 0; background: var(--surface);
+        padding: 14px 18px 16px; font-size: 15px; line-height: 1.6; color: var(--muted);
+      }
+      /* Bold lead-in, the way a figure caption actually reads. */
+      .cs-fig figcaption b { font-weight: 600; color: var(--ink); }
+      .cs-fig figcaption b::after { content: '. '; }
+      .cs-fig.cs-narrow-fig { max-width: 620px; }
+
+      .cs-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .cs-pair .cs-fig { margin: 0 0 1rem; }
+      @media (max-width: 767.98px) { .cs-pair { grid-template-columns: 1fr; } }
+
+      .cs-quote {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 26px 0;
+        margin: 2.75rem 0;
+        font-size: 21px;
+        line-height: 1.55;
+        color: var(--ink);
+      }
+      .cs-quote p { font-size: 19px; line-height: 1.6; margin-bottom: 0; color: var(--ink); }
+      .cs-quote span {
+        display: block; font-size: 11px; font-weight: 700; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--faint); margin-top: 12px;
+      }
+
+      .cs-gen { border-bottom: 1px solid var(--line); padding: 1.75rem 0; }
+      .cs-gen:first-of-type { border-top: 1px solid var(--line); }
+      /* The generation number is information -- each one was validated against the
+         one before it -- so it stays, inside the heading rather than above it. */
+      .cs-gen h3 .cs-gen-no { color: var(--faint); font-weight: 600; }
+      .cs-gen h3 { font-size: 22px; font-weight: 600; margin-bottom: .75rem; }
+
+      .cs-kill { border-bottom: 1px solid var(--line); padding: 1.15rem 0; }
+      .cs-kill:first-of-type { border-top: 1px solid var(--line); }
+      .cs-kill h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+      .cs-kill h4 em {
+        font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+        text-transform: uppercase; color: var(--accent-ink); margin-left: 10px; white-space: nowrap;
+      }
+      .cs-kill p { font-size: 15px; line-height: 1.65; color: var(--muted); margin-bottom: 0; }
+
+      .cs-tags { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+      .cs-tags li {
+        font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+        color: var(--accent); border: 1px solid var(--line-strong); border-radius: 3px; padding: 6px 11px;
+      }
+
+      .cs-body h3 { margin-top: 2.5rem; font-size: 22px; font-weight: 600; }
+      .cs-body ul.cs-list { padding-left: 0; list-style: none; }
+      .cs-body ul.cs-list li { position: relative; padding-left: 22px; margin-bottom: 14px; font-size: 17px; line-height: 1.75; }
+      .cs-body ul.cs-list li:before {
+        content: ""; position: absolute; left: 0; top: 14px; width: 9px; height: 2px; background: var(--accent);
+      }
+      .cs-body code {
+        font-size: 14px; background: var(--accent-wash); color: var(--ink);
+        padding: 2px 6px; border-radius: 3px;
+      }
+
+      .cs-back { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 12px; }
+      .cs-disclaimer { margin-top: 2rem; font-size: 13px; color: var(--faint); }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#cs-start">Skip to the case study</a>
+    <nav-pane></nav-pane>
+
+    <header class="cs-hero">
+      <div class="wrap">
+        <nav class="cs-crumbs" aria-label="Breadcrumb">
+          <a href="/">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">2K Build Lab</span>
+        </nav>
+        <h1>2K Build Lab</h1>
+        <p class="cs-kicker">Reverse-engineering a shipped game&rsquo;s rating engine into a product people pay for.</p>
+      </div>
+    </header>
+
+    <section class="cs-body" id="cs-start">
+      <div class="wrap">
+        <figure class="cs-fig cs-hero-fig">
+          <img src="/images/full/2kbuildlab/result.webp" width="1050" height="1440" fetchpriority="high" decoding="async"
+            alt="A solved build: every attribute the search committed to, the body that makes it legal, and the cap-breaker plan that pays for it.">
+          <figcaption><b>What a correct answer looks like</b> Every attribute the search committed to, the body that makes it legal, and the exact cap-breaker plan. Read the plan closely &mdash; five cap breakers buy +5 three-point, while one buys +5 driving dunk. That non-linearity is the whole problem.</figcaption>
+        </figure>
+
+        <div class="cs-narrow"><p class="cs-lead">A combinatorial optimizer for NBA 2K character builds, reverse-engineered from the game's own WebAssembly rating engine and running today as a paying product across two game titles.</p>
+
+            <p>I built and operate all of it: the product, the search engine, the infrastructure, the billing, and the support inbox. Live at <a href="https://2kbuildlab.com" target="_blank" rel="noopener">2kbuildlab.com</a>.</p>
+
+            <dl class="cs-stats">
+              <dt>Search space</dt>
+              <dd><b>9,485 bodies</b> &times; 21 attributes, 25 to 99, &times; every legal cap-breaker allocation</dd>
+              <dt>Engine</dt>
+              <dd><b>Rust, compiled to WASM</b> &mdash; 15x native and 11.5x wasm over the JavaScript it replaced</dd>
+              <dt>Parity standard</dt>
+              <dd><b>Byte-identical</b> &mdash; 930,405 cells validated against the game, zero mismatches</dd>
+              <dt>Billing rule</dt>
+              <dd><b>Only on success</b> &mdash; a run that finds nothing costs the player nothing</dd>
+            </dl>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>A build is a purchase you cannot undo</h2>
+
+            <p>NBA 2K players spend real money and weeks of grinding on a character build, then find out it misses a rating threshold they cared about. There is no refund and no respec. You start over.</p>
+
+            <p>The in-game builder gives you sliders and no foresight. Raise three-point shooting and something else quietly loses headroom, because the interactions run through attribute dependencies, body geometry, and a post-cap currency called cap breakers whose price shifts depending on the rest of your build. Players find the conflict after they have already committed.</p>
+
+            <p>2K Build Lab turns that around. You declare the ratings you actually care about, and the optimizer searches the legal build space for the cheapest configuration that satisfies all of them, leaving you the maximum number of points and cap breakers free for everything else.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/landing.png" alt="2K Build Lab landing page">
+              <figcaption><b>Landing</b>The pitch is decision support, not a database lookup. The hero card shows the shape of a real answer: body geometry, target ratings, and the cap breakers needed to reach them.</figcaption>
+            </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>What the product does</h2>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/builder.png" alt="The 2K Build Lab builder with all attribute sliders at baseline">
+              <figcaption><b>The builder</b>Twenty-one attributes across six categories, each showing a live ceiling. Anything left at its baseline of 25 counts as unset, so the optimizer can spend those points wherever they buy the most. Category token and badge-slot counts recompute as targets move.</figcaption>
+            </figure>
+
+            <p>Every slider release re-runs a constraint-closure pass in a Web Worker, inside a three-second budget on weak hardware. It recalculates each attribute's reachable ceiling given every other target you have already set. That is why the ceilings move while you type, before anything reaches a server.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/targets.png" alt="Builder with five target ratings set">
+              <figcaption><b>Declaring targets</b>You name only the ratings that matter to your playstyle. Everything else stays flexible, and that flexibility is what the optimizer converts into a cheaper build.</figcaption>
+            </figure>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/cap-breakers.png" alt="Cap breaker budget set to twelve">
+              <figcaption><b>Cap breakers</b>Cap breakers apply after the natural attribute budget is spent, so they change which builds are reachable, not merely what they cost. Telling the optimizer how many you hold reshapes the search rather than adjusting a number at the end.</figcaption>
+            </figure>
+
+            <p>The most useful thing the tool does is refuse to waste your money. Two targets that cannot coexist on any legal body get caught in the browser, before a credit is spent. It does not just refuse, either. It shows both ways out and what each one costs you elsewhere.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/conflicts.png" alt="Conflict detection showing two targets that cannot coexist">
+              <figcaption><b>Conflict detection</b>95 three-point and 95 driving dunk do not fit on one legal body. The panel names both resolutions and the knock-on cost of each. The build title, "2-Way 3PT Slasher", comes from a forward engine I rebuilt out of the game's own bitmask-to-string-table lookup.</figcaption>
+            </figure>
+
+            <figure class="cs-fig cs-narrow-fig">
+              <img src="/images/2kbuildlab/readiness.png" alt="Build readiness meter">
+              <figcaption><b>Build readiness</b>A five-state recommendation machine drives the copy, icon and colour from one shared map, so desktop and mobile cannot drift apart. It advises and never blocks. A heuristic that hard-blocked genuinely buildable configurations is a documented regression class in this codebase.</figcaption>
+            </figure>
+
+            <figure class="cs-fig cs-narrow-fig">
+              <img src="/images/2kbuildlab/result.png" alt="An optimized build result with its cap breaker plan">
+              <figcaption><b>The result</b>Every attribute the search committed to, the body that makes it legal, and the exact cap-breaker plan. The card exports straight from the DOM as a PNG.</figcaption>
+            </figure>
+
+            <div class="cs-quote">
+              <p>Read that cap-breaker plan closely. Five cap breakers buy +5 three-point. One cap breaker buys +5 driving dunk. That non-linearity is the whole problem, and it is why there is no price list to look up and no shortcut around searching.</p>
+              <span>Cap breaker plan</span>
+            </div>
+
+            <div class="cs-pair">
+              <figure class="cs-fig">
+                <img src="/images/2kbuildlab/badges.png" alt="Build by badges mode showing badge tier ladders">
+                <figcaption><b>Build by badges</b>The inverse workflow. Pick badges at the tiers you want and the attributes get derived. Every threshold and height gate here came out of the game's binary tuning data, verified cell by cell.</figcaption>
+              </figure>
+              <figure class="cs-fig">
+                <img src="/images/2kbuildlab/mobile.png" alt="The builder on a phone viewport">
+                <figcaption><b>Mobile</b>The desktop rail becomes a bottom sheet. The PNG export forces desktop width while it captures, a detail with its own regression test, because media queries key off the viewport and not the element.</figcaption>
+              </figure>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Why this cannot be a formula</h2>
+
+            <p>The search space is roughly 9,485 legal body geometries of position, height, weight and wingspan, multiplied by 21 attributes each running 25 to 99, multiplied by every legal cap-breaker allocation over that vector. Trillions of legal builds, and no closed form.</p>
+
+            <p>The cost function does not separate, either. A 15-row archetype classifier decides cap-breaker pricing by reading the <em>entire</em> attribute vector, so raising one attribute can change the price of every other one. I built and measured several attempts to precompute or predict that price. All of them died. The classifier is the objective, and something has to evaluate it.</p>
+
+            <div class="cs-quote">
+              <p>Position never affects caps or cap breakers. They key on body geometry alone. That finding removed an entire dimension from the search, and it took a controlled sweep to establish rather than an assumption.</p>
+              <span>Load-bearing invariant</span>
+            </div>
+
+            <h3>The objective, stated precisely</h3>
+            <p>The winning build minimises <code>naturalRawOverall + 0.25 x usedCapBreakers</code>. Lower committed overall is <em>better</em>, because it means fewer points locked into the floor and more left free. That reads backwards to anyone who assumes a build optimizer maximises overall rating, and it briefly shipped inverted. It is now a guarded invariant with identical formulas in all three engines.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Three generations, each validated against the last</h2>
+
+            <p>No generation replaced its predecessor until it reproduced that predecessor's winners exactly.</p>
+
+            <div class="cs-gen">
+              <h3><span class="cs-gen-no">01 &middot; Beam search.</span> Brute force, tuned by measurement</h3>
+              <p>A width-600, seven-round beam over roughly a million variants per solve, with dominance pruning, per-round dedup and a worker pool. Sweeps found a hard feasibility cliff. Width 550 returns no build, width 575 finds the winner. They also showed the winner usually surfaces in round six. The tuning carried real weight, and I proved that rather than assuming it.</p>
+            </div>
+
+            <div class="cs-gen">
+              <h3><span class="cs-gen-no">02 &middot; Analytic.</span> Decoding the objective turned search into guidance</h3>
+              <p>Reverse-engineering the rating model showed that overall rating and cap-breaker pricing are one system. Overall is a per-height interpolation over the maximum of 15 category weighted averages, and the argmax category is the cap-breaker pricing row. That collapsed brute force into 15 fixed-row greedy descent trajectories, a width-128 mini-beam to rescue the coordinated reallocations greedy structurally cannot reach, and an exact verify gate at every feasible state so the model only guides and never approximates the answer.</p>
+              <p>It came out 25 to 40 times faster with equal-or-better winners on every fixture. It also recovered 30 of 43 historical production "no build" results as genuinely buildable, which is revenue the old engine had been turning away.</p>
+            </div>
+
+            <div class="cs-gen">
+              <h3><span class="cs-gen-no">03 &middot; Rust.</span> One core crate, three compilation targets</h3>
+              <p>I ported the analytic engine leaf-first: cap-breaker pricing, then data baking, closure, rating, the search phases, and orchestration last. Each stage had to pass a parity gate against JavaScript before anything downstream could depend on it. A single zero-dependency core now compiles to a native addon, server WASM and browser WASM.</p>
+              <p>That bought 15x native and 11.5x wasm over JavaScript, with rayon adding another 4.45x bit-identically through an ordered collect. Heavy solves that took 17 to 20 seconds now return in under a second. I picked Rust over C++ for one reason: IEEE-strict float semantics by default, which is what makes byte-exact parity reachable without compiler-flag footguns.</p>
+            </div>
+
+            <h3>Search machinery worth naming</h3>
+            <ul class="cs-list">
+              <li><strong>The corner rule.</strong> The verified score over the body grid turns out to be a plateau, so one deep solve per feasible height, at the lowest-weight and highest-wingspan corner, ties a full ranked scan. Body search dropped from about 300 solves to between one and four.</li>
+              <li><strong>The slack ladder.</strong> Solving at budget plus slack and filtering back recovers builds whose path crosses momentarily over-budget intermediates. My naive always-on version regressed the low-budget case badly, 21 false no-builds out of 21, because the validation corpus skewed 77 of 106 toward high budgets. A threshold ladder and a deliberately budget-diverse corpus fixed it. The lesson went straight into the docs: a corpus skewed to one regime hides regressions in the other.</li>
+              <li><strong>Reachability floors.</strong> Per-solve minimum-natural floors derived by biased-random sampling plus binary search on a deterministic seeded RNG. Byte-identical winners, 17 to 31 percent off expensive solves. The precomputed version is impossible, and I proved that too. Floors are inherently per-build.</li>
+              <li><strong>Three-valued feasibility.</strong> A first-witness-stops search with a deterministic fuel cap measured in work units rather than wall time, so the verdict is the same on any hardware. Unknown never gets reported as infeasible.</li>
+            </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Reading the rating engine out of a 12.7 KB WASM binary</h2>
+
+            <p>The game's web builder ships an AssemblyScript-compiled WebAssembly module that computes caps and cap-breaker pricing. Disassembled with wabt, its cap-breaker function breaks down into a caps computation, a 15-row by 21-attribute archetype classifier of about 315 float multiply-accumulates, and a cumulative five-tier boost loop.</p>
+
+            <p>I pulled the weight matrix of 6,300 floats and the nonlinearity table of 2,100 floats straight out of live WASM linear memory at fixed byte offsets, along with internal caps from a scratch buffer. Shadow-diffing against the original then surfaced three details no amount of reading disassembly would have settled. The engine uses banker's rounding rather than truncation. The boost clamp has a specific form. And its internal caps disagree with its own public API on some bodies.</p>
+
+            <p>The JavaScript replica I built from that validated on 930,405 tier-cells with zero mismatches, runs about 18 times faster than calling the original, and ships on by default behind a kill switch. It is worth 21 to 38 percent of solve time.</p>
+
+            <p>I decoded the rating model itself to machine precision: 6,300 of 6,300 weight cells, 2,100 of 2,100 curve cells, maximum drift between f32 and f64 of 4.3e-5, across nine curve shapes and 300 height-specific weight vectors. That work also caught the source file's own annotations being wrong about which curves were exponential.</p>
+
+            <p>Build names turned out to be a bitmask, a binary search and a string table. The data file was encrypted, so I captured the decoded table off the running site with conditional breakpoints, then rebuilt it into a forward engine that takes attributes plus position and returns the exact build name, plus a reverse dataset mapping any name to its minimum caps per position.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Extracting a new game title before any tool supported it</h2>
+
+            <p>NBA 2K27 had no web builder to read from, only the game's own tuning file, which I sourced through Steam's cloud-sync cache. It stores a packed big-endian bitstream. Booleans take one bit, enums take ceil(log2(cardinality)) bits, and alignment padding is simply absent. The official type-layout offsets do not describe the stream at all.</p>
+
+            <p>Whole-file sequential models drifted about 5 percent, so the working method became signature anchoring with relative offsets. Find a known byte pattern, then read outward from it. That produced:</p>
+
+            <ul class="cs-list">
+              <li>The attribute cap formula in closed form, <code>min(99, round(25 + 74 &middot; hMul &middot; wMul &middot; wsMul))</code>, verified 147 out of 147. Two near-miss formulas got falsified first, one of them killed by proving its rounding-offset rescue interval was empty.</li>
+              <li>58 badges' tier requirements at 106 of 106 cells, plus badge token costs, 30 takeover slots, badge effect curves, stamina, and the WNBA and GoatBuilds league variants.</li>
+              <li>4,604 build names mined from a 137,271-string UTF-16 localization table using a learned grammar and vocabulary gate, scoring 99.93 percent recall against the known 2K26 name set.</li>
+              <li>The legal body grid, proved identical to 2K26's. The same 9,485 bodies.</li>
+            </ul>
+
+            <p>The trap worth remembering: badges and takeovers reference attributes through two different enums, one with 22 values in 5-bit fields and one with 156 values in 8-bit fields. Read either with the other's width and you get plausible garbage.</p>
+
+            <h3>The badge-slot investigation, wrong turns included</h3>
+            <p>Badge slot counts resisted everything. I read constants out of the binary and validated them with permutation self-checks, fitted models, and ran one-variable sweeps against the live builder. I published two conclusions and then publicly retracted both. Eventually I identified a transcription-error signature in my early readings, and found that the documentation's own token-potential vector was wrong.</p>
+            <p>The algorithm finally came out of a competitor's minified client bundle, where <code>computeBadgeSlots</code> revealed the missing input carrying 60 percent of the weight: earnable badge counts. Then a photograph of the actual in-game screen outranked all of it and killed the competitor's uncapped fill pass. It shipped with provenance notes attached, because how I got there matters for how much to trust it.</p>
+
+            <p>Baking that data into the Rust core and pushing the JavaScript engine to 169 of 169 bit-exact parity surfaced three real float bugs that had been invisible until then: a clamped raw overall, an f64-versus-f32 weight read, and an association order that flipped argmax ties.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Measured, not assumed</h2>
+
+            <p>Speed that changes the answer is not speed. Every optimization below had to return the identical winning build before it counted, and every one ships behind an environment-variable kill switch.</p>
+
+            <figure class="cs-fig">
+              <img src="/images/2kbuildlab/measurements.png" alt="Table of measured performance wins across engine, infrastructure and search">
+              <figcaption><b>Measured performance work</b>Roughly 70 percent off solve latency across eight independently A/B tested changes, plus the infrastructure and payload work. The A/B harness compares winning builds, not just timings.</figcaption>
+            </figure>
+
+            <h3>The kill list</h3>
+            <p>Ideas I built or measured to death, written down so nobody re-attempts them:</p>
+
+            <div class="cs-kill">
+              <h4>Linear cap-breaker cost model <em>Killed at 43%</em></h4>
+              <p>43 percent accuracy against a 74 percent always-predict-the-same baseline. The classifier really is the function.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>Cap-breaker pre-screen <em>Killed, unsound</em></h4>
+              <p>It would have wrongly discarded 23 percent of keepable states.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>Archetype memoization <em>Killed at a 16.7% ceiling</em></h4>
+              <p>Even a perfect cache key tops out at a 16.7 percent hit rate. I measured that before building it.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>Flip-aware gate <em>Reverted, zero gain</em></h4>
+              <p>I built it and it worked exactly as proven, skipping 69 percent of cap-breaker solves. It bought zero wall time. Reverted anyway, which stung.</p>
+            </div>
+            <div class="cs-kill">
+              <h4>Deep search on by default <em>Restricted, 0 of 113</em></h4>
+              <p>Running every slack mode and keeping the cheapest winner improved 0 of 113 corpus cases. It ships opt-in and pro-only rather than charging everyone double the compute.</p>
+            </div>
+
+            <p>I also root-caused two of my own wrong conclusions instead of quietly dropping them. A corpus study concluding certain no-builds were truly infeasible fell apart when the harness turned out to search a different body domain than production. A "height is a dead signal" finding traced back to an artifact of synthetic test data. Feasibility telemetry now carries a contract version and engine revision, because verdicts from different engines are not comparable.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>Honesty as an engineering requirement</h2>
+
+            <p>Three questions had been tangled together in the interface. Can you run this, should you run this, and is a claim about your build trustworthy. Separating them produced a rule the whole system now follows. Only a constructive witness, meaning a real attribute vector plus a tier plan, may call a build feasible. Only a sound proof may call one impossible. Heuristics may warn and may never block.</p>
+
+            <p>This audience spots manipulation instantly, so the funnel skips the usual levers. No fake scarcity. No fabricated progress denominator on the referral page. Credit reset dates appear only when they are real.</p>
+
+            <div class="cs-pair">
+              <figure class="cs-fig">
+                <img src="/images/2kbuildlab/sign-in-gate.png" alt="Sign-in gate showing an example report labelled as not the user's build">
+                <figcaption><b>The sign-in gate</b>The sample report carries the label "EXAMPLE REPORT, NOT YOUR BUILD" in the interface itself. Its numbers are a hand-picked archetype built from real attribute and badge identifiers, deliberately not a fabricated personalised result.</figcaption>
+              </figure>
+              <figure class="cs-fig">
+                <img src="/images/2kbuildlab/pricing.png" alt="Pricing page">
+                <figcaption><b>Pricing</b>Credits get reserved when a job is queued and debited only when a viable build comes back. No-builds, conflicts and errors cost nothing, enforced in the ledger rather than promised in the copy.</figcaption>
+              </figure>
+            </div>
+
+            <p>I audited the three highest-intent pages against a 40-principle UX framework and then retracted several of my own recommendations once I checked them against the real mathematics. "N attributes are blocking you" is wrong, because readiness is a threshold and not a count. I could not make the Target Load meter more motivating without making it dishonest, so I left it alone.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-body">
+      <div class="wrap">
+        <div class="cs-narrow"><h2>What it is built from</h2>
+
+            <p>React 18 and Vite on the front end, with CSS Modules on a per-file component convention, a Web Worker running the feasibility engine, browser WebAssembly for the cap engine, and DOM-to-PNG result capture. A Rust core crate compiles to a native addon, server WASM and browser WASM, parallelised with rayon.</p>
+
+            <p>Three Cloud Run services handle compute: a public enqueue endpoint, a private worker, and a preflight service at min-instances zero so free feasibility checks never queue behind paid solves. Cloud Tasks sits between them, Secret Manager holds credentials, and GitHub Actions deploys on push. Supabase Postgres stores everything behind row-level security, with SECURITY DEFINER RPCs, advisory locks and Deno edge functions for checkout, webhooks, referrals and job dispatch. Stripe handles subscriptions, one-time packs and coupons, on a two-phase reserve-then-debit flow with idempotency keys, where refunds read the ledger rather than the price table.</p>
+
+            <ul class="cs-tags">
+              <li>React</li><li>Vite</li><li>Rust</li><li>WebAssembly</li><li>rayon</li>
+              <li>Node 22</li><li>Cloud Run</li><li>Cloud Tasks</li><li>Supabase</li><li>Postgres</li>
+              <li>Stripe</li><li>Deno</li><li>Playwright</li><li>wabt</li>
+            </ul>
+
+            <h3>Practices that made the rest possible</h3>
+            <ul class="cs-list">
+              <li><strong>Kill switches on everything.</strong> Around fifteen environment flags gate individual optimizations, so a risky change reverts without a redeploy. Engine defaults live in code, so a lost environment variable cannot quietly revert production.</li>
+              <li><strong>Tests that encode specific historical bugs.</strong> Source-pattern scans that grep for required helpers, a test that parses the edge function to catch a hand-copied pricing table drifting, and a CSS test enforcing that every mobile rule touching the capture region has a desktop override.</li>
+              <li><strong>Living decision docs.</strong> Nineteen context documents with a written bar for inclusion, retractions kept inline, and a standing rule that a confidently stale note is worse than no note.</li>
+              <li><strong>Determinism wherever money is involved.</strong> Seeded RNG, work-unit budgets instead of wall-clock timeouts, and idempotency keys on every charge path.</li>
+            </ul>
+
+            <div class="cs-back">
+              <a href="/" class="btn">&larr; All work</a>
+              <a href="https://2kbuildlab.com" target="_blank" rel="noopener" class="btn primary">Visit 2kbuildlab.com</a>
+            </div>
+
+            <p class="cs-disclaimer">No affiliation with NBA 2K, 2K Sports or Take-Two Interactive.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <footer-pane></footer-pane>
+  </body>
+</html>
