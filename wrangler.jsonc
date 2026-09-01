@@ -5,7 +5,7 @@
   //
   // `name` has to match the Worker created in the dashboard, or a deploy will
   // publish to a different Worker than the one holding the custom domain.
-  "name": "schmidt",
+  "name": "mysite",
   "compatibility_date": "2026-09-01",
 
   "assets": {
