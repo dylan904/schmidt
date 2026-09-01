@@ -193,7 +193,7 @@
             <p>2K Build Lab turns that around. You declare the ratings you actually care about, and the optimizer searches the legal build space for the cheapest configuration that satisfies all of them, leaving you the maximum number of points and cap breakers free for everything else.</p>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/landing.png" alt="2K Build Lab landing page">
+              <img src="/images/full/2kbuildlab/landing.webp" alt="2K Build Lab landing page">
               <figcaption><b>Landing</b>The pitch is decision support, not a database lookup. The hero card shows the shape of a real answer: body geometry, target ratings, and the cap breakers needed to reach them.</figcaption>
             </figure>
 
@@ -206,36 +206,36 @@
         <div class="cs-narrow"><h2>What the product does</h2>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/builder.png" alt="The 2K Build Lab builder with all attribute sliders at baseline">
+              <img src="/images/full/2kbuildlab/builder.webp" alt="The 2K Build Lab builder with all attribute sliders at baseline">
               <figcaption><b>The builder</b>Twenty-one attributes across six categories, each showing a live ceiling. Anything left at its baseline of 25 counts as unset, so the optimizer can spend those points wherever they buy the most. Category token and badge-slot counts recompute as targets move.</figcaption>
             </figure>
 
             <p>Every slider release re-runs a constraint-closure pass in a Web Worker, inside a three-second budget on weak hardware. It recalculates each attribute's reachable ceiling given every other target you have already set. That is why the ceilings move while you type, before anything reaches a server.</p>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/targets.png" alt="Builder with five target ratings set">
+              <img src="/images/full/2kbuildlab/targets.webp" alt="Builder with five target ratings set">
               <figcaption><b>Declaring targets</b>You name only the ratings that matter to your playstyle. Everything else stays flexible, and that flexibility is what the optimizer converts into a cheaper build.</figcaption>
             </figure>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/cap-breakers.png" alt="Cap breaker budget set to twelve">
+              <img src="/images/full/2kbuildlab/cap-breakers.webp" alt="Cap breaker budget set to twelve">
               <figcaption><b>Cap breakers</b>Cap breakers apply after the natural attribute budget is spent, so they change which builds are reachable, not merely what they cost. Telling the optimizer how many you hold reshapes the search rather than adjusting a number at the end.</figcaption>
             </figure>
 
             <p>The most useful thing the tool does is refuse to waste your money. Two targets that cannot coexist on any legal body get caught in the browser, before a credit is spent. It does not just refuse, either. It shows both ways out and what each one costs you elsewhere.</p>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/conflicts.png" alt="Conflict detection showing two targets that cannot coexist">
+              <img src="/images/full/2kbuildlab/conflicts.webp" alt="Conflict detection showing two targets that cannot coexist">
               <figcaption><b>Conflict detection</b>95 three-point and 95 driving dunk do not fit on one legal body. The panel names both resolutions and the knock-on cost of each. The build title, "2-Way 3PT Slasher", comes from a forward engine I rebuilt out of the game's own bitmask-to-string-table lookup.</figcaption>
             </figure>
 
             <figure class="cs-fig cs-narrow-fig">
-              <img src="/images/2kbuildlab/readiness.png" alt="Build readiness meter">
+              <img src="/images/full/2kbuildlab/readiness.webp" alt="Build readiness meter">
               <figcaption><b>Build readiness</b>A five-state recommendation machine drives the copy, icon and colour from one shared map, so desktop and mobile cannot drift apart. It advises and never blocks. A heuristic that hard-blocked genuinely buildable configurations is a documented regression class in this codebase.</figcaption>
             </figure>
 
             <figure class="cs-fig cs-narrow-fig">
-              <img src="/images/2kbuildlab/result.png" alt="An optimized build result with its cap breaker plan">
+              <img src="/images/full/2kbuildlab/result.webp" alt="An optimized build result with its cap breaker plan">
               <figcaption><b>The result</b>Every attribute the search committed to, the body that makes it legal, and the exact cap-breaker plan. The card exports straight from the DOM as a PNG.</figcaption>
             </figure>
 
@@ -246,11 +246,11 @@
 
             <div class="cs-pair">
               <figure class="cs-fig">
-                <img src="/images/2kbuildlab/badges.png" alt="Build by badges mode showing badge tier ladders">
+                <img src="/images/full/2kbuildlab/badges.webp" alt="Build by badges mode showing badge tier ladders">
                 <figcaption><b>Build by badges</b>The inverse workflow. Pick badges at the tiers you want and the attributes get derived. Every threshold and height gate here came out of the game's binary tuning data, verified cell by cell.</figcaption>
               </figure>
               <figure class="cs-fig">
-                <img src="/images/2kbuildlab/mobile.png" alt="The builder on a phone viewport">
+                <img src="/images/full/2kbuildlab/mobile.webp" alt="The builder on a phone viewport">
                 <figcaption><b>Mobile</b>The desktop rail becomes a bottom sheet. The PNG export forces desktop width while it captures, a detail with its own regression test, because media queries key off the viewport and not the element.</figcaption>
               </figure>
             </div>
@@ -366,7 +366,7 @@
             <p>Speed that changes the answer is not speed. Every optimization below had to return the identical winning build before it counted, and every one ships behind an environment-variable kill switch.</p>
 
             <figure class="cs-fig">
-              <img src="/images/2kbuildlab/measurements.png" alt="Table of measured performance wins across engine, infrastructure and search">
+              <img src="/images/full/2kbuildlab/measurements.webp" alt="Table of measured performance wins across engine, infrastructure and search">
               <figcaption><b>Measured performance work</b>Roughly 70 percent off solve latency across eight independently A/B tested changes, plus the infrastructure and payload work. The A/B harness compares winning builds, not just timings.</figcaption>
             </figure>
 
@@ -410,11 +410,11 @@
 
             <div class="cs-pair">
               <figure class="cs-fig">
-                <img src="/images/2kbuildlab/sign-in-gate.png" alt="Sign-in gate showing an example report labelled as not the user's build">
+                <img src="/images/full/2kbuildlab/sign-in-gate.webp" alt="Sign-in gate showing an example report labelled as not the user's build">
                 <figcaption><b>The sign-in gate</b>The sample report carries the label "EXAMPLE REPORT, NOT YOUR BUILD" in the interface itself. Its numbers are a hand-picked archetype built from real attribute and badge identifiers, deliberately not a fabricated personalised result.</figcaption>
               </figure>
               <figure class="cs-fig">
-                <img src="/images/2kbuildlab/pricing.png" alt="Pricing page">
+                <img src="/images/full/2kbuildlab/pricing.webp" alt="Pricing page">
                 <figcaption><b>Pricing</b>Credits get reserved when a job is queued and debited only when a viable build comes back. No-builds, conflicts and errors cost nothing, enforced in the ledger rather than promised in the copy.</figcaption>
               </figure>
             </div>
