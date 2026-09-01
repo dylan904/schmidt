@@ -25,3 +25,6 @@ Thumbs.db
 
 # Optional npm cache directory
 .npm
+
+# Build output for Cloudflare Pages
+dist/
