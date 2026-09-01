@@ -1,0 +1,21 @@
+# Copied into dist/ by build.sh. Cloudflare Pages reads this from the output
+# directory only.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+# No CSP here on purpose: Lit loads from cdn.jsdelivr.net, so a default-src
+# policy would have to allow it, and a policy written to permit the one thing
+# it would otherwise break is not worth the chance of silently breaking the
+# rest. Add one when the dependency is local.
+
+# Filenames are not content-hashed, so a screenshot re-shot under the same name
+# has to be able to replace itself. Thirty days, not a year, and no immutable.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/css/*
+  Cache-Control: public, max-age=604800
+
+/components/*
+  Cache-Control: public, max-age=604800

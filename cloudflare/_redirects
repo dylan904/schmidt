@@ -1,0 +1,28 @@
+# Copied into dist/ by build.sh. Cloudflare Pages only reads this from the
+# output directory, so it lives here rather than at the site root where it
+# would read as content.
+#
+# The site is /, /services and /portfolio/<project>/. Everything below is a URL
+# that used to exist on the Colorlib template and may still be indexed from
+# dylan904.github.io/schmidt, so it lands somewhere real instead of on the 404.
+
+# `portfolio` is a real directory with no index, which is what server.js
+# redirects locally too.
+/portfolio        /  301
+/portfolio.html   /  301
+
+# Pages removed in the rebuild. Their content now lives on the home page.
+/about            /  301
+/about.html       /  301
+/experience       /  301
+/experience.html  /  301
+/main.html        /  301
+
+# There is no blog and there was never more than the template's placeholder.
+/blog             /  301
+/blog.html        /  301
+/blog-single.html /  301
+
+# Contact is a mailto in the nav, so the home page is the honest destination.
+/contact          /  301
+/contact.html     /  301

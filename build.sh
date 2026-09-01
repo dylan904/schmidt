@@ -31,9 +31,8 @@ find images -name '*.mp4' -exec bash -c '
   for f; do mkdir -p "dist/$(dirname "$f")"; cp "$f" "dist/$f"; done
 ' _ {} +
 
-# Cloudflare reads this from the output directory, so it is generated here
-# rather than kept at the repo root where it would look like site content.
-# Mirrors the one redirect server.js performs locally.
-printf '/portfolio / 301\n' > dist/_redirects
+# Cloudflare reads these from the output directory only, which is why they are
+# kept in cloudflare/ rather than at the site root.
+cp cloudflare/_redirects cloudflare/_headers dist/
 
 echo "dist: $(du -sh dist | cut -f1), $(find dist -type f | wc -l | tr -d ' ') files"
