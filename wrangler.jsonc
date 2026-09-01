@@ -1,0 +1,21 @@
+{
+  // Deployed as a Worker serving static assets, which is Cloudflare's current
+  // path for static sites. There is no Worker script: `assets` with no `main`
+  // is a valid assets-only Worker, so nothing here executes per request.
+  //
+  // `name` has to match the Worker created in the dashboard, or a deploy will
+  // publish to a different Worker than the one holding the custom domain.
+  "name": "schmidt",
+  "compatibility_date": "2026-09-01",
+
+  "assets": {
+    // Built by build.sh, which the dashboard runs as the build command before
+    // the deploy command runs `npx wrangler deploy`.
+    "directory": "./dist",
+
+    // Serve 404.html with a 404 rather than Cloudflare's default page. Not
+    // "single-page-application": every route here is a real file, and SPA
+    // handling would answer 200 for URLs that do not exist.
+    "not_found_handling": "404-page"
+  }
+}
