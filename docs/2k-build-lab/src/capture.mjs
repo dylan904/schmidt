@@ -20,6 +20,7 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const SRC = dirname(fileURLToPath(import.meta.url));
 const OUT = resolve(SRC, '../../../images/2kbuildlab');
 const BASE = 'https://2kbuildlab.com';
+const requested = new Set(process.argv.slice(2));
 
 // Matches the example build used across the landing page copy.
 const TARGETS = [
@@ -31,6 +32,7 @@ const TARGETS = [
 ];
 
 const shot = async (page, name, opts = {}) => {
+  if (requested.size && !requested.has(name)) return;
   const file = join(OUT, `${name}.png`);
   await page.screenshot({ path: file, ...opts });
   execFileSync('sips', ['-Z', '1440', file], { stdio: 'ignore' });
@@ -53,16 +55,22 @@ async function setAttr(page, label, value) {
   await page.waitForTimeout(250);
 }
 
-async function scrollTo(page, text, offset = -160) {
-  const el = page.locator(`text=${text}`).first();
+async function scrollHeadingTo(page, name, top = 150) {
+  const el = page.getByRole('heading', { name, exact: true }).first();
   if (!(await el.count())) return false;
-  await el.scrollIntoViewIfNeeded();
-  await page.evaluate(y => window.scrollBy(0, y), offset);
+  await el.evaluate((heading, targetTop) => {
+    window.scrollTo({
+      top: window.scrollY + heading.getBoundingClientRect().top - targetTop,
+      behavior: 'instant',
+    });
+  }, top);
   await page.waitForTimeout(1000);
   return true;
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.PLAYWRIGHT_EXECUTABLE_PATH
+  ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH }
+  : undefined);
 const desktop = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
 const page = await desktop.newPage();
 
@@ -70,12 +78,12 @@ console.log('marketing pages');
 await page.goto(BASE, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1500);
 await shot(page, 'landing');
-if (await scrollTo(page, 'OPTIMIZED PATH', -230)) await shot(page, 'tradeoffs');
-if (await scrollTo(page, 'HOW IT WORKS', -60)) await shot(page, 'how-it-works');
+if (await scrollHeadingTo(page, 'See the tradeoffs before you commit.')) await shot(page, 'tradeoffs');
+if (await scrollHeadingTo(page, 'From targets to a build plan in five steps.')) await shot(page, 'how-it-works');
 
 await page.goto(`${BASE}/pricing`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1500);
-if (await scrollTo(page, 'Build Pass', -140)) await shot(page, 'pricing');
+if (await scrollHeadingTo(page, 'Choose how you want to optimize.', 250)) await shot(page, 'pricing');
 
 console.log('builder');
 await page.goto(`${BASE}/2k27/app`, { waitUntil: 'networkidle' });

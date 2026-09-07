@@ -34,6 +34,9 @@ NODE_PATH=/path/to/a/repo/with/playwright/node_modules \
 
 Drives the live site and writes into `images/2kbuildlab/`. Playwright is not a
 dependency of this static site, so point `NODE_PATH` at a project that has it.
+Append one or more screenshot basenames to refresh only those files, for example
+`tradeoffs pricing how-it-works`. Set `PLAYWRIGHT_EXECUTABLE_PATH` when using an
+installed Chromium binary instead of Playwright's downloaded browser.
 
 Two images are not captured by that script:
 
