@@ -5,6 +5,16 @@ import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/li
 export class WorkList extends LitElement {
   createRenderRoot() { return this; }
 
+  connectedCallback() {
+    // The production build includes these cards for crawlers and no-JS users.
+    // Lit owns the host after upgrade, so discard that copy before first render.
+    if (this.hasAttribute('data-prerendered')) {
+      this.replaceChildren();
+      this.removeAttribute('data-prerendered');
+    }
+    super.connectedCallback();
+  }
+
   // Card facts shown at rest. Titles key into `items` below, which keeps the
   // gallery slides and their captions.
   static meta = {
