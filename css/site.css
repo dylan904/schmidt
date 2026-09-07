@@ -156,9 +156,9 @@ a:hover{color:var(--accent)}
 .rail a[aria-current="true"]{color:var(--accent-ink); font-weight:600}
 .rail a[aria-current="true"] b{color:var(--accent)}
 
-/* `work-list` is the only child of `.stack`, so the gap has to live on the
-   custom element itself -- putting it on `.stack` separated nothing. */
+/* Keep spacing between project entries on their shared custom element. */
 .stack{min-width:0}
+.work-heading{font-size:18px; line-height:1.4; margin-bottom:var(--s6); color:var(--muted)}
 work-list{display:flex; flex-direction:column; gap:var(--s8); min-width:0}
 
 /* ---------- project ---------- */
