@@ -73,6 +73,8 @@ Real and usable:
 
 The Business Case Tool, Chatbot Decision Tree, OpenAI Feedback Classifier and Brood were adopted internally by Beeline, as confirmed by Dylan on 7 September 2026. Adoption does not establish organization-wide usage, user counts or measured business impact. The Vue Devtools Auditor was not adopted. Dylan originated the ideas for Chatbot Decision Tree, OpenAI Feedback Classifier, Vue Devtools Auditor and Brood within Beeline and implemented each end to end.
 
+Dylan also originated 2K Build Lab and Casa Agent. He confirmed that the OpenAI Feedback Classifier was Beeline’s first adopted AI project. This establishes an adoption milestone, not company-wide usage or measured business impact.
+
 Absences that must not be filled with invention:
 
 - No testimonials, client quotes, press mentions, awards, or logos.

@@ -46,7 +46,7 @@ export class WorkList extends LitElement {
     'OpenAI Feedback Classifier': {
       no: '08', status: 'internal', statusLabel: 'Adopted by Beeline',
       role: 'Original concept and end-to-end implementation',
-      summary: 'I originated the idea and built the tool end to end at Beeline, where it was adopted internally. Triages incoming product feedback so nobody has to read all of it — built to find out why users of one product kept reverting to its legacy version, across more than 50,000 entries. Scores an F1 of 0.98. The cost was in the labelled data and the prompt, iterated with a data analyst, not in the model. The number needs its caveat: it is one labelled set for one product’s feedback, and the per-class counts behind it are thin — some classes are scored on around a dozen test labels, which is not enough to trust a per-class figure.',
+      summary: 'I originated the idea and built it end to end. It became Beeline’s first adopted AI project. Triages incoming product feedback so nobody has to read all of it — built to find out why users of one product kept reverting to its legacy version, across more than 50,000 entries. Scores an F1 of 0.98. The cost was in the labelled data and the prompt, iterated with a data analyst, not in the model. The number needs its caveat: it is one labelled set for one product’s feedback, and the per-class counts behind it are thin — some classes are scored on around a dozen test labels, which is not enough to trust a per-class figure.',
     },
     'Brood': {
       no: '09', status: 'internal', statusLabel: 'Adopted by Beeline',
