@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dev By Dylan - Casa Agent</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A property-operations assistant with scoped retrieval, reviewed learning and human-owned decisions. A working prototype with a documented 66-scenario regression comparison.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
+
+    <link rel="canonical" href="https://devbydylan.com/portfolio/casa-agent/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/portfolio/casa-agent/">
+    <meta property="og:title" content="Casa Agent &mdash; Dylan Maxey">
+    <meta property="og:description" content="A property-operations assistant with scoped retrieval, reviewed learning and human-owned decisions. A working prototype with a documented 66-scenario regression comparison.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/casa-agent.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Casa Agent &mdash; Dylan Maxey">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Casa Agent &mdash; Dylan Maxey">
+    <meta name="twitter:description" content="A property-operations assistant with scoped retrieval, reviewed learning and human-owned decisions. A working prototype with a documented 66-scenario regression comparison.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/casa-agent.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
+
+    <style>
+      .cs-body p { font: 17px/1.75 var(--serif); }
+      .cs-narrow { max-width: 72ch; }
+      .cs-body .cs-lead { font-size: 21px; line-height: 1.65; color: var(--muted); }
+      .cs-stats { display: grid; grid-template-columns: max-content 1fr; gap: 0 32px; margin: var(--s7) 0 var(--s6); }
+      .cs-stats dt, .cs-stats dd { border-top: 1px solid var(--line); padding: 14px 0; }
+      .cs-stats dt { font: 14px/1.6 var(--sans); color: var(--muted); }
+      .cs-stats dd { margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted); }
+      .cs-stats b { color: var(--ink); }
+      .cs-fig { margin: 2.5rem 0 3rem; }
+      .cs-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+      .cs-fig figcaption { border: 1px solid var(--line); border-top: 0; background: var(--surface); padding: 14px 18px 16px; font: 15px/1.6 var(--sans); color: var(--muted); }
+      .cs-fig figcaption b { color: var(--ink); }
+      .cs-fig figcaption b::after { content: '. '; }
+      .cs-body .cs-tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+      .cs-tags li { font: 12px/1.5 var(--sans); border: 1px solid var(--line-strong); padding: 6px 11px; color: var(--accent-ink); }
+      .cs-back { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 12px; }
+      .cs-body .cs-disclaimer { margin: 2rem 0 4rem; font: 13px/1.6 var(--sans); color: var(--faint); }
+      @media(max-width:640px) { .cs-stats { grid-template-columns: 1fr; } .cs-stats dt { padding-bottom: 0; } .cs-stats dd { padding-top: 4px; border-top: 0; } .cs-body p { font-size: 16px; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#cs-start">Skip to the case study</a>
+    <nav-pane></nav-pane>
+    <header class="cs-hero"><div class="wrap">
+      <nav class="cs-crumbs" aria-label="Breadcrumb"><a href="/">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">Casa Agent</span></nav>
+      <h1>Casa Agent</h1>
+      <p class="cs-kicker">Property knowledge that can be approved, traced, and withdrawn.</p>
+    </div></header>
+    <main class="cs-body" id="cs-start"><div class="wrap">
+      <figure class="cs-fig">
+        <img src="/images/full/casa-agent/sop-library.webp" width="1280" height="720" fetchpriority="high" decoding="async" alt="Casa's instruction editor with Maintenance, Cleaner and Casa Azul scope chips above an arrival checklist.">
+        <figcaption><b>The scope sits beside the instruction</b> A procedure applies to named roles and properties. This is the real console with fictional records; the screenshots illustrate the workflow, not a customer deployment.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <p class="cs-lead">An assistant for the recurring questions between a property manager and the people who maintain their homes. It answers from approved procedures, asks when context is missing, and routes decisions back to the manager.</p>
+        <p>I built the decision pipeline, the knowledge lifecycle, and the operator console around one practical problem: a useful answer today must not silently become permission tomorrow. A one-time purchase approval is evidence of a decision. A standing procedure is a separate thing that somebody has to approve.</p>
+        <dl class="cs-stats">
+          <dt>Role</dt><dd><b>Product and engineering</b> &mdash; retrieval, decision policy, learning review, database migrations, evaluation and console UX.</dd>
+          <dt>Status</dt><dd><b>Working prototype.</b> The decision and review workflow is implemented; production WhatsApp delivery and a supervised customer pilot remain unfinished.</dd>
+          <dt>Verification</dt><dd><b>66/66 before and after</b> on the same authored scenario set and corrected grader, including 27 hard cases. Recorded 5 September 2026.</dd>
+          <dt>Tradeoff</dt><dd><b>More context costs more tokens:</b> approximately 39% more chat input and 14% more output in the final evaluation run.</dd>
+        </dl>
+        <div class="cs-back"><a class="btn primary" href="use-cases.html">Property-manager use cases</a><a class="btn" href="use-cases.html" download="casa-agent-use-cases.html">Download the document</a></div>
+
+        <h2>One worker, several houses, different instructions</h2>
+        <p>A caretaker can work at two properties with different equipment and procedures. A cleaner can need an answer in Portuguese while the manager writes in English. Some questions have a documented answer; others ask for spending or access permission. Treating all of these as generic chat loses the distinction that makes the answer useful.</p>
+        <p>Casa starts with a known contact and their assigned roles and properties. Retrieval is limited to that allowed scope. The conversation supplies clues about which property is being discussed, including follow-ups. That property selection remains a conversational inference within the allowed corpus, so ambiguous questions still need clarification.</p>
+      </div>
+      <figure class="cs-fig"><img src="/images/full/casa-agent/contacts.webp" width="1280" height="720" loading="lazy" decoding="async" alt="A fictional caretaker's settings showing a 75 euro spending threshold, Portuguese language and reply mode."><figcaption><b>Policy belongs to the working relationship</b> Language, spending threshold and whether to ask the manager first are visible contact settings. The three people shown are fictional demo contacts.</figcaption></figure>
+      <div class="cs-narrow">
+        <h2>Retrieval has an authority order</h2>
+        <p>The manager's canonical instructions outrank reviewed additions. Each gets a separate retrieval budget so learned material cannot crowd out the original procedure. Retrieved passages carry source identifiers that the response schema can select; the server checks those identifiers, and URLs must come from the procedure evidence.</p>
+        <p>Those checks improve attribution, but an allowed citation does not prove every sentence follows from it. Content checks and human review still matter. Deterministic rules provide additional backstops for clear emergencies, access requests and spending above configured thresholds; natural-language interpretation still has limits.</p>
+
+        <h2>Learning is a reviewable change to the record</h2>
+        <p>When the manager supplies missing knowledge, Casa retains the original answer as evidence and proposes reusable wording with a rationale and scope. The raw answer stays inactive. An approved addition receives its own linked document, and database retrieval excludes it until approval completes. A correction to a canonical instruction waits for a manual edit.</p>
+        <p>Retiring that knowledge removes both its learned document and the linked precedent from future answers. Editing disables stale precedent wording. This is maintained, retrieved knowledge; the process does not train the model's weights.</p>
+      </div>
+      <figure class="cs-fig"><img src="/images/full/casa-agent/proposal-review.webp" width="1280" height="720" loading="lazy" decoding="async" alt="A proposed linen stock-check procedure with original manager answer expanded, scope chips, and Use this and Reject controls."><figcaption><b>Read the evidence before accepting the rule</b> The fictional proposal keeps a repeatable linen check while leaving purchase permission with the manager. Neither this answer nor its proposal came from a real customer conversation.</figcaption></figure>
+      <div class="cs-narrow">
+        <h2>The migration had to preserve passing behavior</h2>
+        <p>The six workstreams covered indexing and scope, proposal activation, retractable learning, evaluation isolation, grounding, and operational UX. The acceptance rule was concrete: no previously passing scenario could become a failure. The comparison rejects missing cases and changed scenario inputs or expectations.</p>
+        <p>The first current-code run managed only 35/66 because retrieved source IDs and generated IDs disagreed. Later runs exposed follow-up context mistakes and access requests that missed mandatory escalation. Fixing those defects mattered more than adding another retrieval service or a training pipeline.</p>
+        <p>The final comparison and a fresh repeat passed 66/66. A narrow grader correction recognized equivalent Portuguese repetition counts; it was applied to the baseline too. The baseline ran the earlier brain and policy through an isolated adapter on the migrated database. It was not a replay of a frozen pre-migration production database or historical model version.</p>
+        <p>The final suite used 184,784 chat input tokens and 29,114 output tokens, against 133,349 and 25,466 for the baseline. That supports a regression result on this sample, with a real token cost. It does not establish universal reliability, lower operating cost, or superiority over a competing product.</p>
+
+        <h2>Unfinished work should be visible</h2>
+        <p>The console brings waiting questions and operational failures into an attention queue. Procedure saves preserve drafts on failure, expose incomplete indexing for retry, and protect unsaved edits during navigation. Contact preview runs the decision path without sending a message. These controls give the operator somewhere to act when the system cannot finish.</p>
+      </div>
+      <figure class="cs-fig"><img src="/images/full/casa-agent/attention.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Casa attention queue with a fictional 120 euro purchase question waiting for the manager."><figcaption><b>A question that still needs a person</b> The demo shows a purchase request awaiting an answer. The property chips describe the contact's assigned scope, rather than proving which property an escalation targets.</figcaption></figure>
+      <div class="cs-narrow">
+        <h2>Where this belongs in a property manager's toolkit</h2>
+        <p>Casa's proposed niche is continuing contractor relationships and controlled reuse of operating knowledge. Products already sell AI knowledge bases and handoff, so those features alone are not a competitive argument. respond.io documents knowledge sources and source references; Breezeway documents property answers, sources and captured learning. The useful question is whether Casa's particular approval and scope workflow solves a gap in the manager's existing process. <a href="https://respond.io/help/ai-agents/managing-ai-knowledge-sources">respond.io documentation</a>; <a href="https://help.breezeway.io/en/articles/15206108-concierge-copilot-autopilot">Breezeway documentation</a>.</p>
+        <p>The accompanying <a href="use-cases.html">use-case document</a> compares six products and proposes a supervised trial. Casa does not manage bookings, collect rent, dispatch technicians or track repair completion. Those systems would remain in place.</p>
+
+        <h2>What comes next</h2>
+        <p>Complete and verify message delivery, then trial a small set of owner-reviewed procedures with regular contacts. Measure supported replies, missed and unnecessary escalations, wrong-property facts, manager review time and total cost. The product earns a place only if net manager time improves without additional incorrect answers or missed required decisions.</p>
+        <p>The recorded evaluation and targeted browser checks support the prototype's tested behavior. Real delivery was not re-tested in that verification, and concurrent operators and customer account isolation need work before a shared commercial service.</p>
+        <ul class="cs-tags"><li>Python</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL / pgvector</li><li>OpenAI</li><li>RAG evaluation</li></ul>
+        <div class="cs-back"><a href="/" class="btn">&larr; All work</a><a href="use-cases.html" class="btn">Read the use cases</a></div>
+        <p class="cs-disclaimer">Evidence snapshot: 5 September 2026. Source of truth: Casa's six-change verification report and saved evaluation runs. Screenshots use the exported console with read-only fictional data and make no model calls.</p>
+      </div>
+    </div></main>
+    <footer-pane></footer-pane>
+  </body>
+</html>
