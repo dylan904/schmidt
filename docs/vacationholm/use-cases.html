@@ -16,12 +16,16 @@
 
 <span class="eyebrow">VacationHolm</span>
 <h1>Direct booking, from search to host follow-up</h1>
-<p class="meta">Dylan Maxey &middot; Product use cases &middot; 6 September 2026</p>
+<p class="meta">Dylan Maxey &middot; Product use cases &middot; Updated 7 September 2026</p>
 <p class="lead">VacationHolm is a direct-booking marketplace for holiday homes in the Azores and Madeira. Guests can find a suitable stay and contact the host with a consistent quote. Hosts keep control of the conversation, availability, and payment arrangement, then record enough of the result to understand where future inquiries stall.</p>
 
-<div class="status"><strong>Local MVP.</strong> These workflows are implemented and locally tested. Hosted migrations, deployment, and signed-in end-to-end checks are pending. Screens show the real interface with fictional data.</div>
+<div class="status"><strong>Shipped; venture on hold.</strong> The partner is pursuing funding from Portuguese government entities. The September enhancements were verified locally; their deployment was not verified in this review. Screens show the real interface with fictional data.</div>
 
 <p>The product is built around one operating loop. A guest searches with dates and party details. VacationHolm checks what it can know about availability, calculates the stay price, and saves the same quote with the inquiry. The host responds in context, closes the booking directly with the guest, records what happened, and uses the resulting evidence to improve the listing or response library. The platform never takes payment.</p>
+
+<h2>From a regional premise to a working product</h2>
+<p>My partner brought the idea of a direct-booking listings platform for the Azores and Madeira, along with local market knowledge and commercial outreach. I turned that premise into the product: defining most of the workflows, designing the data and interfaces, and implementing the application end to end. Our discussions shaped the details, including traveler search, bilingual communication and host onboarding.</p>
+<p>The development went beyond implementing listing pages. I proposed ways to reduce onboarding friction, connect guests and hosts across languages, and turn host activity into decisions. The resulting product combines search and inquiries with calendar control, reviewed reply drafts and an Insights action center.</p>
 
 <h2>Six situations the product is designed to handle</h2>
 
@@ -116,11 +120,11 @@
 
 <p>For a hiring reader, the engineering through-line is evidence carried across the workflow. The saved quote anchors the inquiry, approved source IDs anchor a reply draft, calendar origins anchor availability, and outcome history anchors later insight. That makes the analytics useful without claiming it observed more than it did.</p>
 
-<h2>What remains before this can be called a live product</h2>
-<div class="callout"><p>The next release step is operational rather than conceptual: apply and verify the prepared migrations on the intended hosted database, configure the scheduled calendar and draft workers, deploy the app, and run authenticated guest-to-host tests against that environment. Those tests should cover stale and failed calendar feeds, a quote that changes before submission, source approval and withdrawal during draft generation, a confirmed booking later reversed, and cross-account access controls.</p></div>
-<p>After activation, a small supervised trial should measure whether guests receive consistent quote explanations, whether hosts can identify uncertain availability before making a promise, how often reply drafts are supported and then edited, how completely hosts record outcomes, and which insight panels lead to a concrete listing or knowledge change. Those measurements do not exist yet. The useful decision is whether this connected workflow makes direct booking easier to operate without hiding the manual judgment it still requires.</p>
+<h2>Delivery and current status</h2>
+<div class="callout"><p>The product shipped, and the venture is now on hold while the partner seeks Portuguese government funding. The September review checked a newer local source snapshot, including migrations and background-job behavior. It did not verify those changes in the hosted environment. Product delivery and deployment verification of later improvements are separate facts.</p></div>
+<p>When the venture resumes, a supervised trial can measure whether guests receive consistent quote explanations, whether hosts can identify uncertain availability before making a promise, how often reply drafts are supported and then edited, how completely hosts record outcomes, and which insight panels lead to a concrete listing or knowledge change. This case study does not establish those operating measurements. The useful decision is whether this connected workflow makes direct booking easier to operate without hiding the manual judgment it still requires.</p>
 
-<footer><p class="meta">Prepared from the VacationHolm local MVP source. Screenshots use synthetic fixtures in the real React panels. This file embeds its images and styles and can be read or printed offline.</p></footer>
+<footer><p class="meta">Prepared from the VacationHolm source and product-development context. Screenshots use synthetic fixtures in the real React panels. This file embeds its images and styles and can be read or printed offline.</p></footer>
 </main>
 </body>
 </html>

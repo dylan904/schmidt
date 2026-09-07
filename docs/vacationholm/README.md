@@ -14,11 +14,12 @@ are embedded in the file, so it can be opened locally, emailed, or printed witho
 
 ## Evidence and status
 
-Snapshot: 6 September 2026. The source application is the VacationHolm repository at
+Code snapshot: 6 September 2026. Product-status clarification: 7 September 2026. The source application is the VacationHolm repository at
 `/Users/devbydylan/Documents/projects/listings`. The product workflows described in the document
-are implemented in the local MVP source. The newest hosted database migrations have not been
-applied, the product has not been deployed from this review, and authenticated end-to-end testing
-against a hosted environment remains outstanding. The document does not claim customer outcomes,
+are implemented in the source. Dylan confirmed that the product shipped and the venture is on hold
+while the partner pursues Portuguese government funding. The September review verified newer
+changes locally, without verifying their hosted deployment. The product-origin summary is based
+on Dylan’s clarification and the partner discussion; the private transcript is not included here. The document does not claim customer outcomes,
 revenue, time savings, guaranteed compliance, instantaneous iCal updates, or automatic AI sending.
 
 Useful source map:

@@ -68,12 +68,13 @@
       </figure>
       <div class="cs-narrow">
         <p class="cs-lead">A direct-booking marketplace for holiday rentals in the Azores and Madeira. Guests search, price a stay and contact the host. The platform keeps the listing, calendar, inquiry and conversation together while payment stays between guest and host.</p>
+        <p>My partner brought the idea of a direct-booking listings platform for the Azores and Madeira, along with local market knowledge and commercial outreach. I turned that premise into the product: defining most of the workflows, designing the data and interfaces, and implementing the application end to end. Our discussions shaped the details, including traveler search, bilingual communication and host onboarding.</p>
         <p>I built the guest and host workflows that connect property search, stay pricing, calendar availability and conversation. The difficult work sits between those screens, where two price calculations can disagree, a calendar refresh can erase the wrong block, or a failed reply job can disappear.</p>
         <dl class="cs-stats">
           <dt>Role</dt><dd><b>Product and engineering</b> across guest search, host operations, data design, failure handling and interface copy.</dd>
           <dt>Business model</dt><dd><b>Direct booking.</b> VacationHolm connects guests and hosts but does not collect or hold payment.</dd>
           <dt>Verification</dt><dd><b>13 targeted assertion checks and an isolated PostgreSQL migration harness</b> passed against the local source.</dd>
-          <dt>Status</dt><dd><b>Implemented MVP, locally verified.</b> Hosted migrations, deployment and authenticated end-to-end testing remain unfinished.</dd>
+          <dt>Status</dt><dd><b>Shipped; venture on hold.</b> My partner is pursuing funding from Portuguese government entities. The September enhancements were reviewed locally; their deployment was not verified.</dd>
         </dl>
         <div class="cs-back"><a class="btn primary" href="use-cases.html">Read the product use cases</a><a class="btn" href="use-cases.html" download="vacationholm-use-cases.html">Download the document</a></div>
 
@@ -134,11 +135,11 @@
 
         <h2>What the verification proves</h2>
         <p>Thirteen assertion-based checks exercise the shared quote path, calendar reconciliation, reply knowledge and jobs, outcome history, funnel ordering, missed-demand reasons, recurring questions, change windows and booking analysis. A network-isolated PostgreSQL harness applies the migrations to a disposable database and checks ownership, atomic writes, idempotency and source-specific calendar behavior.</p>
-        <p>That is evidence about the reviewed local source. It is not production usage, customer impact or proof that hosted migrations and background scheduling work in deployment. Authenticated guest and host journeys still need end-to-end testing against the deployed environment.</p>
+        <p>The product had already shipped before this review. These checks establish behavior in the September local source, not production usage or customer impact. They do not establish whether those newer changes, migrations and background workers are deployed.</p>
 
         <ul class="cs-tags"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL</li><li>iCal</li><li>OpenAI</li></ul>
         <div class="cs-back"><a href="/" class="btn">&larr; All work</a><a href="use-cases.html" class="btn">Read the use cases</a></div>
-        <p class="cs-disclaimer">Evidence snapshot: 6 September 2026. Source of truth: the VacationHolm repository and its local verification scripts. Screenshots use fictional fixtures rendered through the real components, with no live writes or model calls.</p>
+        <p class="cs-disclaimer">Code snapshot: 6 September 2026. Product context updated 7 September 2026. Technical evidence comes from the VacationHolm repository and its local verification scripts; delivery and ownership reflect the project history. Screenshots use fictional fixtures rendered through the real components, with no live writes or model calls.</p>
       </div>
     </div></main>
     <footer-pane></footer-pane>
