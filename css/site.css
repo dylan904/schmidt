@@ -158,7 +158,8 @@ a:hover{color:var(--accent)}
 
 /* Keep spacing between project entries on their shared custom element. */
 .stack{min-width:0}
-.work-heading{font-size:18px; line-height:1.4; margin-bottom:var(--s6); color:var(--muted)}
+.work-heading{font-size:18px; line-height:1.4; margin-bottom:var(--s2); color:var(--muted)}
+.work-summary{font-size:14px; line-height:1.6; margin:0 0 var(--s6); color:var(--muted)}
 work-list{display:flex; flex-direction:column; gap:var(--s8); min-width:0}
 
 /* ---------- project ---------- */
