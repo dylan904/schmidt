@@ -1,0 +1,34 @@
+{
+  "notice": "Every identity, property, message, date, amount, source, and draft is fictional.",
+  "behavior": "Read requests return a static fixture. Draft-state PATCH requests return non-persistent acknowledgements; this capture triggers only shown. All other writes are rejected, and Send is never clicked.",
+  "focused_omission": "Capture CSS hides the separate InquiryOutcomeControl section. The ConversationView reply, source, and composer markup is unchanged.",
+  "source_repository": "/Users/devbydylan/Documents/projects/listings",
+  "source_components": {
+    "components/conversation-view.tsx": "12d56c35d0fecae930ee8c1f5e1526809a1378fdc730d61de86577fd69a7ce03",
+    "components/quote-summary.tsx": "3c86d2579028f2eee0f214e9ecc6f6de970faa73c1d6645d7ac48a02ed5d00a6",
+    "components/inquiry-outcome-control.tsx": "72e76a7c616b6b6d7ab4627ffbb4ef80d7e2b648f60b89c2b82e9434a9b120e2",
+    "components/reusable-knowledge.tsx": "3c9310c08f5c6ce053f9cf3e4e0933b71165d63aab0fb9b0d8875292b12bed01",
+    "lib/smart-reply.ts": "94d6e2eebacab963ce7c11e3095c14d2e7a3c3a4cca5aa9e6015610ea876c549"
+  },
+  "adapters": {
+    "build.mjs": "47b69ac9ed5b6b30fe3f0a2bcec8cba310c1ee7bc1b0f8833af69bf809c82e6e",
+    "capture.mjs": "78a3deb15017bc7cc92f47e46590781f171b8862ce9917647ee91f21af2fe07f",
+    "entry.tsx": "846dd3f661af0ed62ead85f9138ac3a762591f0db49ba60a8f1e2294dbb8ba08",
+    "auth-shim.ts": "93055bfe542cf364ab39a1c7153a2a83cbfb45891e764583d2636f0708034dd2",
+    "i18n-shim.ts": "9ea24bcd8f5c38f76ed91df42b6fc910a5d20d376d43450db36cc2ec60a7461d",
+    "link-shim.tsx": "bad4c52da11570f0f79b433d87aeb33101cae384301587227c9c0e1d5984ad3f",
+    "demo-server.py": "5e6a35801fa199e9f5c75ace619621693115f4eb481d4a19d5c599f2eabcca63",
+    "demo-extra.css": "63aaf4ad0b498f2bbcbb0777fb96a6f5af817f66b5d912e4b26dcffeb41b4b62",
+    "index.html": "51665f5000ed55a56d0fadae585fb0341d673da6471b0b6050fdeeebf75fbe94"
+  },
+  "fixture_sha256": "2f63379042026f10b96dc6901b4e2309831c60f69efe382729533a77e4fc1fac",
+  "browser": "Chrome/142.0.7444.59",
+  "viewport": {
+    "width": 1280,
+    "height": 900,
+    "device_scale_factor": 1
+  },
+  "masters": [
+    "reply-drafting.png"
+  ]
+}

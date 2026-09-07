@@ -29,14 +29,14 @@ The differentiator is verified depth, not breadth of stack. The flagship project
 ## Operating Context
 
 - Visitors typically arrive at `/portfolio` — `index.html` currently redirects there.
-- The portfolio grid is the primary surface: seven project cards, each offering some combination of "Read more" (inline lightbox or a dedicated case-study page), "View Site," and "View gallery" (a lightGallery slideshow of annotated screenshots).
+- The portfolio grid is the primary surface: ten project entries, each offering some combination of "Read more" (inline lightbox or a dedicated case-study page), "View Site," and "View gallery" (a lightGallery slideshow of annotated screenshots).
 - The 2K Build Lab case study exists in two forms that must stay in sync: the on-site page at `/portfolio/2k-build-lab/` and a standalone single-file document at `docs/2k-build-lab/case-study.html` with all images inlined as data URIs, built by `docs/2k-build-lab/src/build.mjs` so it can be emailed or opened offline. That standalone build is ASCII-only and fails loudly on unreplaced tokens, because it gets embedded into a host page whose `<head>` it does not control.
 - Screenshots are re-shot by `docs/2k-build-lab/src/capture.mjs` (Playwright, resolved via `NODE_PATH` since it is not a dependency here). Two images are produced by hand: `result.png` from the app's own signed-in PNG export, and `measurements.png` from `docs/2k-build-lab/src/measurements.html`.
 
 ## Capabilities and Constraints
 
-- Seven projects are currently represented, defined as data in `components/portfolio-item.js`: 2K Build Lab, beeline.com, Beeline Business Case Tool, Brood, OpenAI Feedback Classifier, Chatbot Decision Tree, and Vue Devtools Auditor.
-- Only 2K Build Lab has a full case-study page. The rest render their write-up in an inline lightbox.
+- Ten projects are currently represented, defined as data in `components/work-list.js`: 2K Build Lab, Destination Home, Casa Agent, VacationHolm, beeline.com, Beeline Business Case Tool, Brood, OpenAI Feedback Classifier, Chatbot Decision Tree, and Vue Devtools Auditor.
+- 2K Build Lab, Destination Home, Casa Agent and VacationHolm have dedicated case-study pages. Casa and VacationHolm also have self-contained use-case documents. Each project has an annotated screenshot gallery.
 - Two projects link to a live URL: 2kbuildlab.com and beeline.com. The remainder are internal or unreleased and have no public link.
 - Contact is a `mailto:` to devbydylan@gmail.com. There is no contact form and no backend to receive one.
 - The nav (`components/nav-pane.js`) exposes Services, Portfolio, and Contact. About, Blog, Blog Single, Experience, and Contact template pages exist in the repo root but are unlinked and carry unmodified Colorlib template content.
@@ -67,6 +67,9 @@ Real and usable:
 - **beeline.com** — public site, delivered in ~1 year against a projected 1.5–2 years, as lead Vue.js developer. Named collaborators exist in the write-ups.
 - Screenshot and video assets for most projects under `images/<project>/`, including `.mp4` walkthroughs for the Business Case Tool.
 - Detailed first-person write-ups for every project, already in `components/portfolio-item.js`.
+
+- **Casa Agent** — a working prototype for property-manager/contractor questions. Five annotated console screenshots use fictional, read-only records. The 5 September 2026 verification recorded 66/66 passing scenarios before and after six changes, on the same authored fixtures and corrected grader. Token use increased. Production WhatsApp delivery and a supervised customer pilot remain unfinished. The Casa repository's verification and comparison documents are the source of truth.
+- **VacationHolm** — a direct-booking marketplace MVP for holiday rentals in the Azores and Madeira. Search, server-calculated quotes, calendar provenance, inquiries, durable host reply drafts, approved reply knowledge, a host work queue, recorded booking outcomes and six Insights views are implemented in local source. Thirteen targeted assertion checks and an isolated PostgreSQL migration harness passed during the 6 September 2026 review. Hosted migrations, deployment and authenticated end-to-end testing remain unfinished. Eight component screenshots use fictional fixtures and perform no live writes or model calls. The VacationHolm repository is the source of truth.
 
 Absences that must not be filled with invention:
 

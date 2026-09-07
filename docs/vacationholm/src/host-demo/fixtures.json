@@ -1,0 +1,94 @@
+{
+  "listings": {
+    "listings": [
+      { "id": "fictional-lagoon", "title": "Fictional Lagoon House", "island": "São Miguel", "municipality": "Lagoa", "nightly_rate": 168, "currency": "EUR", "max_guests": 6, "bedrooms": 3, "beds": 4, "bathrooms": 2, "status": "active", "listing_images": [{ "url": "/courtyard.webp", "display_order": 0 }] },
+      { "id": "fictional-cliff", "title": "Fictional Cliff Cottage", "island": "Madeira", "municipality": "Calheta", "nightly_rate": 142, "currency": "EUR", "max_guests": 4, "bedrooms": 2, "beds": 3, "bathrooms": 1, "status": "active", "listing_images": [{ "url": "/cliff-cottage.svg", "display_order": 0 }] },
+      { "id": "fictional-studio", "title": "Fictional Harbour Studio", "island": "Terceira", "municipality": "Angra do Heroísmo", "nightly_rate": 96, "currency": "EUR", "max_guests": 2, "bedrooms": 1, "beds": 1, "bathrooms": 1, "status": "inactive", "listing_images": [] }
+    ]
+  },
+  "work_queue": {
+    "inquiries": [
+      { "id": "fictional-inquiry", "listingTitle": "Fictional Lagoon House", "checkIn": "2026-10-14", "checkOut": "2026-10-19", "numGuests": 4, "ageMinutes": 1760, "href": "/messages/fictional-inquiry" }
+    ],
+    "calendars": [
+      { "listingId": "fictional-cliff", "listingTitle": "Fictional Cliff Cottage", "freshness": "error", "message": "Calendar refresh failed after the last successful sync." }
+    ]
+  },
+  "action_center": {
+    "tasks": [
+      { "id": "fictional-task", "type": "high_intent_no_followup", "category": "operations", "title": "Follow up on two open conversations", "why": "Two guests asked about available dates and have not received a later host message.", "action": "Open each conversation and decide whether a follow-up is useful.", "impact": "high", "confidence": "high", "time_to_fix_minutes": 8, "affected_listings": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House", "metric_value": 2, "metric_label": "open conversations" }], "evidence": { "sample_size": 18, "comparison_baseline": 2, "comparison_label": "Eligible conversations" }, "cta_label": "Open conversations", "cta_action": "/messages", "rank_score": 92 }
+    ],
+    "portfolio_summary": { "total_listings": 3, "total_inquiries": 27, "period_days": 30 },
+    "filters_applied": { "time_range": "30d", "high_impact_only": false }
+  },
+  "insights": {
+    "window": { "start": "2026-08-07T00:00:00.000Z", "end": "2026-09-06T00:00:00.000Z" },
+    "data_scope": "Responses, inquiries, outcomes and listing feedback cover this fictional host portfolio. Search demand covers consented fictional searches across the demo. Independent totals are not presented as a conversion funnel.",
+    "skipped_events": 1,
+    "period_days": 30,
+    "total_searches": 186,
+    "total_photo_feedback": 3,
+    "search_insights": {
+      "popular_islands": [{ "island": "São Miguel", "count": 92 }, { "island": "Madeira", "count": 61 }, { "island": "Terceira", "count": 33 }],
+      "popular_amenities": [{ "amenity": "wifi", "count": 88 }, { "amenity": "parking", "count": 64 }, { "amenity": "pool", "count": 39 }],
+      "guest_preferences": [{ "guests": 1, "count": 19 }, { "guests": 2, "count": 73 }, { "guests": 3, "count": 31 }, { "guests": 4, "count": 42 }, { "guests": 5, "count": 21 }],
+      "bedroom_preferences": [{ "bedrooms": 1, "count": 47 }, { "bedrooms": 2, "count": 86 }, { "bedrooms": 3, "count": 53 }],
+      "house_rules_preferences": { "pets_allowed": 48, "smoking_allowed": 4, "events_allowed": 7, "children_allowed": 72 },
+      "party_composition": { "avg_adults": 2.3, "avg_children": 0.7, "avg_infants": 0.2, "avg_pets": 0.3, "searches_with_children": 64, "searches_with_infants": 18, "searches_with_pets": 43, "total_with_party_data": 171 }
+    },
+    "photo_insights": { "issues_by_type": [{ "issue": "dark", "count": 2 }, { "issue": "blurry", "count": 1 }], "listings_with_issues": [{ "listing_id": "Fictional Cliff Cottage", "issue_count": 2, "issues": ["dark"] }], "total_feedback": 3 },
+    "smart_reply_insights": {
+      "window": { "start": "2026-08-07T00:00:00.000Z", "end": "2026-09-06T00:00:00.000Z" },
+      "total_host_messages": 64, "manual_replies": 39, "assisted_replies": 24, "unverified_attribution": 1,
+      "shown": 31, "accepted": 25, "sent_from_shown": 24,
+      "adoption": { "numerator": 25, "denominator": 31, "percent": 80.6 },
+      "send_through": { "numerator": 24, "denominator": 31, "percent": 77.4 },
+      "edited": { "numerator": 7, "denominator": 24, "percent": 29.2 },
+      "source_match_coverage": { "numerator": 19, "denominator": 24, "percent": 79.2 },
+      "dismissed": 4, "generation_attempts": 38,
+      "no_match": { "numerator": 5, "denominator": 38, "percent": 13.2 },
+      "failed_attempts": 2, "ready_attempts": 29, "obsolete_attempts": 2, "pending_attempts": 0,
+      "manual_timing": { "messages": 39, "compose": { "mean_seconds": 132, "samples": 29 }, "elapsed": { "mean_seconds": 1180, "samples": 31 } },
+      "assisted_timing": { "messages": 24, "compose": { "mean_seconds": 64, "samples": 21 }, "elapsed": { "mean_seconds": 690, "samples": 22 } },
+      "compose_difference_percent": 51.5, "elapsed_difference_percent": 41.5,
+      "categories": [{ "category": "availability", "count": 11 }, { "category": "house_rules", "count": 8 }],
+      "weekly": [{ "week": "2026-08-10", "manual": 12, "assisted": 4 }, { "week": "2026-08-17", "manual": 10, "assisted": 6 }, { "week": "2026-08-24", "manual": 9, "assisted": 7 }, { "week": "2026-08-31", "manual": 8, "assisted": 7 }]
+    },
+    "inquiry_handling_performance": {
+      "total_inquiries": 27, "replied_inquiries": 24, "unanswered_inquiries": 3, "median_first_response_time_minutes": 18,
+      "response_sla_1h": { "numerator": 20, "denominator": 27, "percent": 74.1 },
+      "response_sla_15m": { "numerator": 11, "denominator": 27, "percent": 40.7 },
+      "guest_reply": { "numerator": 17, "denominator": 24, "percent": 70.8 },
+      "response_time_distribution": [{ "bucket": "0–5m", "count": 4 }, { "bucket": "5–15m", "count": 7 }, { "bucket": "15–60m", "count": 9 }, { "bucket": "1–6h", "count": 3 }, { "bucket": "6h+", "count": 1 }],
+      "guest_reply_rate_by_category": [{ "category": "availability", "numerator": 9, "denominator": 11, "percent": 81.8 }]
+    },
+    "party_composition_insights": {
+      "total_inquiries": 27, "with_composition_data": 25, "insufficient_data": false,
+      "averages": { "adults": 2.2, "children": 0.8, "infants": 0.1, "pets": 0.2 },
+      "medians": { "adults": 2, "children": 0, "infants": 0 },
+      "distributions": { "adults": { "1": 5, "2": 15, "3": 5 }, "children": { "0": 14, "1": 6, "2": 5 } },
+      "top_compositions": [{ "composition": "2 adults", "count": 9 }],
+      "timing": { "avg_lead_time_days": 63, "median_lead_time_days": 51, "avg_stay_length_nights": 6.2, "median_stay_length_nights": 5, "most_common_stay_bracket": "4–7", "stay_length_by_type": { "families": 7.4, "groups": 5.2 } },
+      "correlations": { "avg_stay_with_children": 7.4, "avg_stay_without_children": 4.8, "pet_rate": 18, "inquiries_with_pets": 5 },
+      "guest_types": { "families": { "count": 11, "percentage": 44 }, "groups": { "count": 8, "percentage": 32 }, "solo": { "count": 6, "percentage": 24 } },
+      "setup_suggestions": ["State child amenities clearly"]
+    },
+    "funnel_metrics": { "total_searches": 186, "listing_views": 91, "inquiries_sent": 27, "pets_search_rate": 23, "searches_with_pets": 43, "occupancy_insights": { "near_max_searches": 37, "near_max_rate": 19.9, "max_capacity": 6 } },
+    "host_listing_features": {
+      "total_listings": 3, "has_family_amenities": true, "has_group_amenities": true, "has_workspace": false, "has_laundry": true, "has_kitchen": true, "has_pet_amenities": false, "has_parking_info": true, "has_dining_info": false, "has_bathroom_details": true,
+      "counts": { "family_amenities": 1, "group_amenities": 2, "workspace": 0, "laundry": 2, "kitchen": 3, "pet_amenities": 0, "parking_info": 2, "dining_info": 0, "bathroom_details": 2 },
+      "listings_by_feature": {
+        "family_amenities": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [{ "id": "fictional-cliff", "title": "Fictional Cliff Cottage" }] },
+        "group_amenities": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [] },
+        "workspace": { "ok": [], "missing": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }] },
+        "laundry": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [] },
+        "kitchen": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [] },
+        "pet_amenities": { "ok": [], "missing": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }] },
+        "parking_info": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [] },
+        "dining_info": { "ok": [], "missing": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }] },
+        "bathroom_details": { "ok": [{ "id": "fictional-lagoon", "title": "Fictional Lagoon House" }], "missing": [] }
+      }
+    },
+    "booking_outcomes": { "inquiries": 27, "confirmed": 9, "still_discussing": 6, "did_not_book": 7, "unrecorded": 5, "host_reported_amounts": { "EUR": { "amount": 6240, "samples": 9 } }, "loss_reasons": { "dates_unavailable": 3, "price": 2, "booked_elsewhere": 2 } }
+  }
+}

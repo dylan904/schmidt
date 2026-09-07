@@ -1,0 +1,21 @@
+{
+  "notice": "Every property, conversation, date, count, and rate is fictional portfolio fixture data.",
+  "source_repository": "/Users/devbydylan/Documents/projects/listings",
+  "source_components": {
+    "components/question-insights.tsx": "124229541395bd12dff121174fd3ecc61a6d6644f866a5a9c0d249a72ca64ece",
+    "components/funnel-insights.tsx": "6b64202c6cc714358776f1cd55e36fba7a95efc3be04c648f939d1a92790fc58",
+    "components/change-insights.tsx": "f412e72515e12b086d26e53bbc1f42e5c1c1726221659b1e13e458532ff6980e"
+  },
+  "fixture_sha256": "2e5c70bad6b8c0e87a2a5ba73292566f256ba156970467787842a04b468ef937",
+  "browser": "Chrome/142.0.7444.59",
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "device_scale_factor": 1
+  },
+  "masters": [
+    "questions.png",
+    "funnel.png",
+    "changes.png"
+  ]
+}

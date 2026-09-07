@@ -1,0 +1,117 @@
+{
+  "questions": {
+    "window": { "start": "2026-08-07T00:00:00.000Z", "end": "2026-09-06T00:00:00.000Z" },
+    "data_scope": "Grouped from recorded conversation signals and conservative topic rules. Substantial edits are a text-difference heuristic, not proof that a fact was corrected.",
+    "groups": [
+      {
+        "key": "demo-lagoon:house_rules",
+        "listing": { "id": "demo-lagoon", "title": "Fictional Lagoon House" },
+        "topic": { "id": "house_rules", "label": "House rules" },
+        "questions": 8,
+        "unanswered": 3,
+        "no_match": 2,
+        "rejected": 1,
+        "corrected": 2,
+        "recurring_unanswered": true,
+        "examples": [
+          {
+            "question_message_id": "demo-question-1",
+            "inquiry_id": "demo-inquiry-1",
+            "listing_id": "demo-lagoon",
+            "question_excerpt": "Could we bring our small dog, and is there an extra cleaning fee?",
+            "created_at": "2026-09-04T16:20:00.000Z",
+            "signals": ["corrected", "no_match"],
+            "conversation_href": "/messages/demo-inquiry-1",
+            "corrected_answer": {
+              "message_id": "demo-answer-1",
+              "draft_excerpt": "Pets are not allowed at this property.",
+              "answer_excerpt": "One dog under 12 kg is welcome with advance notice; there is no extra cleaning fee.",
+              "knowledge_status": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "funnel": {
+    "window": { "days": 30, "start": "2026-08-07T00:00:00.000Z", "end": "2026-09-06T00:00:00.000Z" },
+    "conversion_window_days": 14,
+    "listing_cap_per_search": 50,
+    "mature_journeys": 151,
+    "pending_journeys": 18,
+    "steps": [
+      { "key": "search_impression", "label": "Search impression", "count": 169, "denominator": null, "percent": null },
+      { "key": "listing_visit", "label": "Listing visit", "count": 91, "denominator": 169, "percent": 53.8 },
+      { "key": "quote_view", "label": "Quote viewed", "count": 58, "denominator": 91, "percent": 63.7 },
+      { "key": "inquiry_form_start", "label": "Inquiry started", "count": 31, "denominator": 58, "percent": 53.4 },
+      { "key": "inquiry_confirmed", "label": "Inquiry sent", "count": 22, "denominator": 31, "percent": 71.0 },
+      { "key": "booking_confirmed", "label": "Booking confirmed", "count": 9, "denominator": 22, "percent": 40.9 }
+    ],
+    "listings": [
+      {
+        "listing_id": "demo-lagoon",
+        "title": "Fictional Lagoon House",
+        "pending_journeys": 11,
+        "steps": [
+          { "key": "search_impression", "label": "Search impression", "count": 104, "denominator": null, "percent": null },
+          { "key": "listing_visit", "label": "Listing visit", "count": 61, "denominator": 104, "percent": 58.7 },
+          { "key": "quote_view", "label": "Quote viewed", "count": 40, "denominator": 61, "percent": 65.6 },
+          { "key": "inquiry_form_start", "label": "Inquiry started", "count": 23, "denominator": 40, "percent": 57.5 },
+          { "key": "inquiry_confirmed", "label": "Inquiry sent", "count": 17, "denominator": 23, "percent": 73.9 },
+          { "key": "booking_confirmed", "label": "Booking confirmed", "count": 7, "denominator": 17, "percent": 41.2 }
+        ]
+      },
+      {
+        "listing_id": "demo-cliff",
+        "title": "Fictional Cliff Cottage",
+        "pending_journeys": 7,
+        "steps": [
+          { "key": "search_impression", "label": "Search impression", "count": 65, "denominator": null, "percent": null },
+          { "key": "listing_visit", "label": "Listing visit", "count": 30, "denominator": 65, "percent": 46.2 },
+          { "key": "quote_view", "label": "Quote viewed", "count": 18, "denominator": 30, "percent": 60.0 },
+          { "key": "inquiry_form_start", "label": "Inquiry started", "count": 8, "denominator": 18, "percent": 44.4 },
+          { "key": "inquiry_confirmed", "label": "Inquiry sent", "count": 5, "denominator": 8, "percent": 62.5 },
+          { "key": "booking_confirmed", "label": "Booking confirmed", "count": 2, "denominator": 5, "percent": 40.0 }
+        ]
+      }
+    ]
+  },
+  "changes": {
+    "window": { "days": 30, "start": "2026-08-07T00:00:00.000Z", "end": "2026-09-06T00:00:00.000Z" },
+    "comparison_window_days": 14,
+    "instrumentation_available_from": "2026-06-01T00:00:00.000Z",
+    "data_scope": "Equal 14-day windows around recorded changes. Counts are descriptive, overlapping changes are disclosed, and no row proves that a change caused the difference.",
+    "changes": [
+      {
+        "id": "demo-change-1",
+        "source_id": "demo-photo-addition",
+        "kind": "photo",
+        "action": "added",
+        "label": "Photo changed",
+        "changed_fields": ["photo"],
+        "changed_at": "2026-08-20T14:00:00.000Z",
+        "scope": { "type": "property", "label": "Fictional Lagoon House" },
+        "status": "completed",
+        "days_remaining": 0,
+        "overlapping_changes": 1,
+        "baseline_available": true,
+        "before": {
+          "funnel": {
+            "visits": { "numerator": 24, "denominator": 55, "percent": 43.6 },
+            "inquiries": { "numerator": 5, "denominator": 24, "percent": 20.8 }
+          },
+          "replies": null,
+          "questions": { "no_linked_reply": { "numerator": 4, "denominator": 11, "percent": 36.4 } }
+        },
+        "after": {
+          "funnel": {
+            "visits": { "numerator": 37, "denominator": 64, "percent": 57.8 },
+            "inquiries": { "numerator": 10, "denominator": 37, "percent": 27.0 }
+          },
+          "replies": null,
+          "questions": { "no_linked_reply": { "numerator": 2, "denominator": 13, "percent": 15.4 } }
+        }
+      }
+    ]
+  }
+}

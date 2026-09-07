@@ -1,0 +1,37 @@
+{
+  "notice": "All properties, guest details, dates, prices, availability and outcomes are fictional.",
+  "source_components": {
+    "components/header.tsx": "52269241cae63dcaec5999ded24e5d02e21ac0da6fa135c859eda8b41e98dee4",
+    "components/ui/primary-search/index.tsx": "03c0a6b24ca3d737bcec83e959d19c770f23192c7e7f8a47a0c5928d145b67a5",
+    "app/search/page.tsx": "b5a604652598f517065278e979c7b0d809ab783198858fa473d3704a1ba24658",
+    "app/listings/[id]/page.tsx": "d0297b949c40978c518667addba1d386d748434d80110baeab84a77b451bf962"
+  },
+  "fixture_sha256": "f8653fb9eb6d7ca780b49852e3e2ad7f365cc43040b59c824efd1f1a06340bee",
+  "adapters": [
+    "Next navigation, Link and Image",
+    "anonymous auth",
+    "EUR currency",
+    "no-op analytics",
+    "offline map and nearby panels",
+    "read-only JSON endpoints"
+  ],
+  "photos": {
+    "source_reference": "app/home/index.tsx",
+    "urls": [
+      "https://cdn.prod.website-files.com/6825e608489aafe8d3cde098/682c92288f12094fb196e569_2%20Photo.webp",
+      "https://cdn.prod.website-files.com/6825e608489aafe8d3cde0cb/682a46dd62b17387d39d26ef_Room%203.png",
+      "https://cdn.prod.website-files.com/6825e608489aafe8d3cde0cb/682a46d2760cfcbf665a0f0d_Room%202.png"
+    ]
+  },
+  "viewports": {
+    "guest-search.png": {
+      "width": 1280,
+      "height": 800
+    },
+    "guest-inquiry.png": {
+      "width": 1280,
+      "height": 900
+    }
+  },
+  "browser": "Chrome/142.0.7444.59"
+}

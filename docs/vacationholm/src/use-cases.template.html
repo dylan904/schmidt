@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VacationHolm: direct-booking use cases | Dylan Maxey</title>
+<meta name="description" content="How VacationHolm connects guest search, reliable inquiry quotes, host messaging, calendar control, off-platform outcomes, and evidence-led product decisions.">
+<link rel="canonical" href="https://devbydylan.com/portfolio/vacationholm/use-cases.html">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f7f5;color:#151515;font:17px/1.75 Georgia,serif}main{max-width:980px;margin:auto;padding:48px 28px 80px}h1,h2,h3,nav,figcaption,.meta,.eyebrow,dt,.status{font-family:Arial,sans-serif}h1{font-size:clamp(34px,5vw,54px);line-height:1.1;letter-spacing:-.04em;max-width:18ch;margin-bottom:18px}h2{font-size:27px;line-height:1.28;margin-top:56px;letter-spacing:-.015em}h3{font-size:21px;line-height:1.35;margin:0 0 14px}p,li,dd{max-width:74ch}a{color:#2446b5;text-underline-offset:3px}a:focus-visible{outline:3px solid #315efb;outline-offset:4px}.meta,figcaption{font-size:14px;color:#565d64}nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;border-bottom:1px solid #e2e2dd;padding-bottom:20px}.lead{font-size:21px;line-height:1.6}.status{margin:30px 0;padding:18px 20px;border-left:4px solid #315efb;background:#eef2ff;font-size:15px;line-height:1.6}.scenario{padding:28px 0;border-top:1px solid #d8d8d2}.scenario:last-child{border-bottom:1px solid #d8d8d2}.eyebrow{display:block;margin-bottom:8px;color:#315efb;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.scenario dl{display:grid;grid-template-columns:118px minmax(0,1fr);gap:8px 18px;margin:0}.scenario dt{font-size:14px;font-weight:700}.scenario dd{margin:0 0 10px}.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}.principle{padding:18px;border:1px solid #d8d8d2;background:#fff}.principle h3{font-size:17px}.principle p{font-size:15px;line-height:1.6;margin-bottom:0}figure{margin:36px 0}img{display:block;width:100%;height:auto;border:1px solid #d8d8d2;background:#fff}figcaption{padding:12px 0;line-height:1.55}.callout{padding:20px;border:1px solid #d8d8d2;background:#fff}.next{padding-left:1.2em}.next li{padding-left:6px;margin:12px 0}footer{border-top:1px solid #d8d8d2;margin-top:54px;padding-top:20px}@media(max-width:700px){main{padding:28px 20px 48px}body{font-size:16px}.lead{font-size:19px}.scenario dl{grid-template-columns:1fr;gap:2px}.scenario dd{margin-bottom:14px}.principles{grid-template-columns:1fr}}@media print{body{background:#fff;font-size:11pt}main{max-width:none;padding:0}nav{display:none}h1{font-size:28pt}h2{font-size:18pt;break-after:avoid}.scenario,figure,.principle,.callout{break-inside:avoid}.principles{grid-template-columns:repeat(3,1fr)}a{color:inherit}img{max-height:105mm;object-fit:contain}p{orphans:3;widows:3}}
+</style>
+</head>
+<body>
+<main>
+<nav aria-label="Document navigation"><a href="https://devbydylan.com/">Dylan Maxey / All work</a></nav>
+
+<span class="eyebrow">VacationHolm</span>
+<h1>Direct booking, from search to host follow-up</h1>
+<p class="meta">Dylan Maxey &middot; Product use cases &middot; 6 September 2026</p>
+<p class="lead">VacationHolm is a direct-booking marketplace for holiday homes in the Azores and Madeira. Guests can find a suitable stay and contact the host with a consistent quote. Hosts keep control of the conversation, availability, and payment arrangement, then record enough of the result to understand where future inquiries stall.</p>
+
+<div class="status"><strong>Local MVP.</strong> These workflows are implemented and locally tested. Hosted migrations, deployment, and signed-in end-to-end checks are pending. Screens show the real interface with fictional data.</div>
+
+<p>The product is built around one operating loop. A guest searches with dates and party details. VacationHolm checks what it can know about availability, calculates the stay price, and saves the same quote with the inquiry. The host responds in context, closes the booking directly with the guest, records what happened, and uses the resulting evidence to improve the listing or response library. The platform never takes payment.</p>
+
+<h2>Six situations the product is designed to handle</h2>
+
+<section class="scenario">
+<span class="eyebrow">Use case 1</span>
+<h3>A guest finds a plausible stay and sees one consistent quote</h3>
+<dl>
+<dt>When</dt><dd>A traveler searches by island, dates, guest composition, bedrooms, price, amenities, or house rules, then opens a property that appears to fit.</dd>
+<dt>What happens</dt><dd>The results reflect active listings and the requested date range. The guest sees a stay total built from the property's base, weekend, and date-specific rates, any eligible weekly or monthly discount, and the cleaning fee, with a nightly breakdown in the listing's currency. VacationHolm checks the dates and price again when the guest sends the inquiry. If the rate changed, the guest is asked to review the new quote before continuing.</dd>
+<dt>Why it helps</dt><dd>The guest can understand how the stay total was formed, while the host receives the dates, party details, and preserved quote that the guest actually reviewed. A price change is visible instead of silently replacing the guest's earlier total.</dd>
+<dt>Limit</dt><dd>The quote is an inquiry quote, subject to host confirmation. If no recent calendar sync supports an available result, VacationHolm reports availability as unknown rather than presenting an empty calendar as proof that the dates are free.</dd>
+</dl>
+</section>
+
+
+<figure><img src="{{IMG:guest-inquiry}}" width="1280" height="900" alt="Guest inquiry and stay quote for a fictional VacationHolm property."><figcaption>The real guest inquiry interface with fictional stay details. The example shows what the guest reviews before contacting the host; no inquiry was sent.</figcaption></figure>
+
+<section class="scenario">
+<span class="eyebrow">Use case 2</span>
+<h3>A host handles a follow-up with a grounded, reviewable draft</h3>
+<p>The host starts in a dashboard of owned listings and waiting work. An overdue guest reply can be opened from the attention queue; a failed calendar refresh has its own sync action. The conversation then keeps the guest’s request, original stay quote and proposed answer together.</p>
+<dl>
+<dt>When</dt><dd>A guest asks a follow-up about check-in, pets, parking, cancellation terms, or another detail that may already exist in the listing or the host's approved response library.</dd>
+<dt>What happens</dt><dd>VacationHolm prepares an English and European Portuguese draft from the current listing, the inquiry quote, the current availability state, and approved knowledge for this conversation, property, or host portfolio. The drafting instructions require the same facts in both languages, identify the supporting sources, and tell the model to flag missing or conflicting information. The host sees the draft and its sources, then reviews, edits, and chooses whether to send.</dd>
+<dt>Why it helps</dt><dd>Routine answers can begin with the same property facts and reviewed policy language the host has already chosen, while a changed listing or withdrawn approval invalidates stale draft context.</dd>
+<dt>Limit</dt><dd>Smart Reply produces a draft; it does not send autonomously or guarantee that every conflict is detected. Coverage depends on maintained listing data and approved source material, and the host remains responsible for the final reply.</dd>
+</dl>
+</section>
+
+
+<figure><img src="{{IMG:reply-drafting}}" width="1280" height="900" alt="Host review of a fictional proposed response and its source evidence."><figcaption>The real conversation view with a fixture draft. The host reviews the response and decides whether to edit or send it. No live model or messaging service was used.</figcaption></figure>
+
+<section class="scenario">
+<span class="eyebrow">Use case 3</span>
+<h3>A host reconciles imported calendars with direct decisions</h3>
+<dl>
+<dt>When</dt><dd>An external iCal feed changes, the host needs to block dates manually, or a direct inquiry changes from confirmed to still discussing or did not book.</dd>
+<dt>What happens</dt><dd>An imported calendar refresh updates that feed's dates without removing separate manual or direct-booking blocks. The host can see the last attempt, last successful sync, and any current error, and can request a property sync. The rate calendar supports manual blocks. Confirming a direct booking blocks its future stay dates; changing that outcome releases only the dates blocked by that inquiry.</dd>
+<dt>Why it helps</dt><dd>VacationHolm preserves why a date is unavailable, so a change to one source does not erase a block owned by another. A reversed confirmation or failed booking does not require a broad calendar reset.</dd>
+<dt>Limit</dt><dd>iCal is periodic and can be delayed. A stale, failed, or never-successful sync is surfaced as uncertain availability; VacationHolm does not promise instant propagation between marketplaces.</dd>
+</dl>
+</section>
+
+<section class="scenario">
+<span class="eyebrow">Use case 4</span>
+<h3>A host closes the loop on a booking arranged off platform</h3>
+<dl>
+<dt>When</dt><dd>After the conversation moves to a direct agreement, the host knows that the inquiry is still being discussed, has become a confirmed booking, or did not book.</dd>
+<dt>What happens</dt><dd>The host records the current outcome inside the conversation. A confirmed result can include an optional host-reported amount in the inquiry currency. A failed booking requires one controlled reason, such as unavailable dates, price, minimum stay, property fit, changed guest plans, another booking, a host decline, or a guest who stopped replying. Optional free text stays as context instead of being merged into the grouped reason. Previous recorded states remain in the history.</dd>
+<dt>Why it helps</dt><dd>The active calendar follows the host's latest report, while the historical record preserves when the reported state changed. The product can distinguish an unresolved conversation from a known loss and show which reasons recur across properties, arrival months, and stay lengths.</dd>
+<dt>Limit</dt><dd>These are host reports about an agreement and payment handled elsewhere. VacationHolm does not verify the amount, collect funds, or treat the record as platform revenue.</dd>
+</dl>
+</section>
+
+<section class="scenario">
+<span class="eyebrow">Use case 5</span>
+<h3>A repeated guest question becomes a review task, then approved knowledge</h3>
+<dl>
+<dt>When</dt><dd>The same topic appears in unanswered messages, questions for which Smart Reply found no matching knowledge, dismissed drafts, or replies that the host changed substantially before sending.</dd>
+<dt>What happens</dt><dd>The recurring-question view groups those signals by property and topic, keeps short examples linked to their conversations, and shows a draft beside the substantially edited sent reply when that relationship was recorded. A host can save the corrected answer as a draft, inspect its exact source question and answer, choose its scope and dates, and approve that version for future drafts. Editing an approved item sends it back through review; withdrawal removes it from future reply context.</dd>
+<dt>Why it helps</dt><dd>A vague sense that guests keep asking about parking can become a specific decision: clarify the listing, add a property policy, or approve the answer the host already used. The next comparable draft can then cite maintained knowledge instead of relying on an old transcript.</dd>
+<dt>Limit</dt><dd>The panel reports recorded follow-up signals, not every question a guest may have asked. Older manual replies without an exact message link can reduce attribution coverage, and saving an answer creates a draft rather than approving it automatically.</dd>
+</dl>
+</section>
+
+<figure><img src="{{IMG:questions}}" width="1280" height="720" alt="VacationHolm recurring-question insight cards populated with synthetic inquiry examples."><figcaption>Illustrative fixture in the real React panel. It demonstrates how no-match, dismissed, and substantially edited reply signals can point back to a conversation and a reviewable answer; the counts are not observed host activity.</figcaption></figure>
+
+<section class="scenario">
+<span class="eyebrow">Use case 6</span>
+<h3>A host decides what to improve using demand, funnel, and change evidence</h3>
+<dl>
+<dt>When</dt><dd>A property receives fewer visits or inquiries than expected, recorded searches suggest a near fit, or the host has changed listing copy, photos, a policy, or an approved answer and wants to inspect what followed.</dd>
+<dt>What happens</dt><dd>The missed-demand view groups near misses against the host's listings, including capacity, bedrooms, amenities, house rules, dates, and price basis, with examples and capture-health notes. The funnel follows journeys recorded after analytics consent from a search impression through listing visit, quote, inquiry form, sent inquiry, and later host-reported confirmation. Change measurement compares equal 14-day windows around a listing, photo, policy, or approved-answer change. A partial after window stays pending; a baseline from before tracking stays unavailable.</dd>
+<dt>Why it helps</dt><dd>The host can separate discovery friction from inquiry handling. A search-to-visit drop suggests revisiting the card, photos, or fit; a visit-to-inquiry drop suggests checking the full listing, dates, or quote; recurring near misses may indicate a segment worth investigating that the current portfolio cannot serve. Change rows give the host a disciplined place to inspect before and after counts.</dd>
+<dt>Limit</dt><dd>These are descriptive product signals. Search snapshots are sampled client observations, not verified human demand, and may include automated traffic. Analytics consent, instrumentation coverage, sample size, overlapping edits, calendar freshness, and outcome-recording coverage all affect what can be shown. A before-and-after difference does not prove that the change caused it.</dd>
+</dl>
+</section>
+
+
+<figure><img src="{{IMG:insights-overview}}" width="1280" height="1100" alt="VacationHolm Insights overview with fictional portfolio measurements."><figcaption>The actual Insights overview with illustrative records. These figures demonstrate the dashboard, not measured host or marketplace performance.</figcaption></figure>
+
+<figure><img src="{{IMG:funnel}}" width="1280" height="720" alt="VacationHolm listing funnel panel populated with synthetic journey counts."><figcaption>Illustrative fixture in the real funnel panel. Steps use ordered, consented journeys and disclose their denominators; they are not a claim about marketplace conversion.</figcaption></figure>
+
+<figure><img src="{{IMG:changes}}" width="1280" height="720" alt="VacationHolm change measurement panel populated with a synthetic photo-added event."><figcaption>Illustrative fixture in the real change panel. This completed photo-change comparison uses equal 14-day windows and discloses one overlapping tracked change; the displayed difference is not a causal result.</figcaption></figure>
+
+<h2>What holds the loop together</h2>
+<div class="principles">
+<div class="principle"><h3>One saved inquiry</h3><p>The inquiry, first message, quote snapshot, and reply job are created together. A partial write does not leave the host with an orphaned conversation or the guest with a missing opening message.</p></div>
+<div class="principle"><h3>Provenance over confidence</h3><p>Availability rows retain their origin. Drafts retain supporting source IDs. Outcome history distinguishes current state from prior host reports. Insight rates expose the count underneath the percentage.</p></div>
+<div class="principle"><h3>Unknown stays unknown</h3><p>Stale availability, an unobserved baseline, a partial comparison window, and an unrecorded outcome are shown as different states. The interface does not quietly turn any of them into zero.</p></div>
+</div>
+
+<p>For a hiring reader, the engineering through-line is evidence carried across the workflow. The saved quote anchors the inquiry, approved source IDs anchor a reply draft, calendar origins anchor availability, and outcome history anchors later insight. That makes the analytics useful without claiming it observed more than it did.</p>
+
+<h2>What remains before this can be called a live product</h2>
+<div class="callout"><p>The next release step is operational rather than conceptual: apply and verify the prepared migrations on the intended hosted database, configure the scheduled calendar and draft workers, deploy the app, and run authenticated guest-to-host tests against that environment. Those tests should cover stale and failed calendar feeds, a quote that changes before submission, source approval and withdrawal during draft generation, a confirmed booking later reversed, and cross-account access controls.</p></div>
+<p>After activation, a small supervised trial should measure whether guests receive consistent quote explanations, whether hosts can identify uncertain availability before making a promise, how often reply drafts are supported and then edited, how completely hosts record outcomes, and which insight panels lead to a concrete listing or knowledge change. Those measurements do not exist yet. The useful decision is whether this connected workflow makes direct booking easier to operate without hiding the manual judgment it still requires.</p>
+
+<footer><p class="meta">Prepared from the VacationHolm local MVP source. Screenshots use synthetic fixtures in the real React panels. This file embeds its images and styles and can be read or printed offline.</p></footer>
+</main>
+</body>
+</html>

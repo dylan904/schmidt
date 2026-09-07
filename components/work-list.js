@@ -18,39 +18,90 @@ export class WorkList extends LitElement {
       role: 'Solo — product, engineering, consulting',
       summary: 'A chat-first relocation assistant for corporate transferees, built for Sterling Lexicon. Intake happens as a conversation, program questions get answered only where a cited passage supports them, and neighborhoods are ranked by deterministic code over sourced measurements rather than by the model, which is what makes the ranking auditable under fair-housing scrutiny. The hard part was not the chat. It was deciding what the system is allowed to claim: absent data stays null with a coverage figure instead of becoming a neutral score, and a factor that cannot be measured well enough simply does not publish. Where it stands: a pre-production MVP. It works end to end, but hosting, identity and the profile integration were blocked on client dependencies, and the program corpus it answers from is placeholder content.',
     },
+    'Casa Agent': {
+      no: '03', status: 'internal', statusLabel: 'Prototype',
+      role: 'Product and engineering',
+      summary: 'An assistant for the recurring questions between property managers and their contractors. Retrieves procedures within each contact’s role and property scope, keeps the manager’s instructions above reviewed additions, and requires approval before an answer becomes reusable knowledge. The difficult part is the lifecycle: an obsolete instruction must stop reaching future replies, and a one-time approval must not become standing permission. The six-change review preserved 66/66 passing scenarios against the earlier decision code, with higher token use. Production WhatsApp delivery and a supervised customer pilot remain unfinished.',
+    },
+    'VacationHolm': {
+      no: '04', status: 'internal', statusLabel: 'Local MVP',
+      role: 'Product and engineering',
+      summary: 'A direct-booking marketplace for holiday rentals in the Azores and Madeira. Guests can search, price a stay and inquire without the platform taking payment; hosts manage listings, calendars, conversations and reported outcomes. The hard part was making those workflows agree: one server quote follows the stay into the inquiry, imported calendar blocks keep their source, reply drafts use only current approved knowledge, and Insights state their denominators and missing data. The MVP is implemented and verified in local source. Hosted migrations, deployment and authenticated end-to-end testing remain unfinished.',
+    },
     'beeline.com': {
-      no: '03', status: 'live', statusLabel: 'Shipped',
+      no: '05', status: 'live', statusLabel: 'Shipped',
       role: 'Lead Vue.js developer',
       summary: 'Rebuilt Beeline’s corporate site from WordPress into a Vue application — my first large Vue project — converting the existing templates and writing new ones against Salesforce and Pardot. Delivered in about a year against a projected year and a half to two. The cost sat in integration and coordination rather than in the frontend: two marketing systems, a design lead, and a stakeholder list that all had to agree. Worth being straight about it — nothing here is algorithmically hard. The result is the schedule and the integrations, not the engineering.',
     },
     'Beeline - Business Case Tool': {
-      no: '04', status: 'internal', statusLabel: 'Internal',
+      no: '06', status: 'internal', statusLabel: 'Internal',
       role: 'Lead Nuxt.js developer',
       summary: 'A client acquisition tool migrated off a legacy PHP site onto Nuxt and Cosmos DB, my first Nuxt project. Prospects configure who owns each step of their process, and the tool models the time and cost that moves. What it produces is a model, not a measurement: the output is only ever as good as the ownership and the rates a prospect types in, and it was never instrumented against what those clients went on to actually spend. Internal, so there is nothing public to open.',
     },
     'Chatbot Decision Tree': {
-      no: '05', status: 'internal', statusLabel: 'Internal',
+      no: '07', status: 'internal', statusLabel: 'Internal',
       role: 'Lead developer',
       summary: 'An assistant whose conversation paths are authored as an explicit decision tree rather than left to the model, with Application Insights wired in so the paths people actually take are measurable. The cost is the authoring: every branch started as a row in a spreadsheet of if-then conditions and had to be drawn, first in Figma and then in a journey editor, before it could answer anything. That is also the limit — it is reliable exactly as far as somebody authored it, and a question the tree does not cover gets routed to the closest branch that exists.',
     },
     'OpenAI Feedback Classifier': {
-      no: '06', status: 'internal', statusLabel: 'Internal',
+      no: '08', status: 'internal', statusLabel: 'Internal',
       role: 'Solo',
       summary: 'Triages incoming product feedback so nobody has to read all of it — built to find out why users of one product kept reverting to its legacy version, across more than 50,000 entries. Scores an F1 of 0.98. The cost was in the labelled data and the prompt, iterated with a data analyst, not in the model. The number needs its caveat: it is one labelled set for one product’s feedback, and the per-class counts behind it are thin — some classes are scored on around a dozen test labels, which is not enough to trust a per-class figure.',
     },
     'Vue Devtools Auditor': {
-      no: '07', status: 'internal', statusLabel: 'Internal',
+      no: '09', status: 'internal', statusLabel: 'Internal',
       role: 'Solo',
       summary: 'An accessibility auditor that reports violations at the component level instead of the page, so a finding names the component that owns it rather than a line of rendered output. It also audits colour against the design system, suggesting the nearest token by smallest delta, and keeps results in Cosmos DB so compliance can be tracked over time. Component-level attribution cost a walk of Vue’s component tree rather than the rendered DOM. Its ceiling is every automated auditor’s ceiling: it catches what is mechanically decidable and cannot make the judgement calls — whether alt text is actually useful, whether an order is actually logical.',
     },
     'Brood': {
-      no: '08', status: 'internal', statusLabel: 'Internal',
+      no: '10', status: 'internal', statusLabel: 'Internal',
       role: 'Project lead and developer',
       summary: 'An internal platform for sourcing and voting on hackathon ideas ahead of the event, built in free time, with single sign-on through Azure AD so participation cost nobody an account and posting could stay anonymous. The cost was scope discipline: it is a submit-and-upvote list on purpose, and it does nothing to help run the event once it starts. The lift in ideas is what organisers observed rather than something the platform measured — no instrumentation was ever added to prove it.',
     },
   };
 
   static items = [
+    {
+      title: 'Casa Agent',
+      caseStudy: '/portfolio/casa-agent/',
+      categories: ['Python', 'Next.js', 'React', 'TypeScript', 'Supabase', 'pgvector', 'OpenAI', 'RAG evaluation'],
+      img: '/images/casa-agent.png',
+      slides: [
+        {"src": "/images/casa-agent/sop-library.png", "thumb": "/images/casa-agent/sop-library.png", "description": "<b>Scoped procedures</b>: The real instruction editor keeps role and property scope beside the procedure. Fictional demo records; no customer data."},
+        {"src": "/images/casa-agent/contacts.png", "thumb": "/images/casa-agent/contacts.png", "description": "<b>Contact policy</b>: A fictional caretaker has a spending threshold, Portuguese language preference and reply mode. These are contact settings, not evidence of live delivery."},
+        {"src": "/images/casa-agent/proposal-review.png", "thumb": "/images/casa-agent/proposal-review.png", "description": "<b>Review before reuse</b>: A proposed linen check appears beside its original evidence and rationale. The fictional example preserves purchase approval as a separate decision."},
+        {"src": "/images/casa-agent/attention.png", "thumb": "/images/casa-agent/attention.png", "description": "<b>Waiting work</b>: A fictional purchase request needs the manager. Property chips show the contact’s assigned scope; they do not prove the escalation’s target property."},
+        {"src": "/images/casa-agent/property-scope.png", "thumb": "/images/casa-agent/property-scope.png", "description": "<b>Who works where</b>: Property detail connects assigned workers to the instruction sheets that apply. Fictional names and procedures throughout."},
+      ],
+    },
+    {
+      title: 'VacationHolm',
+      caseStudy: '/portfolio/vacationholm/',
+      categories: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'iCal', 'OpenAI'],
+      img: '/images/vacationholm.png',
+      slides: [
+        {"src": "/images/vacationholm/guest-search.png", "thumb": "/images/vacationholm/guest-search.png", "description": "<b>Guest search</b>: The real search page with fictional stays, selected dates and stay pricing. Illustrative property data; this is not live inventory."},
+        {"src": "/images/vacationholm/guest-inquiry.png", "thumb": "/images/vacationholm/guest-inquiry.png", "description": "<b>From stay to inquiry</b>: The guest reviews dates, party details and the stay quote before contacting the host. Fictional listing and inquiry; no request was sent."},
+        {"src": "/images/vacationholm/host-dashboard.png", "thumb": "/images/vacationholm/host-dashboard.png", "description": "<b>The host workspace</b>: Owned listings and waiting work in the real host dashboard, populated with fictional records. Calendar and conversation actions remain under host control."},
+        {"src": "/images/vacationholm/reply-drafting.png", "thumb": "/images/vacationholm/reply-drafting.png", "description": "<b>Reviewing a response draft</b>: The real conversation view presents a proposed response and its supporting evidence for the host to review. The draft is a fixture, not a model evaluation or a sent message."},
+        {"src": "/images/vacationholm/insights-overview.png", "thumb": "/images/vacationholm/insights-overview.png", "description": "<b>The Insights dashboard</b>: The real portfolio overview, with fictional activity. It connects reporting to host decisions; the figures do not represent customer performance."},
+        {
+          src: '/images/vacationholm/questions.png',
+          thumb: '/images/vacationholm/questions.png',
+          description: '<b>Recurring questions</b>: The host sees signals for unanswered messages, no-match drafts, dismissed suggestions and substantial edits, plus a fictional example that can be saved for review. The records exercise the real component; they are not customer results.'
+        },
+        {
+          src: '/images/vacationholm/funnel.png',
+          thumb: '/images/vacationholm/funnel.png',
+          description: '<b>One ordered journey</b>: Search impression, listing visit, quote view, inquiry start, server-confirmed inquiry and host-reported booking are counted in sequence. Every percentage names the immediately preceding step as its denominator.'
+        },
+        {
+          src: '/images/vacationholm/changes.png',
+          thumb: '/images/vacationholm/changes.png',
+          description: '<b>Measure a completed change</b>: Equal before-and-after windows put a photo addition beside observed funnel and question metrics. The interface says what the comparison cannot prove: timing beside a change is not causal evidence.'
+        },
+      ],
+    },
     {
       title: '2K Build Lab',
       url: '2kbuildlab.com',

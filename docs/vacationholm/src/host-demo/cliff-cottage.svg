@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="Fictional stone cottage above the sea">
+  <defs><linearGradient id="s" x2="0" y2="1"><stop stop-color="#b9d5df"/><stop offset="1" stop-color="#f3dfbd"/></linearGradient></defs>
+  <rect width="800" height="520" fill="url(#s)"/><path d="M0 340 205 255 395 335 565 275 800 330V520H0Z" fill="#667c67"/><path d="M0 425Q200 390 410 430T800 405V520H0Z" fill="#3c7c8b"/><rect x="265" y="230" width="275" height="155" rx="4" fill="#d9d1bf"/><path d="m230 250 175-120 175 120Z" fill="#56514c"/><rect x="365" y="300" width="72" height="85" fill="#76594c"/><rect x="300" y="275" width="45" height="45" fill="#a8d2d8"/><rect x="462" y="275" width="45" height="45" fill="#a8d2d8"/></svg>

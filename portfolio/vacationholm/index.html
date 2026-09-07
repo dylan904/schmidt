@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dev By Dylan - VacationHolm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A direct-booking marketplace whose pricing, calendars, messages and host insights carry their evidence through the whole journey.">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
+
+    <link rel="canonical" href="https://devbydylan.com/portfolio/vacationholm/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/portfolio/vacationholm/">
+    <meta property="og:title" content="VacationHolm &mdash; Dylan Maxey">
+    <meta property="og:description" content="A direct-booking marketplace whose pricing, calendars, messages and host insights carry their evidence through the whole journey.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/vacationholm.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VacationHolm host insights interface">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VacationHolm &mdash; Dylan Maxey">
+    <meta name="twitter:description" content="A direct-booking marketplace whose pricing, calendars, messages and host insights carry their evidence through the whole journey.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/vacationholm.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
+
+    <style>
+      .cs-body p { font: 17px/1.75 var(--serif); }
+      .cs-narrow { max-width: 72ch; }
+      .cs-body .cs-lead { font-size: 21px; line-height: 1.65; color: var(--muted); }
+      .cs-stats { display: grid; grid-template-columns: max-content 1fr; gap: 0 32px; margin: var(--s7) 0 var(--s6); }
+      .cs-stats dt, .cs-stats dd { border-top: 1px solid var(--line); padding: 14px 0; }
+      .cs-stats dt { font: 14px/1.6 var(--sans); color: var(--muted); }
+      .cs-stats dd { margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted); }
+      .cs-stats b { color: var(--ink); }
+      .cs-fig { margin: 2.5rem 0 3rem; }
+      .cs-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+      .cs-fig figcaption { border: 1px solid var(--line); border-top: 0; background: var(--surface); padding: 14px 18px 16px; font: 15px/1.6 var(--sans); color: var(--muted); }
+      .cs-fig figcaption b { color: var(--ink); }
+      .cs-fig figcaption b::after { content: '. '; }
+      .cs-body .cs-tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+      .cs-tags li { font: 12px/1.5 var(--sans); border: 1px solid var(--line-strong); padding: 6px 11px; color: var(--accent-ink); }
+      .cs-back { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 12px; }
+      .cs-body .cs-disclaimer { margin: 2rem 0 4rem; font: 13px/1.6 var(--sans); color: var(--faint); }
+      @media(max-width:640px) { .cs-stats { grid-template-columns: 1fr; } .cs-stats dt { padding-bottom: 0; } .cs-stats dd { padding-top: 4px; border-top: 0; } .cs-body p { font-size: 16px; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#cs-start">Skip to the case study</a>
+    <nav-pane></nav-pane>
+    <header class="cs-hero"><div class="wrap">
+      <nav class="cs-crumbs" aria-label="Breadcrumb"><a href="/">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">VacationHolm</span></nav>
+      <h1>VacationHolm</h1>
+      <p class="cs-kicker">A direct-booking marketplace that keeps hosts in control.</p>
+    </div></header>
+    <main class="cs-body" id="cs-start"><div class="wrap">
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/guest-search.webp" width="1280" height="800" fetchpriority="high" decoding="async" alt="VacationHolm guest search with fictional holiday rentals and date-based pricing.">
+        <figcaption><b>Start with the guest</b> The real search page with fictional properties and stay details. The examples show the interface, not live inventory or customer activity.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <p class="cs-lead">A direct-booking marketplace for holiday rentals in the Azores and Madeira. Guests search, price a stay and contact the host. The platform keeps the listing, calendar, inquiry and conversation together while payment stays between guest and host.</p>
+        <p>I built the guest and host workflows that connect property search, stay pricing, calendar availability and conversation. The difficult work sits between those screens, where two price calculations can disagree, a calendar refresh can erase the wrong block, or a failed reply job can disappear.</p>
+        <dl class="cs-stats">
+          <dt>Role</dt><dd><b>Product and engineering</b> across guest search, host operations, data design, failure handling and interface copy.</dd>
+          <dt>Business model</dt><dd><b>Direct booking.</b> VacationHolm connects guests and hosts but does not collect or hold payment.</dd>
+          <dt>Verification</dt><dd><b>13 targeted assertion checks and an isolated PostgreSQL migration harness</b> passed against the local source.</dd>
+          <dt>Status</dt><dd><b>Implemented MVP, locally verified.</b> Hosted migrations, deployment and authenticated end-to-end testing remain unfinished.</dd>
+        </dl>
+        <div class="cs-back"><a class="btn primary" href="use-cases.html">Read the product use cases</a><a class="btn" href="use-cases.html" download="vacationholm-use-cases.html">Download the document</a></div>
+
+        <nav class="cs-back" aria-label="Case study sections"><a href="#guest-experience">Guest experience</a><a href="#host-experience">Host workspace</a><a href="#response-drafting">Response drafting</a><a href="#insights-dashboard">Insights</a></nav>
+        <h2 id="guest-experience">One stay should have one answer</h2>
+        <p>A guest can see a total on a search card, open the property, change dates and submit an inquiry. Those steps used to have several ways to calculate price. VacationHolm now runs the same server calculation across search, listing detail and inquiry submission. It includes custom nightly rates, weekend pricing, stay discounts and cleaning fees.</p>
+        <p>The server recalculates the stay before saving the inquiry. A stale or changed quote returns for review instead of accepting the browser's amount. The saved quote carries its dates, party, currency and fee breakdown into the host conversation, so a draft cannot answer from a different nightly-rate shortcut.</p>
+
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/guest-inquiry.webp" width="1280" height="900" loading="lazy" decoding="async" alt="VacationHolm guest inquiry with stay dates, party details and a quoted total.">
+        <figcaption><b>A quote at the point of contact</b> The guest reviews the requested stay and quote before making an inquiry. Fictional dates, prices and party details; no inquiry was submitted.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2>Preserving who blocked each date</h2>
+        <p>Availability can come from an imported iCal reservation, a host block, a confirmed direct booking or older data whose source is unknown. Those records now keep their origin. A successful refresh replaces only the dates owned by that feed, while an empty feed can still record a successful sync. A failed fetch keeps existing blocks in place.</p>
+        <p>Guests see three states: recently checked and open, unavailable, or host confirmation needed. That last state matters. Missing or stale calendar evidence is not the same thing as proof that a date is free.</p>
+      </div>
+      <div class="cs-narrow">
+        <h2 id="host-experience">One place to manage the next host action</h2>
+        <p>The host dashboard brings listing controls and waiting conversations into the same workspace. The queue calls out guests awaiting a reply and calendars that need a sync. Hosts can then open the relevant conversation, review the property, or move into Insights.</p>
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/host-dashboard.webp" width="1280" height="940" loading="lazy" decoding="async" alt="VacationHolm host dashboard with listing management and an attention queue.">
+        <figcaption><b>The host workspace</b> The real host dashboard populated with fictional properties and waiting work. The screenshot illustrates the controls, not an operating customer account.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2 id="response-drafting">A reply draft is work with a lifecycle</h2>
+        <p>A premium host can receive a proposed reply to a guest question, edit it, decline it or write their own. Generation runs through a durable job tied to the exact guest message and policy version. The interface can distinguish queued, ready, unsupported, failed and obsolete work. A retry claims one lease, and a newer guest message makes an older draft ineligible.</p>
+        <p>The draft can use listing facts, the validated quote and host-approved knowledge. Policies and reusable answers have property, host or inquiry scope, plus effective dates and withdrawal. Editing an approved rule returns it to draft. A one-time concession to one guest stays separate from a standing policy for the next.</p>
+
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/reply-drafting.webp" width="1280" height="900" loading="lazy" decoding="async" alt="VacationHolm response draft and source evidence in a fictional guest conversation.">
+        <figcaption><b>The host makes the sending decision</b> A fictional conversation and proposed reply rendered in the real conversation view. The host can inspect the evidence and choose how to respond; no model call or guest message was sent.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2 id="insights-dashboard">The host should leave Insights knowing what to do</h2>
+        <p>The host view answers several different questions. Which guest questions repeat? Where do listing journeys stop? What searches could this property nearly satisfy? Which inquiries became host-reported bookings, and why were others lost? What changed after a host edited a listing or policy?</p>
+        <p>Those views use different evidence, so they do not pretend to be one universal conversion number. The listing funnel uses an ordered 14-day journey and immediate prior-step denominators. Missed demand reports the explicit condition that excluded a property and separates indeterminate price or calendar data. Booking totals remain host-reported. Recurring-question analysis counts distinct guest messages and says when a reply link is inferred for older records.</p>
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/insights-overview.webp" width="1280" height="1100" loading="lazy" decoding="async" alt="VacationHolm Insights overview with fictional portfolio activity.">
+        <figcaption><b>The overview behind the detailed views</b> The real Insights dashboard populated with fictional activity. It gives the host a portfolio view before exploring questions, outcomes, the funnel, missed demand and changes.</figcaption>
+      </figure>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/funnel.webp" width="1280" height="720" loading="lazy" decoding="async" alt="VacationHolm listing funnel showing ordered steps and per-property percentages from fictional journeys.">
+        <figcaption><b>The denominator travels with the percentage</b> The funnel follows journeys recorded after analytics consent, from a visible search result to a host-reported confirmed booking. Each rate uses the step immediately before it. Saved inquiries and host-reported confirmations create the final stages on the server; browser events alone cannot claim either conversion.</figcaption>
+      </figure>
+      <figure class="cs-fig">
+        <img src="/images/full/vacationholm/changes.webp" width="1280" height="720" loading="lazy" decoding="async" alt="VacationHolm change insights comparing equal before and after windows for a fictional photo addition.">
+        <figcaption><b>A comparison with a boundary</b> Equal windows put observed behavior before and after a fictional photo addition. Overlapping edits are flagged, partial windows wait, and the page says that a difference after the edit does not prove the edit caused it.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2>Failures have somewhere to go</h2>
+        <p>The host dashboard collects waiting guest replies and calendar sync failures. Hosts can open a waiting conversation or request a calendar sync from the queue. A separate action center in Insights links improvement tasks to their editor or conversation, with explicit completion, dismissal and snooze controls.</p>
+        <p>Hosts record whether an inquiry became a booking outside VacationHolm, stayed in discussion or did not book. Confirmed stays can block the calendar under their own source. Reversing that outcome removes only those booking dates, leaving host and imported blocks untouched.</p>
+
+        <h2>What the verification proves</h2>
+        <p>Thirteen assertion-based checks exercise the shared quote path, calendar reconciliation, reply knowledge and jobs, outcome history, funnel ordering, missed-demand reasons, recurring questions, change windows and booking analysis. A network-isolated PostgreSQL harness applies the migrations to a disposable database and checks ownership, atomic writes, idempotency and source-specific calendar behavior.</p>
+        <p>That is evidence about the reviewed local source. It is not production usage, customer impact or proof that hosted migrations and background scheduling work in deployment. Authenticated guest and host journeys still need end-to-end testing against the deployed environment.</p>
+
+        <ul class="cs-tags"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Supabase</li><li>PostgreSQL</li><li>iCal</li><li>OpenAI</li></ul>
+        <div class="cs-back"><a href="/" class="btn">&larr; All work</a><a href="use-cases.html" class="btn">Read the use cases</a></div>
+        <p class="cs-disclaimer">Evidence snapshot: 6 September 2026. Source of truth: the VacationHolm repository and its local verification scripts. Screenshots use fictional fixtures rendered through the real components, with no live writes or model calls.</p>
+      </div>
+    </div></main>
+    <footer-pane></footer-pane>
+  </body>
+</html>

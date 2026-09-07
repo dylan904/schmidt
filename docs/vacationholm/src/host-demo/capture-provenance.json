@@ -1,0 +1,59 @@
+{
+  "notice": "All properties, inquiries, calendar states, counts, and timings are fictional portfolio fixtures.",
+  "source_repository": "VacationHolm local source checkout",
+  "source_components": {
+    "app/host/dashboard/page.tsx": "5afc97318afe8635bac6e4951429df5b11fc055763b7a43ea59a60e205998873",
+    "components/header.tsx": "52269241cae63dcaec5999ded24e5d02e21ac0da6fa135c859eda8b41e98dee4",
+    "components/host-work-queue.tsx": "a62ada4a86b951f4d21bba7da104885372db43f0c81a805e0f5e4b8750c2082f",
+    "components/premium-insights.tsx": "7a1993a3fb31efd104dc0bd76bc359b921714248c3877ead3393f9984558749b",
+    "components/portfolio-action-center.tsx": "f1496232a6f4447979e79294c5b1290e4fd635b0f3a83b2112c82697f2151ee1",
+    "components/reply-insights-panel.tsx": "2e04d85c902894bfbd83f5b4cefe1c04129c83332b69701d3ca8102bc8af5e7c",
+    "components/charts/bar.tsx": "fa4e21283522f12c3b403a63337b532c54f3f1a195d9edaf96351b7b4d1344c4"
+  },
+  "demo_sources": {
+    "build.mjs": "267d604a9c1c734d241b81314d725638dddf37f7139041808068446388500b19",
+    "capture.mjs": "04173bb41ba969d8c2b76daebfdd18c03cdc49f4db5c27e58c418e3be6781985",
+    "entry.tsx": "46813ba8a20cf77804f1a8689d54d83393dd37506038c96f76b01caefecc3058",
+    "fixtures.json": "0c6a624fcee0c61e5d7be5b184768550d4cf6eaec69ce5dd50321366d375b1c2",
+    "demo-extra.css": "43c6140df0f80712ceb13edc64c7951d14e904bbe747be7604cbeb9a1cc8e521",
+    "auth-shim.ts": "c94b8c59292b31edb83290a1057e25483a399e89e288df7ad9683097eb1a2982",
+    "i18n-shim.ts": "ff01e4f63d6f26986dc1f90395c6ba45bcf017103639ff9b9dd831426b2403fb",
+    "availability-shim.ts": "5b8e4307ac470d7848c9c6c746aab024e338ba8fa0c54448c869fffbcbc6ada0",
+    "search-context-shim.ts": "bf36764597c9171e965af341e30c33934457565a4950d2713e8551aa70e54a16",
+    "primary-search-shim.tsx": "7de567e27eae1ce942c8fbcca28613ca2bb9f3a2475e665d9a1ccb11c102bce5",
+    "language-switcher-shim.tsx": "0f8637848b0e19e762f06d6240eab51892e2d0a4245d0706320b89dee8a82634",
+    "analytics-shim.ts": "78b7c046a39a63da1e93c8efb9efd35d0a43e5e1bca979651d74463aa66aeee0",
+    "navigation-shim.ts": "1c297e361f50c01d74dc9f068daa254803c8295ae925df5950a1c28e1e16612d",
+    "link-shim.tsx": "6c3ce3a3c532a11a4a058d24341a53bbab1679a9b9d7adcd7e925ec4fd88b272",
+    "image-shim.tsx": "a2a4187ce53fb8f225bfc9111601e0d922765a944d9f30f693ccb52ba19e42a8",
+    "google-font-shim.ts": "e2df9d9e117f712bb77ee1fb0f3e12359bf5ef9620fc371b14a1731e7c53ce0c",
+    "local-font-shim.ts": "4b7393fdd225ee1aa32de1887dcf6a5a01bf1f74bdd887aa8adafbc856e5fb8c",
+    "courtyard.webp": "bc0ecf26a0c7db220f979b4c7d379bcfe625ecc6ef8b180a2e1b670c201f58f0"
+  },
+  "browser": "Chrome/142.0.7444.59",
+  "viewports": {
+    "host_dashboard": {
+      "width": 1280,
+      "height": 940,
+      "device_scale_factor": 1
+    },
+    "insights_overview": {
+      "width": 1280,
+      "height": 1100,
+      "device_scale_factor": 1
+    }
+  },
+  "overview_capture_scale": 0.8,
+  "source_asset": "Legacy VacationHolm courtyard image referenced by app/home/index.tsx",
+  "masters": [
+    "host-dashboard.png",
+    "insights-overview.png"
+  ],
+  "boundaries": [
+    "fictional auth",
+    "English translations",
+    "Next.js navigation, image and font shims",
+    "read-only fixture HTTP responses"
+  ],
+  "post_capture_note": "Trailing blank lines removed from helper files before commit; runtime behavior and captured images are unchanged."
+}
