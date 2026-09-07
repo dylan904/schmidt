@@ -28,15 +28,15 @@ The differentiator is verified depth, not breadth of stack. The flagship project
 
 ## Operating Context
 
-- Visitors typically arrive at `/portfolio` — `index.html` currently redirects there.
-- The portfolio grid is the primary surface: ten project entries, each offering some combination of "Read more" (inline lightbox or a dedicated case-study page), "View Site," and "View gallery" (a lightGallery slideshow of annotated screenshots).
+- The canonical landing page is `/`; `/portfolio` redirects there.
+- The project list is the primary surface: eleven entries, each offering a case study, a public application link, or an annotated gallery as appropriate.
 - The 2K Build Lab case study exists in two forms that must stay in sync: the on-site page at `/portfolio/2k-build-lab/` and a standalone single-file document at `docs/2k-build-lab/case-study.html` with all images inlined as data URIs, built by `docs/2k-build-lab/src/build.mjs` so it can be emailed or opened offline. That standalone build is ASCII-only and fails loudly on unreplaced tokens, because it gets embedded into a host page whose `<head>` it does not control.
 - Screenshots are re-shot by `docs/2k-build-lab/src/capture.mjs` (Playwright, resolved via `NODE_PATH` since it is not a dependency here). Two images are produced by hand: `result.png` from the app's own signed-in PNG export, and `measurements.png` from `docs/2k-build-lab/src/measurements.html`.
 
 ## Capabilities and Constraints
 
-- Ten projects are currently represented, defined as data in `components/work-list.js`: 2K Build Lab, Destination Home, Casa Agent, VacationHolm, beeline.com, Beeline Business Case Tool, Brood, OpenAI Feedback Classifier, Chatbot Decision Tree, and Vue Devtools Auditor.
-- 2K Build Lab, Destination Home, Casa Agent and VacationHolm have dedicated case-study pages. Casa and VacationHolm also have self-contained use-case documents. Each project has an annotated screenshot gallery.
+- Eleven projects are represented in `components/work-list.js`: 2K Build Lab, Destination Home, Casa Agent, VacationHolm, StellarGPT, beeline.com, Beeline Business Case Tool, Chatbot Decision Tree, OpenAI Feedback Classifier, Brood, and Vue Devtools Auditor.
+- 2K Build Lab, Destination Home, Casa Agent, VacationHolm and StellarGPT have dedicated case-study pages. Casa, VacationHolm and StellarGPT also have self-contained use-case documents. Each project has an annotated screenshot gallery.
 - Two projects link to a live URL: 2kbuildlab.com and beeline.com. The remainder are internal or unreleased and have no public link.
 - Contact is a `mailto:` to devbydylan@gmail.com. There is no contact form and no backend to receive one.
 - The nav (`components/nav-pane.js`) exposes Services, Portfolio, and Contact. About, Blog, Blog Single, Experience, and Contact template pages exist in the repo root but are unlinked and carry unmodified Colorlib template content.
@@ -60,6 +60,8 @@ The differentiator is verified depth, not breadth of stack. The flagship project
 - The previous Poppins / `#3e63dd` / dark card-grid look was inherited from the Colorlib template, not chosen, and is being replaced.
 
 ## Evidence on Hand
+
+- **StellarGPT** — built for and adopted by Stellar, an extension of Microsoft's `sample-app-aoai-chatGPT`, reviewed on 7 September 2026. Dylan's two commits add Responses API routing for reasoning models, response normalization, model/assistant selection, typed tool configuration and Cosmos DB conversation metadata. The underlying app, authentication, original retrieval integrations and Azure deployment foundation belong to Microsoft. Three real-UI captures use the existing local static build with fictional API fixtures and a scripted answer. They do not establish live retrieval quality, validated citations, deployment details or measured time savings. Source review identified shared selection state and unfinished tool/history behavior as technical follow-up items. No public application or source-repository link is offered. Dylan confirmed adoption. This addition brings the counts to two public applications and five adopted projects; adoption scope and measured impact are not established.
 
 Real and usable:
 

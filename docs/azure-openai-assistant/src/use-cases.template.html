@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StellarGPT: BIM team use cases | Dylan Maxey</title>
+<meta name="description" content="Three documentation workflows for BIM teams, the expected value of an assistant, and the checks needed before a supervised trial.">
+<link rel="canonical" href="https://devbydylan.com/portfolio/azure-openai-assistant/use-cases.html">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f7f5;color:#151515;font:17px/1.75 Georgia,serif}main{max-width:980px;margin:auto;padding:48px 28px 80px}h1,h2,h3,nav,figcaption,.meta{font-family:Arial,sans-serif}h1{font-size:clamp(32px,5vw,52px);line-height:1.12;letter-spacing:-.035em;max-width:21ch}h2{font-size:26px;line-height:1.3;margin-top:48px}h3{font-size:19px;margin-bottom:6px}p,li{max-width:74ch}a{color:#2446b5;text-underline-offset:3px}a:focus-visible{outline:3px solid #315efb;outline-offset:4px}.meta,figcaption{font-size:14px;color:#565d64}nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;border-bottom:1px solid #e2e2dd;padding-bottom:20px}.lead{font-size:21px;line-height:1.6}figure{margin:32px 0}img{display:block;width:100%;height:auto;border:1px solid #e2e2dd}figcaption{padding:12px 0}li{padding-left:4px;margin:12px 0}footer{border-top:1px solid #e2e2dd;margin-top:48px;padding-top:20px}@media(max-width:600px){main{padding:28px 20px 48px}body{font-size:16px}}@media print{body{background:white;font-size:11pt}main{max-width:none;padding:0}nav{display:none}h1{font-size:28pt}h2{font-size:18pt;break-after:avoid}h3{break-after:avoid}figure{break-inside:avoid}a{color:inherit}img{max-height:105mm;object-fit:contain}p{orphans:3;widows:3}}
+</style></head><body><main>
+<nav aria-label="Document navigation"><a href="https://devbydylan.com/portfolio/azure-openai-assistant/">Engineering case study</a><a href="https://devbydylan.com/">Dylan Maxey / All work</a></nav>
+<h1>StellarGPT: a documentation assistant for BIM teams</h1>
+<p class="meta">Dylan Maxey &middot; Use cases and proposed trial &middot; 7 September 2026</p>
+<p class="lead">A coordinator should be able to find the team's documented procedure without answering the same question from memory every week. This adopted assistant provides a conversational route to that information.</p>
+<p>BIM means building information modeling. The intended users are coordinators and team members working with modeling procedures, standard operating procedures and project documentation. The assistant offers selectable model deployments and a documentation preset. StellarGPT was built for and adopted by Stellar, as confirmed by Dylan. The scenarios below describe intended workflows, not measured usage or business outcomes.</p>
+
+<h2>Why Stellar chose this route</h2>
+<p>Stellar was considering Copilot licenses for everyone. I persuaded the team to adopt StellarGPT instead, using token-based API billing rather than per-seat licenses for this workflow. The aim was to avoid a substantial recurring license expense and pay for actual model usage.</p>
+<p>This records the decision and its cost-saving rationale, not an audited monthly savings figure. A full comparison must include hosting, storage, maintenance and support as well as token usage. StellarGPT addresses this documentation workflow; it is not presented as a feature-for-feature replacement for Copilot.</p>
+
+<h2>Three situations to try</h2>
+<h3>A modeler needs the current procedure</h3>
+<p>A team member preparing a model handoff asks which checks their team requires before submission. They choose the documentation preset, describe the task and review the answer against the referenced source. The expected benefit is less searching and fewer repeated questions to the coordinator. The assistant should not substitute a generic industry answer when the team's procedure is missing.</p>
+<h3>A new colleague needs context</h3>
+<p>A new starter asks what a term in the team's checklist means, then asks a follow-up about when it applies. Conversation context can make that exchange easier than starting a new document search each time. The coordinator remains responsible for resolving an unclear or outdated instruction. This is a proposed onboarding use case, not a measured onboarding result.</p>
+<h3>A coordinator prepares an explanation</h3>
+<p>A coordinator asks for a concise explanation of a documented process to share with a colleague. They review the source, correct the wording and decide whether to use it. A model selector lets the assistant expose different configured deployments, but no evaluation here establishes which one gives better answers or lower cost.</p>
+
+<figure><img src="{{IMG:model-selection}}" width="1280" height="720" alt="The real Azure OpenAI chat application's model deployment selector."><figcaption>The real React interface with fictional fixture data and scripted demo responses. Selecting a model in this capture does not call a model provider or demonstrate comparative quality.</figcaption></figure>
+
+<h2>The proposed working routine</h2>
+<ol>
+<li>The document owner selects a small, current set of procedures and decides who may access them.</li>
+<li>The user chooses the documentation assistant and asks a specific question with the relevant task context.</li>
+<li>The user opens the original document and checks the answer and page reference before acting or sharing it.</li>
+<li>If a source is absent, contradictory or unclear, the coordinator resolves the question and updates the document where necessary.</li>
+</ol>
+<p>The assistant's instructions ask for answers based on supplied documents and for page references. An instruction is not a validation system. The source review did not establish consistent retrieval, correct citations or reliable refusal when the documents cannot answer.</p>
+<figure><img src="{{IMG:document-question}}" width="1280" height="720" alt="A fictional documentation question and scripted answer in the assistant's chat view."><figcaption>A scripted demo response illustrates the intended review workflow. The procedure and references are fictional. This screenshot is not a live model answer or evidence that citations were validated.</figcaption></figure>
+
+<h2>Ongoing operation and evaluation</h2>
+<p>In the reviewed source, the implementation needs isolated user selections, completed tool and history behavior, appropriate logging, access checks and live integration tests. Someone must own document revisions, answer review, provider configuration and operating costs. The assistant does not edit BIM models or approve a project handoff.</p>
+<p>Begin with reviewed answers and a modest set of questions that the team already encounters. Include missing information, outdated wording and follow-up questions. Compare the assistant with the team's normal document search using the same questions.</p>
+<p>Record supported answers, incorrect or missing references, unsupported claims, and time spent finding and checking the result. Include the coordinator's upkeep and review time alongside model and hosting costs. Continue only if the workflow saves effort without lowering the quality of the team's guidance. Those benefits have not yet been measured.</p>
+
+<h2>What was built</h2>
+<p>Dylan extended <a href="https://github.com/microsoft/sample-app-aoai-chatGPT">Microsoft's Azure OpenAI chat sample</a> with Responses API support for reasoning models, response normalization, model and assistant selection, typed tool configuration and model/assistant metadata in Cosmos DB history. Microsoft supplied the underlying chat, authentication, retrieval and Azure deployment foundation.</p>
+<p>Dylan confirmed that the project was adopted. The source review and demonstration do not establish usage scale, measured business impact or reliable answers to real project questions.</p>
+<footer><p class="meta">Screenshots use the existing application build with an isolated fixture API. No model calls, database access or customer records were involved. This file embeds its images and styles and can be saved or printed without a separate asset folder.</p></footer>
+</main></body></html>

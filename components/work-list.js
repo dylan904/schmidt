@@ -28,39 +28,55 @@ export class WorkList extends LitElement {
       role: 'Product and engineering',
       summary: 'A direct-booking marketplace for holiday rentals in the Azores and Madeira. My partner brought the regional business premise; I defined most of the product and implemented it end to end. Guests can search, price a stay and inquire without the platform taking payment; hosts manage listings, calendars, conversations and reported outcomes. The hard part was making those workflows agree: one server quote follows the stay into the inquiry, imported calendar blocks keep their source, reply drafts use only current approved knowledge, and Insights state their denominators and missing data. The product shipped and is now on hold while my partner pursues Portuguese government funding. The September enhancements were verified locally; their deployment has not been verified in this review.',
     },
+    'StellarGPT': {
+      no: '05', status: 'internal', statusLabel: 'Adopted by Stellar',
+      role: 'Application extension and integration',
+      summary: 'Extended Microsoft’s Azure OpenAI sample into StellarGPT, a BIM documentation assistant built for and adopted by Stellar. Added reasoning-model support through the Responses API, selectable deployments, assistant presets with typed tool configuration, and model and assistant metadata in conversation history. The integration keeps two different API response formats readable in the existing chat interface. Microsoft supplied the application foundation; my work connects the new model and assistant flows across Python, React and Cosmos DB. The reviewed source still needs request isolation and focused regression tests. Screenshots use fictional records and scripted answers; retrieval accuracy and time savings have not been established.',
+    },
     'beeline.com': {
-      no: '05', status: 'live', statusLabel: 'Shipped',
+      no: '06', status: 'live', statusLabel: 'Shipped',
       role: 'Lead Vue.js developer',
       summary: 'Rebuilt Beeline’s corporate site from WordPress into a Vue application — my first large Vue project — converting the existing templates and writing new ones against Salesforce and Pardot. Delivered in about a year against a projected year and a half to two. The cost sat in integration and coordination rather than in the frontend: two marketing systems, a design lead, and a stakeholder list that all had to agree. Worth being straight about it — nothing here is algorithmically hard. The result is the schedule and the integrations, not the engineering.',
     },
     'Beeline - Business Case Tool': {
-      no: '06', status: 'internal', statusLabel: 'Adopted by Beeline',
+      no: '07', status: 'internal', statusLabel: 'Adopted by Beeline',
       role: 'Lead Nuxt.js developer',
       summary: 'Adopted internally by Beeline. A client acquisition tool migrated off a legacy PHP site onto Nuxt and Cosmos DB, my first Nuxt project. Prospects configure who owns each step of their process, and the tool models the time and cost that moves. What it produces is a model, not a measurement: the output is only ever as good as the ownership and the rates a prospect types in, and it was never instrumented against what those clients went on to actually spend.',
     },
     'Chatbot Decision Tree': {
-      no: '07', status: 'internal', statusLabel: 'Adopted by Beeline',
+      no: '08', status: 'internal', statusLabel: 'Adopted by Beeline',
       role: 'Original concept and end-to-end implementation',
       summary: 'I originated the idea and built the tool end to end at Beeline, where it was adopted internally. An assistant whose conversation paths are authored as an explicit decision tree rather than left to the model, with Application Insights wired in so the paths people actually take are measurable. The cost is the authoring: every branch started as a row in a spreadsheet of if-then conditions and had to be drawn, first in Figma and then in a journey editor, before it could answer anything. That is also the limit — it is reliable exactly as far as somebody authored it, and a question the tree does not cover gets routed to the closest branch that exists.',
     },
     'OpenAI Feedback Classifier': {
-      no: '08', status: 'internal', statusLabel: 'Adopted by Beeline',
+      no: '09', status: 'internal', statusLabel: 'Adopted by Beeline',
       role: 'Original concept and end-to-end implementation',
       summary: 'I originated the idea and built it end to end. It became Beeline’s first adopted AI project. Triages incoming product feedback so nobody has to read all of it — built to find out why users of one product kept reverting to its legacy version, across more than 50,000 entries. Scores an F1 of 0.98. The cost was in the labelled data and the prompt, iterated with a data analyst, not in the model. The number needs its caveat: it is one labelled set for one product’s feedback, and the per-class counts behind it are thin — some classes are scored on around a dozen test labels, which is not enough to trust a per-class figure.',
     },
     'Brood': {
-      no: '09', status: 'internal', statusLabel: 'Adopted by Beeline',
+      no: '10', status: 'internal', statusLabel: 'Adopted by Beeline',
       role: 'Original concept and end-to-end implementation',
       summary: 'I originated the idea and built the tool end to end at Beeline, where it was adopted internally. An internal platform for sourcing and voting on hackathon ideas ahead of the event, built in free time, with single sign-on through Azure AD so participation cost nobody an account and posting could stay anonymous. The cost was scope discipline: it is a submit-and-upvote list on purpose, and it does nothing to help run the event once it starts. The lift in ideas is what organisers observed rather than something the platform measured — no instrumentation was ever added to prove it.',
     },
     'Vue Devtools Auditor': {
-      no: '10', status: 'internal', statusLabel: 'Internal',
+      no: '11', status: 'internal', statusLabel: 'Internal',
       role: 'Original concept and end-to-end implementation',
       summary: 'I originated the idea and built the tool end to end at Beeline. An accessibility auditor that reports violations at the component level instead of the page, so a finding names the component that owns it rather than a line of rendered output. It also audits colour against the design system, suggesting the nearest token by smallest delta, and keeps results in Cosmos DB so compliance can be tracked over time. Component-level attribution cost a walk of Vue’s component tree rather than the rendered DOM. Its ceiling is every automated auditor’s ceiling: it catches what is mechanically decidable and cannot make the judgement calls — whether alt text is actually useful, whether an order is actually logical.',
     },
   };
 
   static items = [
+    {
+      title: 'StellarGPT',
+      caseStudy: '/portfolio/azure-openai-assistant/',
+      categories: ['Python', 'Quart', 'React', 'TypeScript', 'Azure OpenAI', 'Cosmos DB'],
+      img: '/images/azure-openai-assistant.png',
+      slides: [
+        { src: '/images/azure-openai-assistant/model-selection.png', thumb: '/images/azure-openai-assistant/model-selection.png', description: '<b>Choosing a deployment</b>: The added picker exposes GPT-4o and o4-mini in the existing chat interface. Real UI with fictional local configuration. The menu descriptions are product copy, not performance measurements.' },
+        { src: '/images/azure-openai-assistant/assistant-preset.png', thumb: '/images/azure-openai-assistant/assistant-preset.png', description: '<b>A task-specific preset</b>: Selecting BIM SOPs changes the heading, description and displayed model. The fixture server acknowledges selection without running the production backend or a model.' },
+        { src: '/images/azure-openai-assistant/document-question.png', thumb: '/images/azure-openai-assistant/document-question.png', description: '<b>A document question in context</b>: The real chat renders a scripted handoff checklist from fictional history. The page reference is illustrative, not a validated citation or live retrieval result. Model and assistant labels preserve context in the interface.' },
+      ],
+    },
     {
       title: 'Casa Agent',
       caseStudy: '/portfolio/casa-agent/',

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dev By Dylan - StellarGPT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Extending Microsoft's Azure OpenAI chat sample with reasoning-model support, assistant presets and model-aware history. An adopted documentation assistant by Dylan Maxey.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23315EFB'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='700' fill='white' text-anchor='middle'>D</text></svg>">
+    <link rel="canonical" href="https://devbydylan.com/portfolio/azure-openai-assistant/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Dev By Dylan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://devbydylan.com/portfolio/azure-openai-assistant/">
+    <meta property="og:title" content="StellarGPT | Dylan Maxey">
+    <meta property="og:description" content="Extending Microsoft's chat sample with reasoning-model support, assistant presets and model-aware history. An adopted documentation assistant.">
+    <meta property="og:image" content="https://devbydylan.com/images/og/azure-openai-assistant.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StellarGPT documentation chat application">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="StellarGPT | Dylan Maxey">
+    <meta name="twitter:description" content="A Microsoft sample extended for reasoning models and configurable documentation assistants.">
+    <meta name="twitter:image" content="https://devbydylan.com/images/og/azure-openai-assistant.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+    <script type="module" src="/components/nav-pane.js"></script>
+    <script type="module" src="/components/footer-pane.js"></script>
+    <style>
+      .cs-body p { font: 17px/1.75 var(--serif); }
+      .cs-narrow { max-width: 72ch; }
+      .cs-body .cs-lead { font-size: 21px; line-height: 1.65; color: var(--muted); }
+      .cs-stats { display: grid; grid-template-columns: max-content 1fr; gap: 0 32px; margin: var(--s7) 0 var(--s6); }
+      .cs-stats dt, .cs-stats dd { border-top: 1px solid var(--line); padding: 14px 0; }
+      .cs-stats dt { font: 14px/1.6 var(--sans); color: var(--muted); }
+      .cs-stats dd { margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted); }
+      .cs-stats b { color: var(--ink); }
+      .cs-fig { margin: 2.5rem 0 3rem; }
+      .cs-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+      .cs-fig figcaption { border: 1px solid var(--line); border-top: 0; background: var(--surface); padding: 14px 18px 16px; font: 15px/1.6 var(--sans); color: var(--muted); }
+      .cs-fig figcaption b { color: var(--ink); }
+      .cs-fig figcaption b::after { content: '. '; }
+      .cs-body .cs-tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+      .cs-tags li { font: 12px/1.5 var(--sans); border: 1px solid var(--line-strong); padding: 6px 11px; color: var(--accent-ink); }
+      .cs-back { margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 12px; }
+      .cs-body .cs-disclaimer { margin: 2rem 0 4rem; font: 13px/1.6 var(--sans); color: var(--faint); }
+      @media(max-width:640px) { .cs-stats { grid-template-columns: 1fr; } .cs-stats dt { padding-bottom: 0; } .cs-stats dd { padding-top: 4px; border-top: 0; } .cs-body p { font-size: 16px; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#cs-start">Skip to the case study</a>
+    <nav-pane></nav-pane>
+    <header class="cs-hero"><div class="wrap">
+      <nav class="cs-crumbs" aria-label="Breadcrumb"><a href="/">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">StellarGPT</span></nav>
+      <h1>StellarGPT</h1>
+      <p class="cs-kicker">Extending a chat sample for configurable documentation assistance.</p>
+    </div></header>
+    <main class="cs-body" id="cs-start"><div class="wrap">
+      <figure class="cs-fig">
+        <img src="/images/full/azure-openai-assistant/model-selection.webp" width="1280" height="720" fetchpriority="high" decoding="async" alt="Azure OpenAI chat interface with the model deployment selector open.">
+        <figcaption><b>Choose the model behind the conversation</b> The selector exposes model deployments in the existing React interface. Real application UI with fictional fixture data and scripted demo responses; no model or database calls.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <p class="cs-lead">Built for and adopted by Stellar, StellarGPT helps teams ask recurring questions about their documentation. I extended Microsoft's Azure OpenAI chat sample with reasoning-model support, assistant presets and model-aware conversation history.</p>
+        <p>The use case is building information modeling, or BIM. A coordinator answering a modeling or handoff question needs the team's procedure and enough source context to check it. The assistant supports that workflow with a documentation assistant preset.</p>
+        <dl class="cs-stats">
+          <dt>Role</dt><dd><b>Application extension.</b> Python request handling, API integration, React controls, typed configuration and history metadata.</dd>
+          <dt>Foundation</dt><dd><a href="https://github.com/microsoft/sample-app-aoai-chatGPT">Microsoft's Azure OpenAI sample</a> supplied the chat application, authentication, retrieval infrastructure and Azure deployment foundation.</dd>
+          <dt>Status</dt><dd><b>Adopted by Stellar.</b> Project name, organization and adoption confirmed by Dylan. Screenshots exercise fixture-backed UI; usage scale, live answer quality and measured business outcomes were not established by this review.</dd>
+        </dl>
+        <div class="cs-back"><a class="btn primary" href="use-cases.html">BIM team use cases</a><a class="btn" href="use-cases.html" download="stellargpt-use-cases.html">Download the document</a></div>
+
+        <h2>The licensing decision</h2>
+        <p>Stellar was considering Copilot licenses for everyone. I persuaded the team to adopt StellarGPT instead, choosing token-based API billing over per-seat licensing for this workflow to avoid a substantial recurring license expense. The project was adopted; a measured monthly savings figure is not established here. Hosting, maintenance and support still belong in the total cost.</p>
+
+        <h2>Two API paths, one conversation interface</h2>
+        <p>The main engineering change was supporting reasoning models through the Responses API while retaining Chat Completions for other models. Those APIs return different response and streaming shapes. I added routing and normalization so the existing chat interface could consume both paths.</p>
+        <p>Keeping the original path reduced the scope of the migration. It also left two integrations to maintain, with different request options and event handling. The work crosses backend dispatch, response formatting and the frontend message types; a model dropdown alone would not have completed it.</p>
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/azure-openai-assistant/assistant-preset.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Assistant selector showing a generic BIM SOPs documentation preset in the chat application.">
+        <figcaption><b>A preset carries the task configuration</b> The assistant choice connects a model with instructions and typed tool configuration in source. This real UI capture uses a fictional BIM SOPs preset and scripted demo responses, not a live retrieval run.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2>Configuration follows the conversation</h2>
+        <p>I added model and assistant selection endpoints and controls, with tool definitions represented in Python and TypeScript. Conversation records also gained model and assistant metadata in Cosmos DB, making the selected configuration part of the saved record.</p>
+        <p>The BIM preset asks the assistant to use the supplied documentation and include page references. That is an instruction to the model. The review did not establish that answers or page references are consistently correct, and the example below is scripted.</p>
+      </div>
+      <figure class="cs-fig">
+        <img src="/images/full/azure-openai-assistant/document-question.webp" width="1280" height="720" loading="lazy" decoding="async" alt="A fictional BIM documentation question and an illustrative assistant response in the real chat interface.">
+        <figcaption><b>A response the coordinator can review</b> This scripted demo answer illustrates the intended question-and-document workflow. Its procedure and references are fictional; they are not evidence of generated answer quality or validated citations.</figcaption>
+      </figure>
+      <div class="cs-narrow">
+        <h2>What this work establishes</h2>
+        <p>The fork adds a coherent feature across model dispatch, configuration, UI and persistence. My contribution is that extension. The underlying chat product and Azure foundation remain Microsoft's work.</p>
+        <p>Shared application state for selections, unfinished tool and history behavior, and verbose logging remain technical follow-up items in the reviewed source. The source review and fixture screenshots do not replace application tests, live provider checks or a supervised pilot. Adoption is confirmed; this review did not establish measured time savings.</p>
+        <p>The next useful trial would use a small approved document set and questions that coordinators already answer. Check each answer against the current procedure, verify its references, and count both review time and unsupported claims. The <a href="use-cases.html">use-case document</a> describes that trial from the team's perspective.</p>
+        <ul class="cs-tags"><li>Python</li><li>React</li><li>TypeScript</li><li>Azure OpenAI</li><li>Responses API</li><li>Cosmos DB</li></ul>
+        <div class="cs-back"><a href="/" class="btn">&larr; All work</a><a href="use-cases.html" class="btn">Read the use cases</a></div>
+        <p class="cs-disclaimer">Evidence snapshot: 7 September 2026. Screenshots show the existing application build with an isolated fixture API, fictional documents and scripted responses. No live model, database or customer data was used.</p>
+      </div>
+    </div></main>
+    <footer-pane></footer-pane>
+  </body>
+</html>
