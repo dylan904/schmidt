@@ -28,3 +28,6 @@ Thumbs.db
 
 # Build output for Cloudflare Pages
 dist/
+
+# Local Impeccable session state
+/.impeccable/
