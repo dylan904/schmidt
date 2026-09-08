@@ -316,7 +316,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/bct/process-steps.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/bct/process-steps.png",
           description: '<b>Process Steps Configuration Feature</b>: This feature lets users personalize their workflow by selecting who manages each step—themselves or Beeline—and assesses current time investments for these tasks. It fosters a collaborative environment, optimizing process efficiency by allowing for a tailored approach to task management and duration analysis, enhancing operational insights.'
@@ -334,7 +333,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/bct/hard-savings.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/bct/hard-savings.png",
           description: `<b>Hard Cost Savings Feature</b>: Offers granular control over cost-saving categories, displaying year-over-year value saved. This tool empowers users to fine-tune savings strategies, providing a clear visualization of financial benefits achieved through strategic adjustments, thereby underscoring the platform's impact on enhancing fiscal efficiency.`
@@ -376,7 +374,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/brood/post.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/brood/post.png",
           description: '<b>Detailed Idea Review</b>: Showcases a single post viewing with options for in-depth reading, engagement through likes and comments, and the ability to share insightful contributions.'
@@ -384,7 +381,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/brood/teams.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/brood/teams.png",
           description: 'Teams Integration Feature Screenshot: Illustrates seamless Teams integration for meeting scheduling and instant messaging within "Brood", enhancing collaboration on hackathon ideas. It simplifies the coordination of brainstorming sessions and accelerates communication among participants.'
@@ -462,7 +458,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/chatbot/bot.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/chatbot/bot.png",
           description: `<b>Guideme Chatbot Interaction</b>: Demonstrates the bot's intent-recognition feature, which leads users through a targeted questionnaire to swiftly arrive at a solution. It showcases the AI's capacity to streamline complex processes into efficient, user-focused interactions, culminating in quick and personalized end results.`
@@ -490,7 +485,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/chatbot/editor.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/chatbot/editor.png",
           description: '<b>Chatbot Journey Editor</b>: Exhibits the editing features where more answer options can be added to extend existing paths or modify the journey with new answer sets. This flexibility allows for continual refinement and expansion of the decision-making pathways, adapting to the evolving needs of users and enhancing the bot’s guidance accuracy.'
@@ -498,7 +492,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/chatbot/legend.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/chatbot/legend.png",
           description: `<b>Chatbot Decision Tree Legend</b>: Showcases the legend panel of the decision tree, providing clarity on the symbols and color coding used within the chatbot's journey editor. This key aids in navigating and understanding the various elements and pathways, ensuring that the design and editing process is intuitive and accessible.`
@@ -506,7 +499,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/chatbot/journey.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/chatbot/journey.png",
           description: `<b>Chatbot Streamlined Journey Panel</b>: Depicts the journey panel, which simplifies and visualizes the decision path actively being taken. This panel aids in providing a focused view of the current user's path through the chatbot's logic, making the decision-making process as streamlined and clear as possible for designers and end-users alike.`
@@ -514,7 +506,6 @@ export class WorkList extends LitElement {
         {
           video: {
             source: [{ src: "/images/chatbot/bot-preview.mp4", type:"video/mp4" }],
-            attributes: { preload: false, controls: true, autoplay: true }
           },
           thumb: "/images/chatbot/bot-preview.png",
           description: `<b>Chatbot Preview Functionality</b>: Captures the bot preview feature, enabling real-time interaction testing as the decision tree is configured. This tool provides developers with immediate feedback on the bot's conversational flow, ensuring that each path and response aligns with the intended user experience as it's being built.`
@@ -566,7 +557,7 @@ export class WorkList extends LitElement {
   // Three sizes off one source path, all WebP, none of them loaded on page load:
   // full (<=1920px) opens in the gallery, thumb feeds its filmstrip, card is the
   // list figure. Sources stay on disk as the originals; nothing ships a PNG.
-  // Only rasters have derived sizes -- ten of the slides are .mp4 and must pass
+  // Only rasters have derived sizes; .mp4 slides must pass
   // through untouched, or the gallery asks for a video that was never converted.
   static variant(src, dir) {
     return src && src.endsWith('.png')
@@ -580,20 +571,68 @@ export class WorkList extends LitElement {
 
   static cardFor(item) { return WorkList.variant(item.img, 'cards'); }
 
+  static attachGalleryVideos(gallery, button, slides) {
+    let activeIndex = -1;
+    const reset = (video) => {
+      video.pause();
+      video.currentTime = 0;
+    };
+    const stop = () => {
+      activeIndex = -1;
+      gallery.outer.get().querySelectorAll('video').forEach(reset);
+    };
+    button.addEventListener('lgHasVideo', ({ detail: { index } }) => {
+      const slide = slides[index];
+      if (!slide.video) return;
+      const container = gallery.getSlideItem(index).get().querySelector('.lg-video-cont');
+      if (!container || container.querySelector('video')) return;
+      const video = document.createElement('video');
+      video.className = 'lg-video-object lg-html5 lg-object';
+      video.controls = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+      video.poster = slide.videoPoster;
+      for (const source of slide.video.source) {
+        const element = document.createElement('source');
+        element.src = source.src;
+        element.type = source.type;
+        video.append(element);
+      }
+      // A queued play or a native control must never play an inactive slide.
+      video.addEventListener('play', () => {
+        if (activeIndex !== index) reset(video);
+      });
+      container.append(video);
+    });
+    button.addEventListener('lgBeforeSlide', stop);
+    button.addEventListener('lgBeforeClose', stop);
+    button.addEventListener('lgAfterSlide', ({ detail: { index } }) => {
+      activeIndex = index;
+      const video = gallery.getSlideItem(index).get().querySelector('video');
+      if (!video) return;
+      reset(video);
+      // Browsers can reject autoplay; native controls remain available.
+      video.play().catch(() => {});
+    });
+  }
+
   openGallery(item, button) {
     if (button.dataset.ready === 'true') return;
     const slides = item.slides.map((slide) => ({
       src: WorkList.fullFor(slide.src),
       thumb: WorkList.thumbFor(slide.thumb),
       video: slide.video,
+      videoPoster: slide.video ? WorkList.fullFor(slide.thumb) : undefined,
       subHtml: `<div class="lg-cap">${item.url ? `<h4><a href="https://${item.url}">${item.url}</a></h4>` : ''}<p>${slide.description}</p></div>`,
     }));
     const gallery = window.lightGallery(button, {
       dynamic: true,
-      plugins: [window.lgZoom, window.lgThumbnail, window.lgVideo].filter(Boolean),
+      plugins: [window.lgZoom, window.lgThumbnail].filter(Boolean),
       dynamicEl: slides,
       gotoNextSlideOnVideoEnd: false,
     });
+    WorkList.attachGalleryVideos(gallery, button, slides);
     button.dataset.ready = 'true';
     gallery.openGallery(0);
     button.addEventListener('click', () => gallery.openGallery(0));
