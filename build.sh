@@ -24,6 +24,37 @@ cp index.html services.html 404.html robots.txt sitemap.xml dist/
 cp -R portfolio components css dist/
 node scripts/prerender-work-list.cjs dist/index.html components/work-list.js
 
+# Changed CSS/components need new URLs so returning browsers cannot reuse an
+# older release for a week. Keep original paths for already-open older pages.
+node <<'JS'
+const fs = require('node:fs');
+const path = require('node:path');
+const { createHash } = require('node:crypto');
+const assets = new Map();
+for (const directory of ['css', 'components']) {
+  for (const name of fs.readdirSync(`dist/${directory}`)) {
+    if (!/\.(css|js)$/.test(name)) continue;
+    const original = `/${directory}/${name}`;
+    const hash = createHash('sha256').update(fs.readFileSync(`dist${original}`)).digest('hex').slice(0, 12);
+    const versioned = original.replace(/\.(css|js)$/, `.${hash}.$1`);
+    fs.copyFileSync(`dist${original}`, `dist${versioned}`);
+    assets.set(original, versioned);
+  }
+}
+function updatePages(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) updatePages(file);
+    else if (entry.name.endsWith('.html')) {
+      const html = fs.readFileSync(file, 'utf8');
+      fs.writeFileSync(file, html.replace(/(?:src|href)="(\/(?:css|components)\/[^"?]+)"/g,
+        (match, url) => assets.has(url) ? match.replace(url, assets.get(url)) : match));
+    }
+  }
+}
+updatePages('dist');
+JS
+
 # Derived rasters only. The per-project directories hold PNG masters that never
 # ship, but they also hold the gallery videos, which do.
 mkdir -p dist/images
