@@ -61,6 +61,8 @@ The differentiator is verified depth, not breadth of stack. The flagship project
 
 ## Evidence on Hand
 
+- **Destination Home** — built for and adopted by Sterling Lexicon, as confirmed by Dylan on 8 September 2026. The current portfolio totals are eleven projects, two public applications and six adopted projects, superseding the five-adopted count recorded with the StellarGPT addition below. Adoption scope, user counts and measured business impact were not supplied. The case study's earlier engineering findings and development screenshots remain historical evidence; their current deployment status was not reverified for this update.
+
 - **StellarGPT** — built for and adopted by Stellar, an extension of Microsoft's `sample-app-aoai-chatGPT`, reviewed on 7 September 2026. Dylan's two commits add Responses API routing for reasoning models, response normalization, model/assistant selection, typed tool configuration and Cosmos DB conversation metadata. The underlying app, authentication, original retrieval integrations and Azure deployment foundation belong to Microsoft. Three real-UI captures use the existing local static build with fictional API fixtures and a scripted answer. They do not establish live retrieval quality, validated citations, deployment details or measured time savings. Source review identified shared selection state and unfinished tool/history behavior as technical follow-up items. No public application or source-repository link is offered. Dylan confirmed adoption. This addition brings the counts to two public applications and five adopted projects; adoption scope and measured impact are not established.
 
 Real and usable:

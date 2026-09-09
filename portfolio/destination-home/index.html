@@ -168,7 +168,7 @@
               <dt>Cost work</dt>
               <dd><b>93% off the Google bill</b> at the 20-city scenario, once I traced what the code actually called</dd>
               <dt>Status</dt>
-              <dd><b>Pre-production MVP.</b> Working end to end, with hosting and identity blocked on client dependencies</dd>
+              <dd><b>Adopted by Sterling Lexicon.</b></dd>
             </dl>
 
         </div>
@@ -400,13 +400,13 @@
       <div class="wrap">
         <div class="cs-narrow"><h2>Where it actually stands</h2>
 
-            <p>This is a substantial pre-production MVP, not a launched product, and the delivery tracker only ticks a box when something works end to end.</p>
+            <p>Destination Home has been adopted by Sterling Lexicon. The engineering review and screenshots below describe the earlier development build.</p>
 
-            <p>Working: the Angular SPA, the .NET API, the AI pipeline, the deterministic scorer, the session store, the analytics, and the measurement tooling. Blocked, mostly on client dependencies: Azure hosting, Auth0, the profile integration, server-side PDF export and email, and security sign-off. PDF today is the browser's own print, and mail never leaves the app.</p>
+            <p>At that review, the Angular SPA, the .NET API, the AI pipeline, the deterministic scorer, the session store, the analytics, and the measurement tooling worked end to end. Azure hosting, Auth0, the profile integration, server-side PDF export and email, and security sign-off were blocked, mostly on client dependencies. PDF used the browser's own print, and mail did not leave the app. These are findings from that review; their current status has not been reverified for this update.</p>
 
-            <p>Two caveats belong on any honest description of it. The program corpus is placeholder content, so the architecture around it is real and the corpus is not. The seeded neighborhood lists were hand-typed from memory, which the data file itself discloses, and a later probe against a real neighborhood dataset agreed with six of the eight Austin entries. The two that disagreed are the instructive ones: a commercial district and a park were being used where a residential neighborhood name belongs.</p>
+            <p>The reviewed build used placeholder program content. The seeded neighborhood lists were hand-typed from memory, which the data file itself discloses, and a later probe against a real neighborhood dataset agreed with six of the eight Austin entries. The two that disagreed are the instructive ones: a commercial district and a park were being used where a residential neighborhood name belongs.</p>
 
-            <p>Two more gaps surfaced while I was reviewing the repo to write this up. The retention sweeper is implemented and tested but never registered as a hosted service, so it does not run. The analytics endpoint mishandles the no-database mode. Both are recorded rather than quietly fixed in the write-up.</p>
+            <p>Two more gaps surfaced in that review. The retention sweeper was implemented and tested but never registered as a hosted service, so it did not run. The analytics endpoint mishandled the no-database mode. Both were recorded in the review.</p>
 
             <h3>Consulting, not just code</h3>
             <ul class="cs-list">
