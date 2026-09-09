@@ -35,7 +35,7 @@ The differentiator is verified depth, not breadth of stack. The flagship project
 
 ## Capabilities and Constraints
 
-- Eleven projects are represented in `components/work-list.js`: 2K Build Lab, Destination Home, Casa Agent, VacationHolm, StellarGPT, beeline.com, Beeline Business Case Tool, Chatbot Decision Tree, OpenAI Feedback Classifier, Brood, and Vue Devtools Auditor.
+- Eleven projects are represented in `components/work-list.js`: 2K Build Lab, Destination Home, Casa Agent, VacationHolm, StellarGPT, beeline.com, Chatbot Decision Tree, OpenAI Feedback Classifier, Brood, Beeline Business Case Tool, and Vue Devtools Auditor.
 - 2K Build Lab, Destination Home, Casa Agent, VacationHolm and StellarGPT have dedicated case-study pages. Casa, VacationHolm and StellarGPT also have self-contained use-case documents. Each project has an annotated screenshot gallery.
 - Two projects link to a live URL: 2kbuildlab.com and beeline.com. The remainder are internal or unreleased and have no public link.
 - Contact is a `mailto:` to devbydylan@gmail.com. There is no contact form and no backend to receive one.
