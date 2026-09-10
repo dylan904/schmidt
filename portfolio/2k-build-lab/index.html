@@ -66,7 +66,7 @@
       .cs-fig { margin: 2.5rem 0 3rem; }
       .cs-fig img {
         width: 100%; height: auto; display: block;
-        border: 1px solid var(--line); border-bottom: 0; background: var(--sunk);
+        border: 1px solid var(--line); border-bottom: 0; background: var(--sunk); border-radius: 12px 12px 0 0;
       }
 
       /* The opening figure is the evidence the page exists to present, so it goes
@@ -78,7 +78,7 @@
       .cs-hero-fig img { height: 400px; object-fit: cover; object-position: top center; }
       .cs-fig figcaption {
         border: 1px solid var(--line); border-top: 0; background: var(--surface);
-        padding: 14px 18px 16px; font-size: 15px; line-height: 1.6; color: var(--muted);
+        padding: 14px 18px 16px; font-size: 15px; line-height: 1.6; color: var(--muted); border-radius: 0 0 12px 12px;
       }
       /* Bold lead-in, the way a figure caption actually reads. */
       .cs-fig figcaption b { font-weight: 600; color: var(--ink); }
@@ -113,10 +113,10 @@
 
       .cs-kill { border-bottom: 1px solid var(--line); padding: 1.15rem 0; }
       .cs-kill:first-of-type { border-top: 1px solid var(--line); }
-      .cs-kill h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+      .cs-kill h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; display: flex; align-items: baseline; }
       .cs-kill h4 em {
         font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-        text-transform: uppercase; color: var(--accent-ink); margin-left: 10px; white-space: nowrap;
+        text-transform: uppercase; color: var(--accent-ink); margin-left: 10px; white-space: nowrap; border-radius: 99px; border: 1px solid var(--accent-ink); padding: 2px 8px;
       }
       .cs-kill p { font-size: 15px; line-height: 1.65; color: var(--muted); margin-bottom: 0; }
 
