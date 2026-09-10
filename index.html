@@ -118,10 +118,20 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         projects.forEach((p) => observer.observe(p));
         return true;
       };
+      // Lit replaces the prerendered cards on upgrade, which throws away any scroll
+      // the browser had already made to a #project fragment. Re-apply it once the
+      // real cards exist, so a shared /portfolio/<project>/ link lands on its entry
+      // rather than at the top. .proj carries scroll-margin-top for the sticky nav.
+      const scrollToHash = () => {
+        if (!location.hash) return;
+        document.getElementById(decodeURIComponent(location.hash.slice(1)))
+          ?.scrollIntoView({ block: 'start' });
+      };
       customElements.whenDefined('work-list').then(() => {
         const el = document.querySelector('work-list');
         (el.updateComplete ?? Promise.resolve()).then(() => {
-          if (!buildRail()) requestAnimationFrame(buildRail);
+          if (buildRail()) scrollToHash();
+          else requestAnimationFrame(() => { buildRail(); scrollToHash(); });
         });
       });
     </script>

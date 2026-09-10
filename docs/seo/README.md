@@ -11,6 +11,32 @@ to check the rendered list against its source data.
 Document metadata belongs in each `docs/<project>/src/use-cases.template.html`;
 run that directory's `build.mjs` to regenerate identical online/offline copies.
 
+## Project share pages
+
+Six projects are written up on the home page rather than in a case study of their
+own: beeline.com, the Chatbot Decision Tree, the OpenAI Feedback Classifier, Brood,
+the Business Case Tool and the Vue Devtools Auditor. A fragment such as `/#brood`
+cannot carry its own preview image, so every LinkedIn media link fell back to the
+home page card and all eleven projects showed the same thumbnail.
+
+Each of those six now has `portfolio/<project>/index.html`: metadata only, carrying
+its own title, description, canonical URL, Open Graph and Twitter tags and its own
+`images/og/<project>.jpg`. Social crawlers do not run scripts, so they read that
+metadata and stop. Readers are sent on to the project's own entry on the home page
+by `location.replace`, and `index.html` re-applies the fragment scroll after Lit
+replaces the prerendered cards, so the link lands on the project rather than at the
+top. A no-script fallback link is in the body.
+
+These pages are deliberately not case studies and are not linked from the work list.
+They are share targets. They carry a self-canonical and sit in the sitemap at low
+priority rather than `noindex`, because a `noindex` page risks being skipped by the
+preview crawler the pages exist to serve.
+
+The six social images were derived from the root screenshots the work list already
+uses, scaled to fit and padded to 1200 by 630 on the site's own #F7F7F5. Nothing is
+cropped away, so each thumbnail is recognisably its own project. `check-seo.cjs`
+verifies every page's metadata and that each image is a real local JPEG at that size.
+
 ## Social image
 
 `social-card.html` is the editable HTML/CSS design for
